@@ -10,9 +10,7 @@ class blk(gr.sync_block, QtWidgets.QWidget):
     the text as a PMT message on the 'msg' output port.
 
     Wire this block's 'msg' output directly into
-    Message Strobe's 'set_msg' input port. Message Strobe will
-    then keep transmitting whatever text you last sent, at its
-    configured Period (ms) interval.
+    Message Strobe's 'set_msg' input port.
     """
 
     def __init__(self, label='Enter message'):
@@ -24,14 +22,22 @@ class blk(gr.sync_block, QtWidgets.QWidget):
         )
         QtWidgets.QWidget.__init__(self)
 
+        self._label_text = label
+        self._built = False
+
         # Message output port -> connect to Message Strobe's set_msg
         self.message_port_register_out(pmt.intern('msg'))
 
-        # --- Build the floating window ---
+    def _build_ui(self):
+        """Build and show the window. Only called once, at runtime."""
+        if self._built:
+            return
+        self._built = True
+
         self.setWindowTitle('Message Entry')
 
         self.layout = QtWidgets.QHBoxLayout(self)
-        self.label = QtWidgets.QLabel(label)
+        self.label = QtWidgets.QLabel(self._label_text)
         self.edit = QtWidgets.QLineEdit()
         self.button = QtWidgets.QPushButton('Send')
 
@@ -43,9 +49,18 @@ class blk(gr.sync_block, QtWidgets.QWidget):
         self.button.clicked.connect(self.send_message)
         self.edit.returnPressed.connect(self.send_message)
 
-        # Show as its own standalone window
         self.resize(400, 60)
         self.show()
+
+    def start(self):
+        """Called only when the flowgraph actually starts running."""
+        self._build_ui()
+        return super().start()
+
+    def stop(self):
+        if self._built:
+            self.close()
+        return super().stop()
 
     def send_message(self):
         text = self.edit.text()
