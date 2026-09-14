@@ -60,7 +60,7 @@ blocks:
     cons: bpsk
     delta: '10.0'
     ffactor: '0.99'
-    modulus: '4'
+    modulus: '1'
     step_size: '.01'
     type: cma
   states:
@@ -347,7 +347,7 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     tagname: packet_len
-    threshold: '2'
+    threshold: '4'
     type: byte
   states:
     bus_sink: false
@@ -556,7 +556,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    bandwidth: '20000000'
+    bandwidth: '2000000'
     bbdc: 'True'
     buffer_size: '32768'
     comment: ''

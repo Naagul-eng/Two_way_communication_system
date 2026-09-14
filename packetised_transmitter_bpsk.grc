@@ -1,25 +1,29 @@
 options:
   parameters:
-    alias: ''
     author: Pixel_Pulse
     catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
     comment: ''
     copyright: ''
     description: ''
+    gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: qt_gui
-    generator_class_name: PythonQtGuiGenerator
-    generator_module: gnuradio.grc.workflows.python_qt_gui
     hier_block_src_path: '.:'
     id: Version_1
     max_nouts: '0'
     output_language: python
+    placement: (0,0)
     qt_qss_theme: ''
     realtime_scheduling: ''
     run: 'True'
     run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
     thread_safe_setters: ''
     title: CDP
+    window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false
@@ -217,18 +221,6 @@ blocks:
     coordinate: [152, 8.0]
     rotation: 0
     state: enabled
-- name: sender_addr
-  id: variable
-  parameters:
-    comment: ''
-    value: '''B1'''
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [432, 0.0]
-    rotation: 0
-    state: disabled
 - name: sps
   id: variable
   parameters:
@@ -352,28 +344,6 @@ blocks:
     coordinate: [1208, 480.0]
     rotation: 0
     state: enabled
-- name: channels_channel_model_0_1
-  id: channels_channel_model
-  parameters:
-    affinity: ''
-    alias: ''
-    block_tags: 'False'
-    comment: "Simulated channel\nBlock tag propogation \nset to off\nbecause realistically\n\
-      over air transmission \ndoesnt preserve metadata"
-    epsilon: time_offset
-    freq_offset: freq_offset
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    noise_voltage: noise_volt
-    seed: '0'
-    taps: taps
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [2400, 448.0]
-    rotation: 0
-    state: enabled
 - name: digital_constellation_modulator_0
   id: digital_constellation_modulator
   parameters:
@@ -442,7 +412,7 @@ blocks:
       \ payload with a SRC/DST/TYPE/SEQ/TOTAL/LEN header\nand splits it into segments\
       \ if it's larger than MAX_PAYLOAD.\n\"\"\"\nimport struct\nfrom gnuradio import\
       \ gr\nimport pmt\n\nTYPE_TEXT  = 0x01\nTYPE_IMAGE = 0x02\nTYPE_AUDIO = 0x03\n\
-      \nMAX_PAYLOAD = 10  # bytes of payload per segment\n\nclass blk(gr.basic_block):\n\
+      \nMAX_PAYLOAD = 200  # bytes of payload per segment\n\nclass blk(gr.basic_block):\n\
       \    def __init__(self, src_addr=0x01, dst_addr=0x02, msg_type=TYPE_TEXT):\n\
       \        gr.basic_block.__init__(self, name='Packet Builder', in_sig=None, out_sig=None)\n\
       \        self.src_addr = src_addr & 0xFF\n        self.dst_addr = dst_addr &\
@@ -518,11 +488,11 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    num_dummy_bytes: '1500'
+    num_dummy_bytes: '150'
   states:
     _io_cache: '(''PDU Prepend Dummy Bytes'', ''blk'', [(''num_dummy_bytes'', ''64'')],
-      [(''pdu_in'', ''message'', 1)], [(''pdu_out'', ''message'', 1)], ''\nConstructor.\nArgs:\n    num_dummy_bytes:
-      The number of random bytes to prepend.\n'', [''num_dummy_bytes''])'
+      [(''pdu_in'', ''message'', 1)], [(''pdu_out'', ''message'', 1)], ''\n        Constructor.\n        Args:\n            num_dummy_bytes:
+      The number of random bytes to prepend.\n        '', [''num_dummy_bytes''])'
     bus_sink: false
     bus_source: false
     bus_structure: null
@@ -535,7 +505,7 @@ blocks:
     affinity: ''
     alias: ''
     attenuation1: '10.0'
-    bandwidth: '20000000'
+    bandwidth: '2000000'
     buffer_size: '32768'
     comment: ''
     cyclic: 'False'
@@ -626,9 +596,8 @@ blocks:
 
 connections:
 - [blocks_message_strobe_0, strobe, epy_block_0, pdu_in]
-- [blocks_multiply_const_vxx_0, '0', channels_channel_model_0_1, '0']
+- [blocks_multiply_const_vxx_0, '0', iio_pluto_sink_0, '0']
 - [blocks_tagged_stream_mux_0, '0', pdu_tagged_stream_to_pdu_0, '0']
-- [channels_channel_model_0_1, '0', iio_pluto_sink_0, '0']
 - [digital_constellation_modulator_0, '0', blocks_multiply_const_vxx_0, '0']
 - [digital_crc_append_0, out, digital_protocol_formatter_async_0, in]
 - [digital_protocol_formatter_async_0, header, pdu_pdu_to_tagged_stream_0, pdus]
@@ -642,4 +611,4 @@ connections:
 
 metadata:
   file_format: 1
-  grc_version: 3.10.12.0
+  grc_version: 3.10.9.2
