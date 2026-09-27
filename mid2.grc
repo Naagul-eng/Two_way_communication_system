@@ -67,7 +67,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [520, 312.0]
+    coordinate: [784, 284.0]
     rotation: 0
     state: enabled
 - name: cma_alg_0
@@ -84,7 +84,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [608, 1356.0]
+    coordinate: [840, 1364.0]
     rotation: 0
     state: enabled
 - name: damp_fac
@@ -96,7 +96,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [120, 472.0]
+    coordinate: [368, 388.0]
     rotation: 0
     state: enabled
 - name: damp_fac_0
@@ -108,7 +108,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [208, 1516.0]
+    coordinate: [360, 1516.0]
     rotation: 0
     state: enabled
 - name: excess_bw
@@ -144,7 +144,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [304, 8.0]
+    coordinate: [352, 12.0]
     rotation: 0
     state: enabled
 - name: freq_offset
@@ -204,7 +204,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [208, 408.0]
+    coordinate: [472, 380.0]
     rotation: 0
     state: enabled
 - name: max_dev_0
@@ -216,7 +216,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [344, 408.0]
+    coordinate: [672, 380.0]
     rotation: 0
     state: enabled
 - name: max_dev_0_0
@@ -228,7 +228,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [432, 1452.0]
+    coordinate: [728, 1468.0]
     rotation: 0
     state: enabled
 - name: max_dev_1
@@ -240,7 +240,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [296, 1452.0]
+    coordinate: [528, 1460.0]
     rotation: 0
     state: enabled
 - name: my_addr
@@ -252,7 +252,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [232, 8.0]
+    coordinate: [176, 76.0]
     rotation: 0
     state: enabled
 - name: nfilts
@@ -264,7 +264,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [280, 408.0]
+    coordinate: [560, 380.0]
     rotation: 0
     state: enabled
 - name: nfilts_0
@@ -276,7 +276,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [368, 1452.0]
+    coordinate: [640, 1460.0]
     rotation: 0
     state: enabled
 - name: noise_volt
@@ -312,7 +312,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [128, 408.0]
+    coordinate: [264, 388.0]
     rotation: 0
     state: enabled
 - name: phase_bw_0
@@ -324,7 +324,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [216, 1452.0]
+    coordinate: [368, 1452.0]
     rotation: 0
     state: enabled
 - name: qpsk
@@ -371,24 +371,24 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: firdes.root_raised_cosine(nfilts, nfilts, 1.0/float(sps), 0.35, 11*sps*nfilts)
+    value: filter.firdes.root_raised_cosine(nfilts, nfilts, 1.0/sps, 0.35, 11*sps*nfilts)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [200, 472.0]
+    coordinate: [640, 452.0]
     rotation: 0
     state: enabled
 - name: rrc_taps_0
   id: variable
   parameters:
     comment: ''
-    value: firdes.root_raised_cosine(nfilts, nfilts, 1.0/float(sps), 0.35, 11*sps*nfilts)
+    value: filter.firdes.root_raised_cosine(nfilts, nfilts, 1.0/sps, 0.35, 11*sps*nfilts)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [288, 1516.0]
+    coordinate: [472, 1516.0]
     rotation: 0
     state: enabled
 - name: samp_rate
@@ -400,7 +400,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [152, 4.0]
+    coordinate: [176, 4.0]
     rotation: 0
     state: enabled
 - name: sender_addr
@@ -412,9 +412,21 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [352, 8.0]
+    coordinate: [432, 12.0]
     rotation: 0
     state: disabled
+- name: shared_key
+  id: variable
+  parameters:
+    comment: ''
+    value: b'u362K7J0T2sA_vB1C2D3E4F5G6H7I8J9K0L1M2N3O4P='
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [608, 12.0]
+    rotation: 0
+    state: enabled
 - name: sps
   id: variable
   parameters:
@@ -424,7 +436,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1944, 816.0]
+    coordinate: [1896, 820.0]
     rotation: 0
     state: enabled
 - name: sps_0
@@ -436,7 +448,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2032, 1868.0]
+    coordinate: [1904, 1884.0]
     rotation: 0
     state: enabled
 - name: taps
@@ -504,7 +516,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [40, 256.0]
+    coordinate: [248, 244.0]
     rotation: 0
     state: enabled
 - name: analog_agc_xx_0_0
@@ -524,7 +536,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [128, 1308.0]
+    coordinate: [280, 1300.0]
     rotation: 0
     state: enabled
 - name: blocks_message_debug_3
@@ -539,7 +551,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2448, 224.0]
+    coordinate: [2712, 200.0]
     rotation: 0
     state: enabled
 - name: blocks_message_debug_3_0
@@ -554,7 +566,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2536, 1272.0]
+    coordinate: [2768, 1280.0]
     rotation: 0
     state: enabled
 - name: blocks_message_strobe_0
@@ -628,7 +640,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1800, 208.0]
+    coordinate: [2064, 188.0]
     rotation: 0
     state: true
 - name: blocks_repack_bits_bb_1_0_0_0_0
@@ -648,7 +660,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1888, 1260.0]
+    coordinate: [2120, 1268.0]
     rotation: 0
     state: true
 - name: blocks_tagged_stream_mux_0
@@ -691,48 +703,6 @@ blocks:
     coordinate: [1040, 1784.0]
     rotation: 0
     state: enabled
-- name: blocks_throttle2_0
-  id: blocks_throttle2
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    ignoretag: 'True'
-    limit: auto
-    maximum: '0.1'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    samples_per_second: samp_rate
-    type: byte
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1808, 736.0]
-    rotation: 0
-    state: enabled
-- name: blocks_throttle2_0_0
-  id: blocks_throttle2
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    ignoretag: 'True'
-    limit: auto
-    maximum: '0.1'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    samples_per_second: samp_rate
-    type: byte
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1896, 1788.0]
-    rotation: 0
-    state: enabled
 - name: blocks_unpack_k_bits_bb_0_0
   id: blocks_unpack_k_bits_bb
   parameters:
@@ -746,7 +716,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1448, 216.0]
+    coordinate: [1712, 196.0]
     rotation: 0
     state: enabled
 - name: blocks_unpack_k_bits_bb_0_0_0
@@ -762,51 +732,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1536, 1268.0]
-    rotation: 0
-    state: enabled
-- name: channels_channel_model_0_1
-  id: channels_channel_model
-  parameters:
-    affinity: ''
-    alias: ''
-    block_tags: 'False'
-    comment: "Simulated channel\nBlock tag propogation \nset to off\nbecause realistically\n\
-      over air transmission \ndoesnt preserve metadata"
-    epsilon: time_offset
-    freq_offset: freq_offset
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    noise_voltage: noise_volt
-    seed: '0'
-    taps: taps
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [2264, 704.0]
-    rotation: 0
-    state: enabled
-- name: channels_channel_model_0_1_0
-  id: channels_channel_model
-  parameters:
-    affinity: ''
-    alias: ''
-    block_tags: 'False'
-    comment: "Simulated channel\nBlock tag propogation \nset to off\nbecause realistically\n\
-      over air transmission \ndoesnt preserve metadata"
-    epsilon: time_offset
-    freq_offset: freq_offset
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    noise_voltage: noise_volt
-    seed: '0'
-    taps: taps
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [2352, 1756.0]
+    coordinate: [1768, 1276.0]
     rotation: 0
     state: enabled
 - name: digital_constellation_decoder_cb_0_0
@@ -822,7 +748,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1000, 216.0]
+    coordinate: [1264, 196.0]
     rotation: 0
     state: enabled
 - name: digital_constellation_decoder_cb_0_0_0
@@ -838,7 +764,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1088, 1268.0]
+    coordinate: [1320, 1276.0]
     rotation: 0
     state: enabled
 - name: digital_constellation_modulator_0
@@ -901,7 +827,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1568, 200.0]
+    coordinate: [1832, 180.0]
     rotation: 0
     state: enabled
 - name: digital_correlate_access_code_xx_ts_0_0_0
@@ -920,7 +846,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1656, 1252.0]
+    coordinate: [1888, 1260.0]
     rotation: 0
     state: enabled
 - name: digital_costas_loop_cc_0_0
@@ -938,7 +864,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [808, 224.0]
+    coordinate: [1072, 200.0]
     rotation: 0
     state: enabled
 - name: digital_costas_loop_cc_0_0_0
@@ -956,7 +882,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [896, 1272.0]
+    coordinate: [1128, 1280.0]
     rotation: 0
     state: enabled
 - name: digital_crc_append_0
@@ -1026,7 +952,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2184, 208.0]
+    coordinate: [2448, 184.0]
     rotation: 0
     state: enabled
 - name: digital_crc_check_0_0_0
@@ -1050,7 +976,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2272, 1256.0]
+    coordinate: [2504, 1264.0]
     rotation: 0
     state: enabled
 - name: digital_diff_decoder_bb_0_0
@@ -1067,7 +993,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1184, 208.0]
+    coordinate: [1448, 188.0]
     rotation: 0
     state: enabled
 - name: digital_diff_decoder_bb_0_0_0
@@ -1084,7 +1010,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1272, 1260.0]
+    coordinate: [1504, 1268.0]
     rotation: 0
     state: enabled
 - name: digital_linear_equalizer_0
@@ -1105,7 +1031,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [512, 216.0]
+    coordinate: [776, 192.0]
     rotation: 0
     state: enabled
 - name: digital_linear_equalizer_0_0
@@ -1126,7 +1052,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [600, 1264.0]
+    coordinate: [832, 1272.0]
     rotation: 0
     state: enabled
 - name: digital_map_bb_0_0
@@ -1142,7 +1068,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1336, 216.0]
+    coordinate: [1600, 196.0]
     rotation: 0
     state: enabled
 - name: digital_map_bb_0_0_0
@@ -1158,7 +1084,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1424, 1268.0]
+    coordinate: [1656, 1276.0]
     rotation: 0
     state: enabled
 - name: digital_protocol_formatter_async_0
@@ -1218,7 +1144,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [160, 204.0]
+    coordinate: [424, 180.0]
     rotation: 0
     state: enabled
 - name: digital_symbol_sync_xx_0_1_0_0
@@ -1246,7 +1172,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [248, 1244.0]
+    coordinate: [480, 1252.0]
     rotation: 0
     state: enabled
 - name: epy_block_0
@@ -1280,7 +1206,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2440, 160.0]
+    coordinate: [2704, 136.0]
     rotation: 0
     state: enabled
 - name: epy_block_0_0
@@ -1314,44 +1240,87 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2528, 1208.0]
+    coordinate: [2760, 1216.0]
     rotation: 0
     state: enabled
 - name: epy_block_1
   id: epy_block
   parameters:
     _source_code: "import numpy as np\nfrom gnuradio import gr\nimport pmt\nimport\
-      \ os\nimport time\nimport threading\nimport sys\n\nclass blk(gr.basic_block):\n\
-      \    def __init__(self, msg_file=\"/tmp/sdr_message.bin\"):\n        gr.basic_block.__init__(\n\
-      \            self,\n            name='GUI Message Source',\n            in_sig=None,\n\
-      \            out_sig=None\n        )\n        self.message_port_register_out(pmt.intern('out'))\n\
-      \        self.msg_file = msg_file\n        self.running = True\n        print(f\"\
-      [GUI Source] Initialized and watching {self.msg_file}\", flush=True)\n     \
-      \   \n        # Start a background thread to poll for GUI text files\n     \
-      \   self.thread = threading.Thread(target=self.poll_loop)\n        self.thread.daemon\
-      \ = True\n        self.thread.start()\n\n    def poll_loop(self):\n        while\
-      \ self.running:\n            if os.path.exists(self.msg_file):\n           \
-      \     try:\n                    print(\"[GUI Source] File detected! Reading\
-      \ payload...\", flush=True)\n                    with open(self.msg_file, \"\
-      rb\") as f:\n                        payload_bytes = f.read()\n            \
-      \        os.remove(self.msg_file)\n                    \n                  \
-      \  if len(payload_bytes) > 0:\n                        print(f\"[GUI Source]\
-      \ Publishing {len(payload_bytes)} bytes to flowgraph.\", flush=True)\n     \
-      \                   vector = pmt.init_u8vector(len(payload_bytes), list(payload_bytes))\n\
-      \                        msg = pmt.cons(pmt.PMT_NIL, vector)\n             \
-      \           self.message_port_pub(pmt.intern('out'), msg)\n                except\
-      \ Exception as e:\n                    print(f\"[GUI Source Error] {e}\", file=sys.stderr,\
-      \ flush=True)\n            time.sleep(0.05)\n\n    def stop(self):\n       \
-      \ self.running = False\n        return True\n"
+      \ json\nimport time\nimport threading\nfrom queue import PriorityQueue\nfrom\
+      \ cryptography.fernet import Fernet\n\nclass mac_arq_source(gr.basic_block):\n\
+      \    \"\"\"\n    MAC ARQ Source: Priority-based frame transmission with AES-Fernet\
+      \ Encryption\n    and Stop-and-Wait Retransmission.\n    \"\"\"\n    def __init__(self,\
+      \ msg_file=\"/tmp/nodeA_tx.json\", my_addr=\"A1\", shared_key=\"Q0ZfOGE3UFRidWk1N3FYYXpWbDV5UTlwMldHNUFZN00=\"\
+      ):\n        gr.basic_block.__init__(\n            self,\n            name=\"\
+      MAC ARQ Source\",\n            in_sig=None,\n            out_sig=None\n    \
+      \    )\n        \n        # Message Ports\n        self.message_port_register_in(pmt.intern(\"\
+      ack_in\"))\n        self.message_port_register_out(pmt.intern(\"out\"))\n  \
+      \      self.set_msg_handler(pmt.intern(\"ack_in\"), self.handle_ack)\n\n   \
+      \     # Config Params\n        self.msg_file = msg_file\n        self.my_addr\
+      \ = my_addr\n        \n        # Ensure Fernet Key is standard bytes\n     \
+      \   key_bytes = shared_key.encode('utf-8') if isinstance(shared_key, str) else\
+      \ shared_key\n        self.cipher = Fernet(key_bytes)\n\n        # Priority\
+      \ Queue: stores tuples (priority_level, counter, packet_dict)\n        self.tx_queue\
+      \ = PriorityQueue()\n        self.counter = 0\n        self.current_pkt = None\n\
+      \        self.waiting_for_ack = False\n        self.last_tx_time = 0.0\n   \
+      \     self.timeout = 2.0  # Retransmission timeout in seconds\n\n        # Start\
+      \ Background Thread for Queue Processing & Retransmission\n        self.running\
+      \ = True\n        self.worker_thread = threading.Thread(target=self.worker_loop)\n\
+      \        self.worker_thread.daemon = True\n        self.worker_thread.start()\n\
+      \n    def handle_ack(self, msg):\n        \"\"\" Processes local incoming ACKs\
+      \ from MAC ARQ Sink \"\"\"\n        try:\n            raw_payload = bytes(pmt.u8vector_elements(pmt.cdr(msg)))\n\
+      \            ack_data = json.loads(raw_payload.decode('utf-8'))\n          \
+      \  \n            if self.waiting_for_ack and self.current_pkt:\n           \
+      \     if ack_data.get(\"type\") == \"ACK\" and ack_data.get(\"ack_seq\") ==\
+      \ self.current_pkt.get(\"seq\"):\n                    # ACK matched, clear current\
+      \ transmission state\n                    self.waiting_for_ack = False\n   \
+      \                 self.current_pkt = None\n        except Exception:\n     \
+      \       pass\n\n    def poll_msg_file(self):\n        \"\"\" Ingests JSON packets\
+      \ into Priority Queue \"\"\"\n        try:\n            if not gr.os.path.exists(self.msg_file):\n\
+      \                return\n            with open(self.msg_file, 'r+') as f:\n\
+      \                content = f.read().strip()\n                if content:\n \
+      \                   data = json.loads(content)\n                    packets\
+      \ = data if isinstance(data, list) else [data]\n                    for pkt\
+      \ in packets:\n                        prio = pkt.get(\"priority\", 2)\n   \
+      \                     self.counter += 1\n                        # PriorityQueue\
+      \ pops lowest numerical priority value first (1 = High, 2 = Low)\n         \
+      \               self.tx_queue.put((prio, self.counter, pkt))\n             \
+      \       f.seek(0)\n                    f.truncate()\n        except Exception:\n\
+      \            pass\n\n    def worker_loop(self):\n        while self.running:\n\
+      \            self.poll_msg_file()\n            now = time.time()\n\n       \
+      \     if self.waiting_for_ack:\n                # Retransmit if timeout elapsed\n\
+      \                if now - self.last_tx_time > self.timeout:\n              \
+      \      self.send_frame(self.current_pkt)\n            else:\n              \
+      \  # Pop highest priority packet from queue\n                if not self.tx_queue.empty():\n\
+      \                    prio, count, pkt = self.tx_queue.get()\n              \
+      \      self.current_pkt = pkt\n                    self.waiting_for_ack = True\n\
+      \                    self.send_frame(pkt)\n\n            time.sleep(0.05)\n\n\
+      \    def send_frame(self, pkt):\n        try:\n            dest = pkt.get(\"\
+      dest\", \"B1\")\n            raw_bytes = json.dumps(pkt).encode('utf-8')\n \
+      \           encrypted_payload = self.cipher.encrypt(raw_bytes)\n\n         \
+      \   # Build Header: Src (2 bytes) + Dest (2 bytes) + Encrypted Payload\n   \
+      \         header = self.my_addr.encode('utf-8')[:2] + dest.encode('utf-8')[:2]\n\
+      \            frame = header + encrypted_payload\n\n            # Emit PMT message\n\
+      \            pmt_msg = pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(frame), list(frame)))\n\
+      \            self.message_port_pub(pmt.intern(\"out\"), pmt_msg)\n         \
+      \   self.last_tx_time = time.time()\n        except Exception:\n           \
+      \ pass\n\n    def stop(self):\n        self.running = False\n        return\
+      \ True\n"
     affinity: ''
     alias: ''
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    msg_file: '"/tmp/nodeA_tx.bin"'
+    msg_file: '"/tmp/nodeA_tx.json"'
+    my_addr: '''A1'''
+    shared_key: shared_key
   states:
-    _io_cache: ('GUI Message Source', 'blk', [('msg_file', "'/tmp/sdr_message.bin'")],
-      [], [('out', 'message', 1)], '', ['msg_file'])
+    _io_cache: '(''MAC ARQ Source'', ''mac_arq_source'', [(''msg_file'', "''/tmp/nodeA_tx.json''"),
+      (''my_addr'', "''A1''"), (''shared_key'', "''Q0ZfOGE3UFRidWk1N3FYYXpWbDV5UTlwMldHNUFZN00=''")],
+      [(''ack_in'', ''message'', 1)], [(''out'', ''message'', 1)], ''\nMAC ARQ Source:
+      Priority-based frame transmission with AES-Fernet Encryption\nand Stop-and-Wait
+      Retransmission.\n'', [''msg_file'', ''my_addr''])'
     bus_sink: false
     bus_source: false
     bus_structure: null
@@ -1362,37 +1331,80 @@ blocks:
   id: epy_block
   parameters:
     _source_code: "import numpy as np\nfrom gnuradio import gr\nimport pmt\nimport\
-      \ os\nimport time\nimport threading\nimport sys\n\nclass blk(gr.basic_block):\n\
-      \    def __init__(self, msg_file=\"/tmp/sdr_message.bin\"):\n        gr.basic_block.__init__(\n\
-      \            self,\n            name='GUI Message Source',\n            in_sig=None,\n\
-      \            out_sig=None\n        )\n        self.message_port_register_out(pmt.intern('out'))\n\
-      \        self.msg_file = msg_file\n        self.running = True\n        print(f\"\
-      [GUI Source] Initialized and watching {self.msg_file}\", flush=True)\n     \
-      \   \n        # Start a background thread to poll for GUI text files\n     \
-      \   self.thread = threading.Thread(target=self.poll_loop)\n        self.thread.daemon\
-      \ = True\n        self.thread.start()\n\n    def poll_loop(self):\n        while\
-      \ self.running:\n            if os.path.exists(self.msg_file):\n           \
-      \     try:\n                    print(\"[GUI Source] File detected! Reading\
-      \ payload...\", flush=True)\n                    with open(self.msg_file, \"\
-      rb\") as f:\n                        payload_bytes = f.read()\n            \
-      \        os.remove(self.msg_file)\n                    \n                  \
-      \  if len(payload_bytes) > 0:\n                        print(f\"[GUI Source]\
-      \ Publishing {len(payload_bytes)} bytes to flowgraph.\", flush=True)\n     \
-      \                   vector = pmt.init_u8vector(len(payload_bytes), list(payload_bytes))\n\
-      \                        msg = pmt.cons(pmt.PMT_NIL, vector)\n             \
-      \           self.message_port_pub(pmt.intern('out'), msg)\n                except\
-      \ Exception as e:\n                    print(f\"[GUI Source Error] {e}\", file=sys.stderr,\
-      \ flush=True)\n            time.sleep(0.05)\n\n    def stop(self):\n       \
-      \ self.running = False\n        return True\n"
+      \ json\nimport time\nimport threading\nfrom queue import PriorityQueue\nfrom\
+      \ cryptography.fernet import Fernet\n\nclass mac_arq_source(gr.basic_block):\n\
+      \    \"\"\"\n    MAC ARQ Source: Priority-based frame transmission with AES-Fernet\
+      \ Encryption\n    and Stop-and-Wait Retransmission.\n    \"\"\"\n    def __init__(self,\
+      \ msg_file=\"/tmp/nodeA_tx.json\", my_addr=\"A1\", shared_key=\"Q0ZfOGE3UFRidWk1N3FYYXpWbDV5UTlwMldHNUFZN00=\"\
+      ):\n        gr.basic_block.__init__(\n            self,\n            name=\"\
+      MAC ARQ Source\",\n            in_sig=None,\n            out_sig=None\n    \
+      \    )\n        \n        # Message Ports\n        self.message_port_register_in(pmt.intern(\"\
+      ack_in\"))\n        self.message_port_register_out(pmt.intern(\"out\"))\n  \
+      \      self.set_msg_handler(pmt.intern(\"ack_in\"), self.handle_ack)\n\n   \
+      \     # Config Params\n        self.msg_file = msg_file\n        self.my_addr\
+      \ = my_addr\n        \n        # Ensure Fernet Key is standard bytes\n     \
+      \   key_bytes = shared_key.encode('utf-8') if isinstance(shared_key, str) else\
+      \ shared_key\n        self.cipher = Fernet(key_bytes)\n\n        # Priority\
+      \ Queue: stores tuples (priority_level, counter, packet_dict)\n        self.tx_queue\
+      \ = PriorityQueue()\n        self.counter = 0\n        self.current_pkt = None\n\
+      \        self.waiting_for_ack = False\n        self.last_tx_time = 0.0\n   \
+      \     self.timeout = 2.0  # Retransmission timeout in seconds\n\n        # Start\
+      \ Background Thread for Queue Processing & Retransmission\n        self.running\
+      \ = True\n        self.worker_thread = threading.Thread(target=self.worker_loop)\n\
+      \        self.worker_thread.daemon = True\n        self.worker_thread.start()\n\
+      \n    def handle_ack(self, msg):\n        \"\"\" Processes local incoming ACKs\
+      \ from MAC ARQ Sink \"\"\"\n        try:\n            raw_payload = bytes(pmt.u8vector_elements(pmt.cdr(msg)))\n\
+      \            ack_data = json.loads(raw_payload.decode('utf-8'))\n          \
+      \  \n            if self.waiting_for_ack and self.current_pkt:\n           \
+      \     if ack_data.get(\"type\") == \"ACK\" and ack_data.get(\"ack_seq\") ==\
+      \ self.current_pkt.get(\"seq\"):\n                    # ACK matched, clear current\
+      \ transmission state\n                    self.waiting_for_ack = False\n   \
+      \                 self.current_pkt = None\n        except Exception:\n     \
+      \       pass\n\n    def poll_msg_file(self):\n        \"\"\" Ingests JSON packets\
+      \ into Priority Queue \"\"\"\n        try:\n            if not gr.os.path.exists(self.msg_file):\n\
+      \                return\n            with open(self.msg_file, 'r+') as f:\n\
+      \                content = f.read().strip()\n                if content:\n \
+      \                   data = json.loads(content)\n                    packets\
+      \ = data if isinstance(data, list) else [data]\n                    for pkt\
+      \ in packets:\n                        prio = pkt.get(\"priority\", 2)\n   \
+      \                     self.counter += 1\n                        # PriorityQueue\
+      \ pops lowest numerical priority value first (1 = High, 2 = Low)\n         \
+      \               self.tx_queue.put((prio, self.counter, pkt))\n             \
+      \       f.seek(0)\n                    f.truncate()\n        except Exception:\n\
+      \            pass\n\n    def worker_loop(self):\n        while self.running:\n\
+      \            self.poll_msg_file()\n            now = time.time()\n\n       \
+      \     if self.waiting_for_ack:\n                # Retransmit if timeout elapsed\n\
+      \                if now - self.last_tx_time > self.timeout:\n              \
+      \      self.send_frame(self.current_pkt)\n            else:\n              \
+      \  # Pop highest priority packet from queue\n                if not self.tx_queue.empty():\n\
+      \                    prio, count, pkt = self.tx_queue.get()\n              \
+      \      self.current_pkt = pkt\n                    self.waiting_for_ack = True\n\
+      \                    self.send_frame(pkt)\n\n            time.sleep(0.05)\n\n\
+      \    def send_frame(self, pkt):\n        try:\n            dest = pkt.get(\"\
+      dest\", \"B1\")\n            raw_bytes = json.dumps(pkt).encode('utf-8')\n \
+      \           encrypted_payload = self.cipher.encrypt(raw_bytes)\n\n         \
+      \   # Build Header: Src (2 bytes) + Dest (2 bytes) + Encrypted Payload\n   \
+      \         header = self.my_addr.encode('utf-8')[:2] + dest.encode('utf-8')[:2]\n\
+      \            frame = header + encrypted_payload\n\n            # Emit PMT message\n\
+      \            pmt_msg = pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(frame), list(frame)))\n\
+      \            self.message_port_pub(pmt.intern(\"out\"), pmt_msg)\n         \
+      \   self.last_tx_time = time.time()\n        except Exception:\n           \
+      \ pass\n\n    def stop(self):\n        self.running = False\n        return\
+      \ True\n"
     affinity: ''
     alias: ''
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    msg_file: '"/tmp/nodeB_tx.bin"'
+    msg_file: '"/tmp/nodeB_tx.json"'
+    my_addr: '''B1'''
+    shared_key: shared_key
   states:
-    _io_cache: ('GUI Message Source', 'blk', [('msg_file', "'/tmp/sdr_message.bin'")],
-      [], [('out', 'message', 1)], '', ['msg_file'])
+    _io_cache: '(''MAC ARQ Source'', ''mac_arq_source'', [(''msg_file'', "''/tmp/nodeA_tx.json''"),
+      (''my_addr'', "''A1''"), (''shared_key'', "''Q0ZfOGE3UFRidWk1N3FYYXpWbDV5UTlwMldHNUFZN00=''")],
+      [(''ack_in'', ''message'', 1)], [(''out'', ''message'', 1)], ''\nMAC ARQ Source:
+      Priority-based frame transmission with AES-Fernet Encryption\nand Stop-and-Wait
+      Retransmission.\n'', [''msg_file'', ''my_addr''])'
     bus_sink: false
     bus_source: false
     bus_structure: null
@@ -1403,70 +1415,142 @@ blocks:
   id: epy_block
   parameters:
     _source_code: "import numpy as np\nfrom gnuradio import gr\nimport pmt\nimport\
-      \ os\n\nclass blk(gr.basic_block):\n    def __init__(self, out_file=\"/tmp/received_message.bin\"\
-      ):\n        gr.basic_block.__init__(\n            self,\n            name='GUI\
-      \ Message Sink',\n            in_sig=None,\n            out_sig=None\n     \
-      \   )\n        self.message_port_register_in(pmt.intern('in'))\n        self.set_msg_handler(pmt.intern('in'),\
-      \ self.handle_msg)\n        self.out_file = out_file\n\n    def handle_msg(self,\
-      \ msg):\n        try:\n            if pmt.is_pdu(msg):\n                # Unpack\
-      \ the PDU payload\n                data = pmt.cdr(msg)\n                payload_bytes\
-      \ = bytes(pmt.u8vector_elements(data))\n                \n                #\
-      \ Strip the 4-byte CRC checksum from the end of the packet\n               \
-      \ if len(payload_bytes) > 4:\n                    payload_bytes = payload_bytes[:-4]\n\
-      \                \n                # Drop the decoded data into the /tmp/ folder\
-      \ for the Receiver App\n                with open(self.out_file, \"wb\") as\
-      \ f:\n                    f.write(payload_bytes)\n                print(f\"\
-      [GUI Sink] Exported {len(payload_bytes)} bytes to {self.out_file}\", flush=True)\n\
-      \        except Exception as e:\n            print(f\"[GUI Sink Error] {e}\"\
-      , flush=True)\n"
+      \ json\nfrom cryptography.fernet import Fernet\n\nclass mac_arq_sink(gr.basic_block):\n\
+      \    \"\"\"\n    MAC ARQ Sink: Address Filtering, Decryption, RX Logging,\n\
+      \    and RF ACK Response Generation.\n    \"\"\"\n    def __init__(self, rx_file=\"\
+      /tmp/nodeA_rx.json\", my_addr=\"A1\", shared_key=\"Q0ZfOGE3UFRidWk1N3FYYXpWbDV5UTlwMldHNUFZN00=\"\
+      ):\n        gr.basic_block.__init__(\n            self,\n            name=\"\
+      MAC ARQ Sink\",\n            in_sig=None,\n            out_sig=None\n      \
+      \  )\n        \n        # Message Ports\n        self.message_port_register_in(pmt.intern(\"\
+      in\"))\n        self.message_port_register_out(pmt.intern(\"local_ack\"))\n\
+      \        self.message_port_register_out(pmt.intern(\"ack_out\"))\n        self.set_msg_handler(pmt.intern(\"\
+      in\"), self.handle_msg)\n\n        # Config Params\n        self.rx_file = rx_file\n\
+      \        self.my_addr = my_addr\n        \n        key_bytes = shared_key.encode('utf-8')\
+      \ if isinstance(shared_key, str) else shared_key\n        self.cipher = Fernet(key_bytes)\n\
+      \n    def handle_msg(self, msg):\n        try:\n            raw_frame = bytes(pmt.u8vector_elements(pmt.cdr(msg)))\n\
+      \            if len(raw_frame) < 4:\n                return\n\n            src\
+      \ = raw_frame[0:2].decode('utf-8', errors='ignore')\n            dest = raw_frame[2:4].decode('utf-8',\
+      \ errors='ignore')\n\n            # Drop frame if not addressed to this node\n\
+      \            if dest != self.my_addr:\n                return\n\n          \
+      \  # Decrypt Payload\n            encrypted_payload = raw_frame[4:]\n      \
+      \      decrypted_bytes = self.cipher.decrypt(encrypted_payload)\n          \
+      \  payload_dict = json.loads(decrypted_bytes.decode('utf-8'))\n\n          \
+      \  pkt_type = payload_dict.get(\"type\", \"DATA\")\n\n            if pkt_type\
+      \ == \"ACK\":\n                # Received ACK frame: Route to local MAC ARQ\
+      \ Source\n                ack_bytes = json.dumps(payload_dict).encode('utf-8')\n\
+      \                pmt_ack = pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(ack_bytes),\
+      \ list(ack_bytes)))\n                self.message_port_pub(pmt.intern(\"local_ack\"\
+      ), pmt_ack)\n\n            elif pkt_type == \"DATA\":\n                # Received\
+      \ DATA frame: Record data & generate return ACK over RF\n                payload_dict[\"\
+      src\"] = src\n                self.append_to_rx_file(payload_dict)\n\n     \
+      \           # Formulate ACK frame\n                ack_pkt = {\n           \
+      \         \"type\": \"ACK\",\n                    \"src\": self.my_addr,\n \
+      \                   \"dest\": src,\n                    \"ack_seq\": payload_dict.get(\"\
+      seq\", 0)\n                }\n                encrypted_ack = self.cipher.encrypt(json.dumps(ack_pkt).encode('utf-8'))\n\
+      \                ack_frame = self.my_addr.encode('utf-8')[:2] + src.encode('utf-8')[:2]\
+      \ + encrypted_ack\n\n                # Emit ACK frame to transmitter chain (CRC\
+      \ Append)\n                pmt_ack_frame = pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(ack_frame),\
+      \ list(ack_frame)))\n                self.message_port_pub(pmt.intern(\"ack_out\"\
+      ), pmt_ack_frame)\n\n        except Exception:\n            pass\n\n    def\
+      \ append_to_rx_file(self, pkt):\n        try:\n            existing = []\n \
+      \           if gr.os.path.exists(self.rx_file):\n                try:\n    \
+      \                with open(self.rx_file, 'r') as f:\n                      \
+      \  content = f.read().strip()\n                        if content:\n       \
+      \                     existing = json.loads(content)\n                     \
+      \       if not isinstance(existing, list):\n                               \
+      \ existing = [existing]\n                except Exception:\n               \
+      \     existing = []\n\n            existing.append(pkt)\n            with open(self.rx_file,\
+      \ 'w') as f:\n                json.dump(existing, f, indent=2)\n        except\
+      \ Exception:\n            pass\n"
     affinity: ''
     alias: ''
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    out_file: '"/tmp/nodeB_rx.bin"'
+    my_addr: '''A1'''
+    rx_file: '"/tmp/nodeA_rx.json"'
+    shared_key: shared_key
   states:
-    _io_cache: ('GUI Message Sink', 'blk', [('out_file', "'/tmp/received_message.bin'")],
-      [('in', 'message', 1)], [], '', ['out_file'])
+    _io_cache: '(''MAC ARQ Sink'', ''mac_arq_sink'', [(''rx_file'', "''/tmp/nodeA_rx.json''"),
+      (''my_addr'', "''A1''"), (''shared_key'', "''Q0ZfOGE3UFRidWk1N3FYYXpWbDV5UTlwMldHNUFZN00=''")],
+      [(''in'', ''message'', 1)], [(''ack_out'', ''message'', 1), (''local_ack'',
+      ''message'', 1)], ''\nMAC ARQ Sink: Address Filtering, Decryption, RX Logging,\nand
+      RF ACK Response Generation.\n'', [''my_addr'', ''rx_file''])'
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2424, 72.0]
+    coordinate: [2688, 12.0]
     rotation: 0
     state: enabled
 - name: epy_block_2_0
   id: epy_block
   parameters:
     _source_code: "import numpy as np\nfrom gnuradio import gr\nimport pmt\nimport\
-      \ os\n\nclass blk(gr.basic_block):\n    def __init__(self, out_file=\"/tmp/received_message.bin\"\
-      ):\n        gr.basic_block.__init__(\n            self,\n            name='GUI\
-      \ Message Sink',\n            in_sig=None,\n            out_sig=None\n     \
-      \   )\n        self.message_port_register_in(pmt.intern('in'))\n        self.set_msg_handler(pmt.intern('in'),\
-      \ self.handle_msg)\n        self.out_file = out_file\n\n    def handle_msg(self,\
-      \ msg):\n        try:\n            if pmt.is_pdu(msg):\n                # Unpack\
-      \ the PDU payload\n                data = pmt.cdr(msg)\n                payload_bytes\
-      \ = bytes(pmt.u8vector_elements(data))\n                \n                #\
-      \ Strip the 4-byte CRC checksum from the end of the packet\n               \
-      \ if len(payload_bytes) > 4:\n                    payload_bytes = payload_bytes[:-4]\n\
-      \                \n                # Drop the decoded data into the /tmp/ folder\
-      \ for the Receiver App\n                with open(self.out_file, \"wb\") as\
-      \ f:\n                    f.write(payload_bytes)\n                print(f\"\
-      [GUI Sink] Exported {len(payload_bytes)} bytes to {self.out_file}\", flush=True)\n\
-      \        except Exception as e:\n            print(f\"[GUI Sink Error] {e}\"\
-      , flush=True)\n"
+      \ json\nfrom cryptography.fernet import Fernet\n\nclass mac_arq_sink(gr.basic_block):\n\
+      \    \"\"\"\n    MAC ARQ Sink: Address Filtering, Decryption, RX Logging,\n\
+      \    and RF ACK Response Generation.\n    \"\"\"\n    def __init__(self, rx_file=\"\
+      /tmp/nodeA_rx.json\", my_addr=\"A1\", shared_key=\"Q0ZfOGE3UFRidWk1N3FYYXpWbDV5UTlwMldHNUFZN00=\"\
+      ):\n        gr.basic_block.__init__(\n            self,\n            name=\"\
+      MAC ARQ Sink\",\n            in_sig=None,\n            out_sig=None\n      \
+      \  )\n        \n        # Message Ports\n        self.message_port_register_in(pmt.intern(\"\
+      in\"))\n        self.message_port_register_out(pmt.intern(\"local_ack\"))\n\
+      \        self.message_port_register_out(pmt.intern(\"ack_out\"))\n        self.set_msg_handler(pmt.intern(\"\
+      in\"), self.handle_msg)\n\n        # Config Params\n        self.rx_file = rx_file\n\
+      \        self.my_addr = my_addr\n        \n        key_bytes = shared_key.encode('utf-8')\
+      \ if isinstance(shared_key, str) else shared_key\n        self.cipher = Fernet(key_bytes)\n\
+      \n    def handle_msg(self, msg):\n        try:\n            raw_frame = bytes(pmt.u8vector_elements(pmt.cdr(msg)))\n\
+      \            if len(raw_frame) < 4:\n                return\n\n            src\
+      \ = raw_frame[0:2].decode('utf-8', errors='ignore')\n            dest = raw_frame[2:4].decode('utf-8',\
+      \ errors='ignore')\n\n            # Drop frame if not addressed to this node\n\
+      \            if dest != self.my_addr:\n                return\n\n          \
+      \  # Decrypt Payload\n            encrypted_payload = raw_frame[4:]\n      \
+      \      decrypted_bytes = self.cipher.decrypt(encrypted_payload)\n          \
+      \  payload_dict = json.loads(decrypted_bytes.decode('utf-8'))\n\n          \
+      \  pkt_type = payload_dict.get(\"type\", \"DATA\")\n\n            if pkt_type\
+      \ == \"ACK\":\n                # Received ACK frame: Route to local MAC ARQ\
+      \ Source\n                ack_bytes = json.dumps(payload_dict).encode('utf-8')\n\
+      \                pmt_ack = pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(ack_bytes),\
+      \ list(ack_bytes)))\n                self.message_port_pub(pmt.intern(\"local_ack\"\
+      ), pmt_ack)\n\n            elif pkt_type == \"DATA\":\n                # Received\
+      \ DATA frame: Record data & generate return ACK over RF\n                payload_dict[\"\
+      src\"] = src\n                self.append_to_rx_file(payload_dict)\n\n     \
+      \           # Formulate ACK frame\n                ack_pkt = {\n           \
+      \         \"type\": \"ACK\",\n                    \"src\": self.my_addr,\n \
+      \                   \"dest\": src,\n                    \"ack_seq\": payload_dict.get(\"\
+      seq\", 0)\n                }\n                encrypted_ack = self.cipher.encrypt(json.dumps(ack_pkt).encode('utf-8'))\n\
+      \                ack_frame = self.my_addr.encode('utf-8')[:2] + src.encode('utf-8')[:2]\
+      \ + encrypted_ack\n\n                # Emit ACK frame to transmitter chain (CRC\
+      \ Append)\n                pmt_ack_frame = pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(ack_frame),\
+      \ list(ack_frame)))\n                self.message_port_pub(pmt.intern(\"ack_out\"\
+      ), pmt_ack_frame)\n\n        except Exception:\n            pass\n\n    def\
+      \ append_to_rx_file(self, pkt):\n        try:\n            existing = []\n \
+      \           if gr.os.path.exists(self.rx_file):\n                try:\n    \
+      \                with open(self.rx_file, 'r') as f:\n                      \
+      \  content = f.read().strip()\n                        if content:\n       \
+      \                     existing = json.loads(content)\n                     \
+      \       if not isinstance(existing, list):\n                               \
+      \ existing = [existing]\n                except Exception:\n               \
+      \     existing = []\n\n            existing.append(pkt)\n            with open(self.rx_file,\
+      \ 'w') as f:\n                json.dump(existing, f, indent=2)\n        except\
+      \ Exception:\n            pass\n"
     affinity: ''
     alias: ''
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    out_file: '"/tmp/nodeA_rx.bin"'
+    my_addr: '''B1'''
+    rx_file: '"/tmp/nodeB_rx.json"'
+    shared_key: shared_key
   states:
-    _io_cache: ('GUI Message Sink', 'blk', [('out_file', "'/tmp/received_message.bin'")],
-      [('in', 'message', 1)], [], '', ['out_file'])
+    _io_cache: '(''MAC ARQ Sink'', ''mac_arq_sink'', [(''rx_file'', "''/tmp/nodeA_rx.json''"),
+      (''my_addr'', "''A1''"), (''shared_key'', "''Q0ZfOGE3UFRidWk1N3FYYXpWbDV5UTlwMldHNUFZN00=''")],
+      [(''in'', ''message'', 1)], [(''ack_out'', ''message'', 1), (''local_ack'',
+      ''message'', 1)], ''\nMAC ARQ Sink: Address Filtering, Decryption, RX Logging,\nand
+      RF ACK Response Generation.\n'', [''my_addr'', ''rx_file''])'
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2512, 1120.0]
+    coordinate: [2744, 1100.0]
     rotation: 0
     state: enabled
 - name: epy_block_3
@@ -1573,6 +1657,19 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [1464, 1796.0]
+    rotation: 0
+    state: enabled
+- name: import_0
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: from gnuradio import filter
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1096, 480.0]
     rotation: 0
     state: enabled
 - name: pdu_pdu_to_tagged_stream_0
@@ -1725,7 +1822,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1960, 216.0]
+    coordinate: [2224, 196.0]
     rotation: 0
     state: true
 - name: pdu_tagged_stream_to_pdu_0_0_0_0
@@ -1742,7 +1839,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [2048, 1268.0]
+    coordinate: [2280, 1276.0]
     rotation: 0
     state: true
 - name: qtgui_const_sink_x_0
@@ -1926,7 +2023,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1080, 120.0]
+    coordinate: [1344, 100.0]
     rotation: 0
     state: enabled
 - name: qtgui_const_sink_x_0_0_0
@@ -2018,7 +2115,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1168, 1172.0]
+    coordinate: [1400, 1180.0]
     rotation: 0
     state: enabled
 - name: qtgui_const_sink_x_0_1
@@ -2202,7 +2299,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [768, 104.0]
+    coordinate: [1032, 84.0]
     rotation: 0
     state: enabled
 - name: qtgui_const_sink_x_1_0
@@ -2294,7 +2391,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [856, 1156.0]
+    coordinate: [1088, 1164.0]
     rotation: 0
     state: enabled
 - name: qtgui_freq_sink_x_0
@@ -2653,29 +2750,107 @@ blocks:
     coordinate: [2648, 1716.0]
     rotation: 0
     state: enabled
+- name: soapy_plutosdr_sink_0
+  id: soapy_plutosdr_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bandwidth: '0.0'
+    center_freq: freq
+    comment: ''
+    dev_args: ''
+    gain: '10'
+    samp_rate: samp_rate
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2328, 880.0]
+    rotation: 0
+    state: enabled
+- name: soapy_plutosdr_sink_1
+  id: soapy_plutosdr_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bandwidth: '0.0'
+    center_freq: freq
+    comment: ''
+    dev_args: ''
+    gain: '10'
+    samp_rate: samp_rate
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2408, 1944.0]
+    rotation: 0
+    state: enabled
+- name: soapy_plutosdr_source_0
+  id: soapy_plutosdr_source
+  parameters:
+    affinity: ''
+    agc: 'False'
+    alias: ''
+    bandwidth: '0.0'
+    center_freq: freq
+    comment: ''
+    dev_args: ''
+    gain: '10'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [40, 292.0]
+    rotation: 0
+    state: enabled
+- name: soapy_plutosdr_source_1
+  id: soapy_plutosdr_source
+  parameters:
+    affinity: ''
+    agc: 'False'
+    alias: ''
+    bandwidth: '0.0'
+    center_freq: freq
+    comment: ''
+    dev_args: ''
+    gain: '10'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [48, 1316.0]
+    rotation: 0
+    state: enabled
 
 connections:
 - [analog_agc_xx_0, '0', digital_symbol_sync_xx_0_1_0, '0']
 - [analog_agc_xx_0_0, '0', digital_symbol_sync_xx_0_1_0_0, '0']
-- [blocks_multiply_const_vxx_0, '0', channels_channel_model_0_1, '0']
-- [blocks_multiply_const_vxx_0_0, '0', channels_channel_model_0_1_0, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_const_sink_x_0, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_freq_sink_x_0, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_time_sink_x_0, '0']
+- [blocks_multiply_const_vxx_0, '0', soapy_plutosdr_sink_0, '0']
+- [blocks_multiply_const_vxx_0_0, '0', qtgui_const_sink_x_0_1, '0']
+- [blocks_multiply_const_vxx_0_0, '0', qtgui_freq_sink_x_0_0, '0']
+- [blocks_multiply_const_vxx_0_0, '0', qtgui_time_sink_x_0_0, '0']
+- [blocks_multiply_const_vxx_0_0, '0', soapy_plutosdr_sink_1, '0']
 - [blocks_repack_bits_bb_1_0_0_0, '0', pdu_tagged_stream_to_pdu_0_0_0, '0']
 - [blocks_repack_bits_bb_1_0_0_0_0, '0', pdu_tagged_stream_to_pdu_0_0_0_0, '0']
 - [blocks_tagged_stream_mux_0, '0', pdu_tagged_stream_to_pdu_0, '0']
 - [blocks_tagged_stream_mux_0_0, '0', pdu_tagged_stream_to_pdu_0_0, '0']
-- [blocks_throttle2_0, '0', digital_constellation_modulator_0, '0']
-- [blocks_throttle2_0_0, '0', digital_constellation_modulator_0_0, '0']
 - [blocks_unpack_k_bits_bb_0_0, '0', digital_correlate_access_code_xx_ts_0_0, '0']
 - [blocks_unpack_k_bits_bb_0_0_0, '0', digital_correlate_access_code_xx_ts_0_0_0,
   '0']
-- [channels_channel_model_0_1, '0', analog_agc_xx_0, '0']
-- [channels_channel_model_0_1, '0', qtgui_const_sink_x_0, '0']
-- [channels_channel_model_0_1, '0', qtgui_freq_sink_x_0, '0']
-- [channels_channel_model_0_1, '0', qtgui_time_sink_x_0, '0']
-- [channels_channel_model_0_1_0, '0', analog_agc_xx_0_0, '0']
-- [channels_channel_model_0_1_0, '0', qtgui_const_sink_x_0_1, '0']
-- [channels_channel_model_0_1_0, '0', qtgui_freq_sink_x_0_0, '0']
-- [channels_channel_model_0_1_0, '0', qtgui_time_sink_x_0_0, '0']
 - [digital_constellation_decoder_cb_0_0, '0', digital_diff_decoder_bb_0_0, '0']
 - [digital_constellation_decoder_cb_0_0_0, '0', digital_diff_decoder_bb_0_0_0, '0']
 - [digital_constellation_modulator_0, '0', blocks_multiply_const_vxx_0, '0']
@@ -2709,18 +2884,24 @@ connections:
 - [digital_symbol_sync_xx_0_1_0_0, '0', digital_linear_equalizer_0_0, '0']
 - [epy_block_1, out, digital_crc_append_0, in]
 - [epy_block_1_0, out, digital_crc_append_0_0, in]
+- [epy_block_2, ack_out, digital_crc_append_0, in]
+- [epy_block_2, local_ack, epy_block_1, ack_in]
+- [epy_block_2_0, ack_out, digital_crc_append_0_0, in]
+- [epy_block_2_0, local_ack, epy_block_1_0, ack_in]
 - [epy_block_3, pdu_out, pdu_pdu_to_tagged_stream_2, pdus]
 - [epy_block_3_0, pdu_out, pdu_pdu_to_tagged_stream_2_0, pdus]
 - [pdu_pdu_to_tagged_stream_0, '0', blocks_tagged_stream_mux_0, '0']
 - [pdu_pdu_to_tagged_stream_0_0, '0', blocks_tagged_stream_mux_0_0, '0']
 - [pdu_pdu_to_tagged_stream_1, '0', blocks_tagged_stream_mux_0, '1']
 - [pdu_pdu_to_tagged_stream_1_0, '0', blocks_tagged_stream_mux_0_0, '1']
-- [pdu_pdu_to_tagged_stream_2, '0', blocks_throttle2_0, '0']
-- [pdu_pdu_to_tagged_stream_2_0, '0', blocks_throttle2_0_0, '0']
+- [pdu_pdu_to_tagged_stream_2, '0', digital_constellation_modulator_0, '0']
+- [pdu_pdu_to_tagged_stream_2_0, '0', digital_constellation_modulator_0_0, '0']
 - [pdu_tagged_stream_to_pdu_0, pdus, epy_block_3, pdu_in]
 - [pdu_tagged_stream_to_pdu_0_0, pdus, epy_block_3_0, pdu_in]
 - [pdu_tagged_stream_to_pdu_0_0_0, pdus, digital_crc_check_0_0, in]
 - [pdu_tagged_stream_to_pdu_0_0_0_0, pdus, digital_crc_check_0_0_0, in]
+- [soapy_plutosdr_source_0, '0', analog_agc_xx_0, '0']
+- [soapy_plutosdr_source_1, '0', analog_agc_xx_0_0, '0']
 
 metadata:
   file_format: 1
