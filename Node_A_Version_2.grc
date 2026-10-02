@@ -1,0 +1,2132 @@
+options:
+  parameters:
+    author: naagul
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: Text, image and audio-file GUI. Both peers must use the new protocol.
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: node_a_gui
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: "Node A \u2014 QPSK File Link"
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: access_key
+  id: variable
+  parameters:
+    comment: ''
+    value: '"1110000101011010111010001001001111100001010110101110100010010011"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3624, 272.0]
+    rotation: 0
+    state: enabled
+- name: cma_alg
+  id: variable_adaptive_algorithm
+  parameters:
+    comment: ''
+    cons: qpsk
+    delta: '10.0'
+    ffactor: '0.99'
+    modulus: '1'
+    step_size: '.01'
+    type: cma
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2240, 0.0]
+    rotation: 0
+    state: enabled
+- name: damp_fac
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.707'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1800, 64.0]
+    rotation: 0
+    state: enabled
+- name: excess_bw
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.35'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [5240, 464.0]
+    rotation: 0
+    state: enabled
+- name: freq
+  id: variable
+  parameters:
+    comment: ''
+    value: 2.4e9
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [472, 40.0]
+    rotation: 0
+    state: enabled
+- name: hdr_format
+  id: variable
+  parameters:
+    comment: header_format_default
+    value: digital.header_format_default(access_key, 0)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3624, 400.0]
+    rotation: 0
+    state: enabled
+- name: max_dev
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.05'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1904, 56.0]
+    rotation: 0
+    state: enabled
+- name: max_dev_0
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.05'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2104, 56.0]
+    rotation: 0
+    state: enabled
+- name: my_addr
+  id: variable
+  parameters:
+    comment: ''
+    value: '''A1'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 104.0]
+    rotation: 0
+    state: enabled
+- name: nfilts
+  id: variable
+  parameters:
+    comment: ''
+    value: '32'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1992, 56.0]
+    rotation: 0
+    state: enabled
+- name: peer_addr
+  id: variable
+  parameters:
+    comment: ''
+    value: '''B1'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [440, 104]
+    rotation: 0
+    state: enabled
+- name: phase_bw
+  id: variable
+  parameters:
+    comment: ''
+    value: '62.8e-3'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1696, 64.0]
+    rotation: 0
+    state: enabled
+- name: qpsk
+  id: variable_constellation_rect
+  parameters:
+    comment: ''
+    const_points: '[0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j] '
+    imag_sect: '2'
+    precision: '8'
+    real_sect: '2'
+    rot_sym: '4'
+    soft_dec_lut: None
+    sym_map: '[0, 1, 3, 2]'
+    w_imag_sect: '1'
+    w_real_sect: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [5104, 140.0]
+    rotation: 0
+    state: enabled
+- name: rrc_taps
+  id: variable
+  parameters:
+    comment: ''
+    value: filter.firdes.root_raised_cosine(nfilts, nfilts, 1.0/sps, 0.35, 11*sps*nfilts)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2072, 128.0]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '2400000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 12]
+    rotation: 0
+    state: enabled
+- name: shared_key
+  id: variable
+  parameters:
+    comment: ''
+    value: b'u362K7J0T2sA_vB1C2D3E4F5G6H7I8J9K0L1M2N3O4P='
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 40.0]
+    rotation: 0
+    state: enabled
+- name: sps
+  id: variable
+  parameters:
+    comment: ''
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [5112, 464.0]
+    rotation: 0
+    state: enabled
+- name: variable_cc_decoder_def_0
+  id: variable_cc_decoder_def
+  parameters:
+    comment: ''
+    dim1: '1'
+    dim2: '1'
+    framebits: '2048'
+    k: '7'
+    mode: fec.CC_TERMINATED
+    ndim: '0'
+    padding: 'False'
+    polys: '[79,109]'
+    rate: '2'
+    state_end: '-1'
+    state_start: '0'
+    value: '"ok"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3792, -4.0]
+    rotation: 0
+    state: enabled
+- name: variable_cc_encoder_def_0
+  id: variable_cc_encoder_def
+  parameters:
+    comment: ''
+    dim1: '1'
+    dim2: '1'
+    framebits: '2048'
+    k: '7'
+    mode: fec.CC_TERMINATED
+    ndim: '0'
+    padding: 'False'
+    polys: '[79,109]'
+    rate: '2'
+    state_start: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3536, 4.0]
+    rotation: 0
+    state: enabled
+- name: analog_agc_xx_0
+  id: analog_agc_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    gain: '1.0'
+    max_gain: '100'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    rate: 1e-4
+    reference: '1.0'
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [368, 272.0]
+    rotation: 0
+    state: enabled
+- name: blocks_message_debug_0
+  id: blocks_message_debug
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    en_uvec: 'True'
+    log_level: info
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2440, 488.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '0.8'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [5296, 344.0]
+    rotation: 0
+    state: enabled
+- name: blocks_repack_bits_bb_1_0_0_0
+  id: blocks_repack_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    align_output: 'False'
+    comment: MSB
+    endianness: gr.GR_MSB_FIRST
+    k: '1'
+    l: '8'
+    len_tag_key: '"packet_len"'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2184, 216.0]
+    rotation: 0
+    state: enabled
+- name: blocks_tagged_stream_mux_0
+  id: blocks_tagged_stream_mux
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    lengthtagname: packet_len
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    ninputs: '2'
+    tag_preserve_head_pos: '0'
+    type: byte
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [4112, 336.0]
+    rotation: 0
+    state: enabled
+- name: blocks_unpack_k_bits_bb_0_0
+  id: blocks_unpack_k_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: '2'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1832, 224.0]
+    rotation: 0
+    state: enabled
+- name: digital_constellation_decoder_cb_0_0
+  id: digital_constellation_decoder_cb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: qpsk
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1432, 344.0]
+    rotation: 0
+    state: enabled
+- name: digital_constellation_modulator_0
+  id: digital_constellation_modulator
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: qpsk
+    differential: 'True'
+    excess_bw: excess_bw
+    log: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_symbol: sps
+    truncate: 'False'
+    verbose: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [5040, 320.0]
+    rotation: 0
+    state: enabled
+- name: digital_correlate_access_code_xx_ts_0_0
+  id: digital_correlate_access_code_xx_ts
+  parameters:
+    access_code: '"1110000101011010111010001001001111100001010110101110100010010011"'
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tagname: packet_len
+    threshold: '2'
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1952, 208.0]
+    rotation: 0
+    state: enabled
+- name: digital_costas_loop_cc_0_0
+  id: digital_costas_loop_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    order: '4'
+    use_snr: 'False'
+    w: phase_bw
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1192, 224.0]
+    rotation: 0
+    state: enabled
+- name: digital_crc_append_0
+  id: digital_crc_append
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    final_xor: '0xFFFFFFFF'
+    initial_value: '0xFFFFFFFF'
+    input_reflected: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_bits: '32'
+    poly: '0x4C11DB7'
+    result_reflected: 'True'
+    skip_header_bytes: '0'
+    swap_endianness: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3152, 296.0]
+    rotation: 0
+    state: enabled
+- name: digital_crc_check_0_0
+  id: digital_crc_check
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    discard_crc: 'True'
+    final_xor: '0xFFFFFFFF'
+    initial_value: '0xFFFFFFFF'
+    input_reflected: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_bits: '32'
+    poly: '0x4C11DB7'
+    result_reflected: 'True'
+    skip_header_bytes: '0'
+    swap_endianness: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2512, 336.0]
+    rotation: 0
+    state: enabled
+- name: digital_diff_decoder_bb_0_0
+  id: digital_diff_decoder_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    coding: digital.DIFF_DIFFERENTIAL
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    modulus: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1568, 216.0]
+    rotation: 0
+    state: enabled
+- name: digital_linear_equalizer_0
+  id: digital_linear_equalizer
+  parameters:
+    adapt_after_training: 'True'
+    affinity: ''
+    alg: cma_alg
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_taps: '15'
+    sps: '1'
+    training_sequence: '[ ]'
+    training_start_tag: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [920, 192.0]
+    rotation: 0
+    state: enabled
+- name: digital_map_bb_0_0
+  id: digital_map_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    map: '[0, 1, 3, 2]'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1720, 224.0]
+    rotation: 0
+    state: enabled
+- name: digital_protocol_formatter_async_0
+  id: digital_protocol_formatter_async
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    format: hdr_format
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3624, 336.0]
+    rotation: 0
+    state: enabled
+- name: digital_symbol_sync_xx_0_1_0
+  id: digital_symbol_sync_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: "The Symbol Sync block \naligns the sample clock \nat the receiver to\
+      \ the \nsymbol clock of the\n transmitter"
+    constellation: digital.constellation_qpsk().base()
+    damping: damp_fac
+    loop_bw: phase_bw
+    max_dev: max_dev
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nfilters: '32'
+    osps: '1'
+    pfb_mf_taps: rrc_taps
+    resamp_type: digital.IR_PFB_MF
+    sps: sps
+    ted_gain: '1.0'
+    ted_type: digital.TED_GARDNER
+    type: cc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 156.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_3
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"Replace the code in epy_block_3 with this ENTIRE file.\n\n\
+      Put padding OUTSIDE the protocol header and CRC-protected payload.\nThe suffix\
+      \ flushes finite bursts through filters and hardware buffers.\n\"\"\"\nimport\
+      \ os\nfrom gnuradio import gr\nimport pmt\n\n\nclass blk(gr.basic_block):\n\
+      \    def __init__(self, num_dummy_bytes=1500, num_tail_bytes=1024):\n      \
+      \  gr.basic_block.__init__(self, name='Burst Prefix + Tail',\n             \
+      \                   in_sig=None, out_sig=None)\n        self.prefix, self.tail\
+      \ = int(num_dummy_bytes), int(num_tail_bytes)\n        if self.prefix < 0 or\
+      \ self.tail < 0:\n            raise ValueError('Padding lengths must be nonnegative')\n\
+      \        self.message_port_register_in(pmt.intern('pdu_in'))\n        self.message_port_register_out(pmt.intern('pdu_out'))\n\
+      \        self.set_msg_handler(pmt.intern('pdu_in'), self.handle)\n\n    def\
+      \ handle(self, msg):\n        if not pmt.is_pair(msg) or not pmt.is_u8vector(pmt.cdr(msg)):\n\
+      \            return\n        raw = bytes(pmt.u8vector_elements(pmt.cdr(msg)))\n\
+      \        padded = os.urandom(self.prefix) + raw + os.urandom(self.tail)\n  \
+      \      self.message_port_pub(pmt.intern('pdu_out'),\n                      \
+      \        pmt.cons(pmt.car(msg), pmt.init_u8vector(len(padded), list(padded))))\n"
+    affinity: ''
+    alias: ''
+    comment: Random prefix for acquisition; tail flushes finite bursts
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_dummy_bytes: '1500'
+    num_tail_bytes: '1024'
+  states:
+    _io_cache: ('Burst Prefix + Tail', 'blk', [('num_dummy_bytes', '1500'), ('num_tail_bytes',
+      '1024')], [('pdu_in', 'message', 1)], [('pdu_out', 'message', 1)], '', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [4536, 344.0]
+    rotation: 0
+    state: enabled
+- name: epy_transfer_gui
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"Complete GNU Radio 3.10 Embedded Python Block: Selective\
+      \ Repeat chat.\n\nPaste the ENTIRE plain .py file into the block editor on BOTH\
+      \ nodes.\nPorts: rx_in = CRC-checked byte PDU, tx_out = encrypted byte PDU for\
+      \ CRC Append.\nKeep QPSK, framing, and FEC outside this block. Options must\
+      \ use QT GUI.\nNot wire-compatible with the previous Stop-and-Wait version (NGF1).\n\
+      DATA has a sliding window; META and END are individually acknowledged handshakes.\n\
+      Default shared_key is for demonstration: retain your matching key on both nodes.\n\
+      \"\"\"\n\nimport hashlib\nimport json\nimport os\nfrom pathlib import Path\n\
+      import queue\nimport re\nimport secrets\nimport struct\nimport tempfile\nimport\
+      \ threading\nimport time\nfrom collections import OrderedDict\nfrom cryptography.fernet\
+      \ import Fernet, InvalidToken\n\n_META, _DATA, _END, _ACK, _ERROR, _CANCEL =\
+      \ range(1, 7)\n_HEADER = struct.Struct('!4sB2s2s16sI')\n_MAGIC = b'NGS2'\n\n\
+      \n# GNU Radio / Qt adapter. The protocol core below is independently testable.\n\
+      from gnuradio import gr\nimport pmt\nfrom PyQt5 import QtCore, QtGui, QtWidgets\n\
+      \n\nclass blk(gr.basic_block):\n    \"\"\"Duplex text/image/audio GUI + encrypted\
+      \ Selective Repeat file transfer.\"\"\"\n    def __init__(self, my_addr='A1',\
+      \ peer_addr='B1',\n                 shared_key='u362K7J0T2sA_vB1C2D3E4F5G6H7I8J9K0L1M2N3O4P=',\n\
+      \                 receive_dir='./received_A1', chunk_size=512, ack_timeout=1.0,\n\
+      \                 max_retries=8, max_file_mb=16, show_gui=True,\n          \
+      \       window_size=4, packet_interval=0.02):\n        gr.basic_block.__init__(self,\
+      \ name='Selective Repeat Chat GUI',\n                                in_sig=None,\
+      \ out_sig=None)\n        self.my_addr, self.peer_addr = my_addr, peer_addr\n\
+      \        self.receive_dir = str(Path(receive_dir).expanduser().resolve())\n\
+      \        self.max_file_mb, self.show_gui = max_file_mb, show_gui\n        self.commands,\
+      \ self.events = queue.Queue(maxsize=2048), queue.Queue()\n        self.halt\
+      \ = threading.Event()\n        self.worker = self.bridge = None\n        self._config\
+      \ = (my_addr, peer_addr, shared_key, receive_dir, self._publish,\n         \
+      \               self.events.put, chunk_size, ack_timeout, max_retries, max_file_mb,\n\
+      \                        window_size, packet_interval)\n        self.core =\
+      \ _TransferCore(*self._config)  # Validate only; no window/thread/files.\n \
+      \       self.message_port_register_in(pmt.intern('rx_in'))\n        self.message_port_register_out(pmt.intern('tx_out'))\n\
+      \        self.set_msg_handler(pmt.intern('rx_in'), self._receive)\n\n    def\
+      \ _publish(self, raw):\n        self.message_port_pub(pmt.intern('tx_out'),\n\
+      \                              pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(raw),\
+      \ list(raw))))\n\n    def _receive(self, msg):\n        if pmt.is_pair(msg)\
+      \ and pmt.is_u8vector(pmt.cdr(msg)):\n            raw = bytes(pmt.u8vector_elements(pmt.cdr(msg)))\n\
+      \            if len(raw) <= 4092:\n                try:\n                  \
+      \  self.commands.put_nowait(('rx', raw))\n                except queue.Full:\n\
+      \                    pass  # ARQ recovers an overloaded receiver like a dropped\
+      \ packet.\n\n    def start(self):\n        self.halt.clear()\n        self.core\
+      \ = _TransferCore(*self._config)\n        if self.show_gui:\n            app\
+      \ = QtWidgets.QApplication.instance()\n            if app is None:\n       \
+      \         print('[Transfer GUI] Set Options > Generate Options = QT GUI')\n\
+      \                return False\n            self.bridge = _WindowBridge(self)\n\
+      \            self.bridge.moveToThread(app.thread())\n            self.bridge.open_requested.emit()\n\
+      \        self.worker = threading.Thread(target=self._run, name='file-transfer',\
+      \ daemon=True)\n        self.worker.start()\n        return True\n\n    def\
+      \ _run(self):\n        try:\n            while not self.halt.is_set():\n   \
+      \             try:\n                    cmd = self.commands.get(timeout=0.01)\n\
+      \                    if cmd[0] == 'rx':\n                        self.core.receive(cmd[1])\n\
+      \                    elif cmd[0] == 'send':\n                        try:\n\
+      \                            self.core.send(cmd[1], cmd[2])\n              \
+      \          except Exception as exc:\n                            self.events.put(dict(direction='notice',\
+      \ state=str(exc)))\n                    elif cmd[0] == 'cancel':\n         \
+      \               self.core.cancel()\n                except queue.Empty:\n  \
+      \                  pass\n                self.core.tick()\n        except Exception\
+      \ as exc:\n            self.events.put(dict(direction='notice', state='Worker\
+      \ stopped: ' + str(exc)))\n            print('[Transfer GUI] Worker stopped:',\
+      \ exc, flush=True)\n        finally:\n            self.core.close()\n\n    def\
+      \ stop(self):\n        self.halt.set()\n        if self.worker:\n          \
+      \  self.worker.join(timeout=3)\n        if self.bridge:\n            self.bridge.close_requested.emit()\n\
+      \        return True\n\n\nclass _TransferCore:\n    \"\"\"Selective Repeat,\
+      \ independently in each direction (one file per direction).\n\n    META (0)\
+      \ is acknowledged before DATA (1..N). DATA uses a bounded sliding\n    window\
+      \ and individual ACKs/timers. END (N+1) is sent after all DATA ACKs,\n    and\
+      \ acknowledged only after SHA-256 verification and saving the file.\n    32-bit\
+      \ sequence numbers never wrap within a transfer. A random 128-bit\n    transfer\
+      \ ID separates transfers. All methods run on one worker thread.\n    \"\"\"\n\
+      \    def __init__(self, my_addr, peer_addr, shared_key, receive_dir, emit, event,\n\
+      \                 chunk_size=512, ack_timeout=1.0, max_retries=8,\n        \
+      \         max_file_mb=16, window_size=4, packet_interval=0.02,\n           \
+      \      clock=time.monotonic):\n        for addr in (my_addr, peer_addr):\n \
+      \           if not isinstance(addr, str) or len(addr.encode('ascii')) != 2:\n\
+      \                raise ValueError('Addresses must be exactly two ASCII characters')\n\
+      \        if my_addr == peer_addr:\n            raise ValueError('Local and peer\
+      \ addresses must differ')\n        if not 128 <= int(chunk_size) <= 1024:\n\
+      \            raise ValueError('chunk_size must be 128..1024 bytes')\n      \
+      \  if not 0.05 <= float(ack_timeout) <= 30 or not 0 <= int(max_retries) <= 20:\n\
+      \            raise ValueError('ack_timeout: 0.05..30 seconds; max_retries: 0..20')\n\
+      \        if not 1 <= int(max_file_mb) <= 256:\n            raise ValueError('max_file_mb\
+      \ must be 1..256')\n        if not 1 <= int(window_size) <= 32:\n          \
+      \  raise ValueError('window_size must be 1..32 packets')\n        if not 0 <=\
+      \ float(packet_interval) <= 5:\n            raise ValueError('packet_interval\
+      \ must be 0..5 seconds')\n        key = shared_key.encode('ascii') if isinstance(shared_key,\
+      \ str) else shared_key\n        self.cipher = Fernet(key)\n        self.me,\
+      \ self.peer = my_addr.encode('ascii'), peer_addr.encode('ascii')\n        self.directory\
+      \ = Path(receive_dir).expanduser().resolve()\n        self.emit, self.event,\
+      \ self.clock = emit, event, clock\n        self.chunk, self.window = int(chunk_size),\
+      \ int(window_size)\n        self.timeout, self.retries = float(ack_timeout),\
+      \ int(max_retries)\n        self.interval = float(packet_interval)\n       \
+      \ self.limit = int(max_file_mb) * 1024 * 1024\n        # Allow a complete retry\
+      \ round even when 32 packets are heavily paced.\n        self.idle_timeout =\
+      \ max(120, 4 * (self.retries + 1) *\n                                (self.timeout\
+      \ + 32 * self.interval))\n        self.receipt_ttl = max(1800, self.idle_timeout\
+      \ * 2)\n        self.tx = self.rx = None\n        self.next_emit = 0.0\n   \
+      \     self.receipts = OrderedDict()\n\n    def _event(self, direction, state,\
+      \ transfer=None, **extra):\n        t = transfer or {}\n        self.event(dict(direction=direction,\
+      \ state=state, name=t.get('name', ''),\n                        kind=t.get('kind',\
+      \ ''), total=t.get('size', 0),\n                        done=t.get('done', 0),\
+      \ started=t.get('started', self.clock()),\n                        **extra))\n\
+      \n    def _wire(self, typ, tid, seq, body=b''):\n        plaintext = _HEADER.pack(_MAGIC,\
+      \ typ, self.me, self.peer, tid, seq) + body\n        frame = self.me + self.peer\
+      \ + self.cipher.encrypt(plaintext)\n        if len(frame) > 4092:\n        \
+      \    raise ValueError('Encrypted frame exceeds 4092-byte PDU budget')\n    \
+      \    return frame\n\n    def _reply(self, typ, tid, seq, body=b''):\n      \
+      \  # ACK/error/control replies bypass DATA pacing. Already queued downstream\n\
+      \        # PDUs cannot be overtaken; size the timeout for the complete RF pipeline.\n\
+      \        self.emit(self._wire(typ, tid, seq, body))\n\n    @staticmethod\n \
+      \   def _safe_name(name):\n        name = str(name).replace('\\\\', '/').split('/')[-1]\n\
+      \        name = re.sub(r'[^\\w. -]', '_', name, flags=re.UNICODE).strip('. ')[:100]\n\
+      \        return name or 'received.bin'\n\n    def send(self, kind, value):\n\
+      \        if self.tx is not None:\n            raise ValueError('A transfer is\
+      \ already active')\n        if kind == 'text':\n            data, name = value.encode('utf-8'),\
+      \ 'message.txt'\n            if not data or len(data) > 65536:\n           \
+      \     raise ValueError('Type a message of 1..65536 UTF-8 bytes')\n        elif\
+      \ kind in ('image', 'audio'):\n            path = Path(value)\n            if\
+      \ not path.is_file() or path.stat().st_size > self.limit:\n                raise\
+      \ ValueError('Choose a file within the configured size limit')\n           \
+      \ with path.open('rb') as f:\n                data = f.read(self.limit + 1)\n\
+      \            name = path.name\n        else:\n            raise ValueError('Unsupported\
+      \ transfer type')\n        if len(data) > self.limit:\n            raise ValueError('File\
+      \ exceeds the configured size limit')\n        self.tx = dict(tid=secrets.token_bytes(16),\
+      \ data=data, kind=kind,\n                       name=self._safe_name(name),\
+      \ size=len(data), done=0,\n                       started=self.clock(), n=(len(data)\
+      \ + self.chunk - 1) // self.chunk,\n                       digest=hashlib.sha256(data).hexdigest(),\
+      \ phase='meta',\n                       base=1, next=1, acked=set(), pending={})\n\
+      \        t = self.tx\n        meta = dict(kind=t['kind'], name=t['name'], size=t['size'],\
+      \ chunk=self.chunk,\n                    window=self.window, sha256=t['digest'])\n\
+      \        self._queue_packet(_META, 0, json.dumps(meta, ensure_ascii=True,\n\
+      \                           separators=(',', ':')).encode())\n        self._event('tx',\
+      \ 'Sending metadata', t)\n        self._pump()\n\n    def _queue_packet(self,\
+      \ typ, seq, body):\n        t = self.tx\n        t['pending'][seq] = dict(wire=self._wire(typ,\
+      \ t['tid'], seq, body),\n                                 sent=None, retry=0)\n\
+      \n    def _fill_window(self):\n        t = self.tx\n        if t['phase'] !=\
+      \ 'data':\n            return\n        # The window is anchored at the oldest\
+      \ unacknowledged sequence number,\n        # not merely at the number of pending\
+      \ packets. This bounds RX buffering.\n        while t['next'] <= t['n'] and\
+      \ t['next'] < t['base'] + self.window:\n            seq = t['next']\n      \
+      \      self._queue_packet(_DATA, seq,\n                               t['data'][(seq\
+      \ - 1) * self.chunk:seq * self.chunk])\n            t['next'] += 1\n       \
+      \ if t['base'] > t['n']:\n            t['phase'] = 'end'\n            self._queue_packet(_END,\
+      \ t['n'] + 1, bytes.fromhex(t['digest']))\n            self._event('tx', 'Waiting\
+      \ for file verification', t)\n\n    def _acknowledge(self, tid, seq, body):\n\
+      \        t = self.tx\n        if body or t is None or t['tid'] != tid:\n   \
+      \         return\n        packet = t['pending'].get(seq)\n        if packet\
+      \ is None or packet['sent'] is None:\n            return  # Duplicate/stale\
+      \ ACK, or a sequence not yet transmitted.\n        del t['pending'][seq]\n \
+      \       if t['phase'] == 'meta':\n            t['phase'] = 'data'\n        elif\
+      \ t['phase'] == 'end':\n            self._event('tx', 'Complete \u2014 receiver\
+      \ verified', t)\n            self.tx = None\n            return\n        else:\n\
+      \            t['done'] += min(self.chunk, t['size'] - (seq - 1) * self.chunk)\n\
+      \            t['acked'].add(seq)\n            while t['base'] in t['acked']:\n\
+      \                t['acked'].remove(t['base'])\n                t['base'] +=\
+      \ 1\n            self._event('tx', 'Sending', t)\n        self._fill_window()\n\
+      \        self._pump()\n\n    def _pump(self):\n        \"\"\"Emit at most one\
+      \ DATA/META/END PDU per call, with retry priority.\"\"\"\n        t, now = self.tx,\
+      \ self.clock()\n        if t is None or now < self.next_emit:\n            return\n\
+      \        expired = [(p['sent'], seq) for seq, p in t['pending'].items()\n  \
+      \                 if p['sent'] is not None and now - p['sent'] >= self.timeout]\n\
+      \        if expired:\n            _, seq = min(expired)\n            p = t['pending'][seq]\n\
+      \            if p['retry'] >= self.retries:\n                self._abort_tx('Unconfirmed\
+      \ \u2014 ACK timeout for packet %d' % seq)\n                return\n       \
+      \     p['retry'] += 1\n            self._event('tx', 'Retry packet %d (%d/%d)'\
+      \ %\n                        (seq, p['retry'], self.retries), t)\n        else:\n\
+      \            seq = next((s for s, p in t['pending'].items() if p['sent'] is\
+      \ None), None)\n            if seq is None:\n                return\n      \
+      \      p = t['pending'][seq]\n        p['sent'] = now  # Timestamp PDU submission,\
+      \ not an RF hardware timestamp.\n        self.next_emit = now + self.interval\n\
+      \        self.emit(p['wire'])\n\n    def receive(self, frame):\n        # The\
+      \ upstream CRC Check must drop failures and remove the CRC bytes.\n        if\
+      \ len(frame) < 5 or len(frame) > 4092 or frame[:4] != self.peer + self.me:\n\
+      \            return\n        try:\n            raw = self.cipher.decrypt(frame[4:])\n\
+      \            if len(raw) < _HEADER.size:\n                return\n         \
+      \   magic, typ, src, dst, tid, seq = _HEADER.unpack(raw[:_HEADER.size])\n  \
+      \          if magic != _MAGIC or src != self.peer or dst != self.me:\n     \
+      \           return\n            body = raw[_HEADER.size:]\n        except (InvalidToken,\
+      \ ValueError, struct.error):\n            return\n        if typ == _ACK:\n\
+      \            self._acknowledge(tid, seq, body)\n        elif typ == _ERROR:\n\
+      \            if self.tx and tid == self.tx['tid'] and seq in self.tx['pending']:\n\
+      \                self._abort_tx('Failed: ' + body.decode('utf-8', 'replace')[:180])\n\
+      \        elif typ == _CANCEL:\n            if body:\n                return\n\
+      \            if self.rx and self.rx['tid'] == tid:\n                self._drop_rx('Cancelled\
+      \ by sender')\n            elif tid not in self.receipts:\n                #\
+      \ A reordered CANCEL can arrive before its META.\n                self._remember(tid,\
+      \ error='Cancelled by sender')\n        elif typ in (_META, _DATA, _END):\n\
+      \            try:\n                self._receive_data(typ, tid, seq, body)\n\
+      \            except (ValueError, OSError, UnicodeError, KeyError, TypeError)\
+      \ as exc:\n                reason = str(exc)[:180]\n                if self.rx\
+      \ and self.rx['tid'] == tid:\n                    self._drop_rx('Failed: ' +\
+      \ reason)\n                elif tid not in self.receipts:\n                \
+      \    self._remember(tid, error=reason)\n                self._reply(_ERROR,\
+      \ tid, seq, reason.encode('utf-8')[:180])\n\n    def _remember(self, tid, **fields):\n\
+      \        self.receipts[tid] = dict(at=self.clock(), **fields)\n        self.receipts.move_to_end(tid)\n\
+      \        while len(self.receipts) > 256:\n            self.receipts.popitem(last=False)\n\
+      \n    def _receive_data(self, typ, tid, seq, body):\n        if tid in self.receipts:\n\
+      \            c = self.receipts[tid]\n            if 'error' in c:\n        \
+      \        self._reply(_ERROR, tid, seq, c['error'].encode('utf-8')[:180])\n \
+      \           elif typ == _END and seq == c['seq'] and body == c['digest']:\n\
+      \                self._reply(_ACK, tid, seq)  # Lost final ACK: never save twice.\n\
+      \            return\n        if typ == _META:\n            if seq != 0:\n  \
+      \              raise ValueError('Invalid metadata sequence')\n            if\
+      \ self.rx:\n                if self.rx['tid'] == tid and self.rx['meta'] ==\
+      \ body:\n                    self.rx['last'] = self.clock()\n              \
+      \      self._reply(_ACK, tid, seq)\n                    return\n           \
+      \     raise ValueError('Receiver busy; retry after its current transfer')\n\
+      \            meta = json.loads(body.decode('utf-8'))\n            if not isinstance(meta,\
+      \ dict):\n                raise ValueError('Invalid metadata')\n           \
+      \ size, chunk, window = meta.get('size'), meta.get('chunk'), meta.get('window')\n\
+      \            digest, kind = meta.get('sha256'), meta.get('kind')\n         \
+      \   if type(size) is not int or not 0 <= size <= self.limit:\n             \
+      \   raise ValueError('Unsupported file size')\n            if type(chunk) is\
+      \ not int or not 128 <= chunk <= 1024:\n                raise ValueError('Invalid\
+      \ chunk size')\n            if type(window) is not int or not 1 <= window <=\
+      \ 32:\n                raise ValueError('Invalid window size')\n           \
+      \ if kind not in ('text', 'image', 'audio') or (kind == 'text' and size > 65536):\n\
+      \                raise ValueError('Unsupported content type or text size')\n\
+      \            if not isinstance(digest, str) or not re.fullmatch('[0-9a-f]{64}',\
+      \ digest):\n                raise ValueError('Invalid SHA-256')\n          \
+      \  if not isinstance(meta.get('name'), str) or len(meta['name']) > 200:\n  \
+      \              raise ValueError('Invalid filename')\n            self.directory.mkdir(parents=True,\
+      \ exist_ok=True)\n            f = tempfile.NamedTemporaryFile(mode='w+b', prefix='.incoming_',\n\
+      \                                            suffix='.part', dir=self.directory,\
+      \ delete=False)\n            self.rx = dict(tid=tid, meta=body, kind=kind, name=self._safe_name(meta['name']),\n\
+      \                           size=size, chunk=chunk, window=window, digest=digest,\n\
+      \                           n=(size + chunk - 1) // chunk, next=1, done=0, buffer={},\n\
+      \                           hash=hashlib.sha256(), file=f, temp=Path(f.name),\n\
+      \                           started=self.clock(), last=self.clock())\n     \
+      \       self._event('rx', 'Receiving', self.rx)\n            self._reply(_ACK,\
+      \ tid, seq)\n            return\n        r = self.rx\n        if r is None or\
+      \ r['tid'] != tid:\n            raise ValueError('No matching transfer; send\
+      \ again from the beginning')\n        r['last'] = self.clock()\n        if typ\
+      \ == _DATA:\n            if not 1 <= seq <= r['n']:\n                raise ValueError('Invalid\
+      \ data sequence')\n            expected = min(r['chunk'], r['size'] - (seq -\
+      \ 1) * r['chunk'])\n            if len(body) != expected:\n                raise\
+      \ ValueError('Invalid chunk length')\n            if seq < r['next']:\n    \
+      \            self._reply(_ACK, tid, seq)  # Re-ACK without writing twice.\n\
+      \                return\n            if seq >= r['next'] + r['window']:\n  \
+      \              return  # Out of receive window: do not ACK unretained data.\n\
+      \            if seq not in r['buffer']:\n                r['buffer'][seq] =\
+      \ body\n                r['done'] += len(body)  # Unique accepted bytes, including\
+      \ buffered ones.\n            elif r['buffer'][seq] != body:\n             \
+      \   raise ValueError('Conflicting duplicate packet')\n            while r['next']\
+      \ in r['buffer']:\n                contiguous = r['buffer'].pop(r['next'])\n\
+      \                r['file'].write(contiguous)\n                r['hash'].update(contiguous)\n\
+      \                r['next'] += 1\n            self._event('rx', 'Receiving',\
+      \ r)\n            self._reply(_ACK, tid, seq)\n        elif typ == _END:\n \
+      \           if seq != r['n'] + 1 or r['next'] != seq or r['done'] != r['size']\
+      \ or r['buffer']:\n                raise ValueError('Incomplete file')\n   \
+      \         if body != bytes.fromhex(r['digest']) or r['hash'].hexdigest() !=\
+      \ r['digest']:\n                raise ValueError('Whole-file SHA-256 mismatch')\n\
+      \            r['file'].flush()\n            os.fsync(r['file'].fileno())\n \
+      \           r['file'].close()\n            final = self.directory / (tid.hex()\
+      \ + '_' + r['name'])\n            os.replace(r['temp'], final)\n           \
+      \ self._remember(tid, seq=seq, digest=body)\n            self.rx = None\n  \
+      \          self._reply(_ACK, tid, seq)\n            self._event('rx', 'Complete\
+      \ \u2014 saved and verified', r, path=str(final))\n\n    def tick(self):\n \
+      \       self._pump()\n        now = self.clock()\n        if self.rx and now\
+      \ - self.rx['last'] >= self.idle_timeout:\n            self._drop_rx('Timed\
+      \ out \u2014 partial file removed')\n        for tid, entry in list(self.receipts.items()):\n\
+      \            if now - entry['at'] > self.receipt_ttl:\n                del self.receipts[tid]\n\
+      \n    def _abort_tx(self, reason):\n        if self.tx:\n            t, self.tx\
+      \ = self.tx, None\n            self._reply(_CANCEL, t['tid'], 0)\n         \
+      \   self._event('tx', reason, t)\n\n    def cancel(self):\n        self._abort_tx('Cancelled\
+      \ \u2014 peer may have received some data')\n\n    def _drop_rx(self, reason):\n\
+      \        r, self.rx = self.rx, None\n        if r:\n            self._remember(r['tid'],\
+      \ error=reason)\n            try:\n                r['file'].close()\n     \
+      \       except OSError:\n                pass\n            try:\n          \
+      \      r['temp'].unlink(missing_ok=True)\n            except OSError as exc:\n\
+      \                reason += '; partial-file cleanup failed: ' + str(exc)\n  \
+      \          self._event('rx', reason, r)\n\n    def close(self):\n        self.tx\
+      \ = None\n        self._drop_rx('Stopped \u2014 partial file removed')\n\n\n\
+      class _WindowBridge(QtCore.QObject):\n    open_requested = QtCore.pyqtSignal()\n\
+      \    close_requested = QtCore.pyqtSignal()\n\n    def __init__(self, block):\n\
+      \        super().__init__()\n        self.block, self.window = block, None\n\
+      \        self.open_requested.connect(self.open_window, QtCore.Qt.QueuedConnection)\n\
+      \        self.close_requested.connect(self.close_window, QtCore.Qt.QueuedConnection)\n\
+      \n    @QtCore.pyqtSlot()\n    def open_window(self):\n        if not self.block.halt.is_set():\n\
+      \            self.window = _TransferWindow(self.block)\n            self.window.show()\n\
+      \n    @QtCore.pyqtSlot()\n    def close_window(self):\n        if self.window:\n\
+      \            self.window.timer.stop()\n            self.window.allow_close =\
+      \ True\n            self.window.close()\n            self.window.deleteLater()\n\
+      \            self.window = None\n\n\nclass _TransferWindow(QtWidgets.QWidget):\n\
+      \    \"\"\"Chat view only. Packet handling stays in _TransferCore.\"\"\"\n \
+      \   def __init__(self, block):\n        super().__init__()\n        self.block,\
+      \ self.allow_close = block, False\n        self.tx_bubble = self.rx_bubble =\
+      \ None\n        self.messages = []\n        self.setWindowTitle('Chat | %s \u2192\
+      \ %s' % (block.my_addr, block.peer_addr))\n        self.resize(570, 780)\n \
+      \       self.setMinimumSize(440, 540)\n        self.setStyleSheet('''\n    \
+      \        QWidget { color:#173b32; font-family:Sans; font-size:14px; }\n    \
+      \        QWidget#chat, QWidget#historyBody { background:#f3f1eb; }\n       \
+      \     QFrame#header, QFrame#composer { background:white; }\n            QLabel\
+      \ { background:transparent; }\n            QLabel#avatar { background:#128c7e;\
+      \ color:white; border-radius:23px;\n                font-size:18px; font-weight:600;\
+      \ }\n            QLabel#name { font-size:18px; font-weight:600; }\n        \
+      \    QLabel#secondary { color:#77847e; font-size:11px; }\n            QLabel#day\
+      \ { color:#7b8780; font-size:11px; padding:10px; }\n            QFrame#sent\
+      \ { background:#d9fdd3; border:1px solid #ccecc6; border-radius:14px; }\n  \
+      \          QFrame#received { background:white; border:1px solid #e1e6e2; border-radius:14px;\
+      \ }\n            QPlainTextEdit { background:#f4f6f4; border:1px solid #e7ebe7;\n\
+      \                border-radius:20px; padding:8px; font-size:14px; }\n      \
+      \      QPushButton,QToolButton { background:#e8f3ed; border:0; border-radius:16px;\n\
+      \                padding:8px 12px; color:#16785c; }\n            QPushButton:hover,QToolButton:hover\
+      \ { background:#d1eadd; }\n            QPushButton#send { background:#128c7e;\
+      \ color:white; font-weight:600; }\n            QToolButton#attach { background:transparent;\
+      \ font-size:28px; padding:0; }\n            QToolButton::menu-indicator { image:none;\
+      \ }\n            QPushButton:disabled,QToolButton:disabled { color:#a4b8ac;\
+      \ background:#e7ede8; }\n            QPushButton#file { background:transparent;\
+      \ text-align:left; padding:5px 0; }\n            QPushButton#cancel { background:transparent;\
+      \ color:#886958; padding:2px; font-size:11px; }\n            QMenu { background:white;\
+      \ border:1px solid #d7e3da; padding:6px; }\n            QMenu::item { padding:9px\
+      \ 22px; }\n            QMenu::item:selected { background:#e6f4eb; }\n      \
+      \      QProgressBar { background:#e7eae1; border:0; border-radius:3px; }\n \
+      \           QProgressBar::chunk { background:#20a47d; border-radius:3px; }\n\
+      \            QScrollArea { background:transparent; border:0; }\n           \
+      \ QScrollBar:vertical { width:6px; background:transparent; }\n            QScrollBar::handle:vertical\
+      \ { background:#cdd6cc; border-radius:3px; min-height:24px; }\n            QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical\
+      \ { height:0; }\n        ''')\n        self.setObjectName('chat')\n        root\
+      \ = QtWidgets.QVBoxLayout(self)\n        root.setContentsMargins(0, 0, 0, 0)\n\
+      \        root.setSpacing(0)\n\n        header = QtWidgets.QFrame()\n       \
+      \ header.setObjectName('header')\n        top = QtWidgets.QHBoxLayout(header)\n\
+      \        top.setContentsMargins(20, 16, 18, 16)\n        avatar = QtWidgets.QLabel(block.peer_addr)\n\
+      \        avatar.setObjectName('avatar')\n        avatar.setAlignment(QtCore.Qt.AlignCenter)\n\
+      \        avatar.setFixedSize(46, 46)\n        top.addWidget(avatar)\n      \
+      \  contact = QtWidgets.QVBoxLayout()\n        contact.setSpacing(4)\n      \
+      \  name = QtWidgets.QLabel('Chat with ' + block.peer_addr)\n        name.setObjectName('name')\n\
+      \        subtitle = QtWidgets.QLabel('Your node: ' + block.my_addr)\n      \
+      \  subtitle.setObjectName('secondary')\n        contact.addWidget(name)\n  \
+      \      contact.addWidget(subtitle)\n        top.addLayout(contact, 1)\n    \
+      \    files = QtWidgets.QPushButton('Received files')\n        files.clicked.connect(self.open_folder)\n\
+      \        top.addWidget(files)\n        root.addWidget(header)\n\n        self.scroll\
+      \ = QtWidgets.QScrollArea()\n        self.scroll.setWidgetResizable(True)\n\
+      \        self.scroll.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)\n\
+      \        body = QtWidgets.QWidget()\n        body.setObjectName('historyBody')\n\
+      \        self.history = QtWidgets.QVBoxLayout(body)\n        self.history.setContentsMargins(16,\
+      \ 4, 16, 14)\n        self.history.setSpacing(12)\n        self.history.setSizeConstraint(QtWidgets.QLayout.SetMinAndMaxSize)\n\
+      \        day = QtWidgets.QLabel('TODAY')\n        day.setObjectName('day')\n\
+      \        day.setAlignment(QtCore.Qt.AlignCenter)\n        self.history.addWidget(day)\n\
+      \        self.history.addStretch(1)\n        self.scroll.setWidget(body)\n \
+      \       root.addWidget(self.scroll, 1)\n\n        composer = QtWidgets.QFrame()\n\
+      \        composer.setObjectName('composer')\n        controls = QtWidgets.QVBoxLayout(composer)\n\
+      \        controls.setContentsMargins(12, 12, 16, 9)\n        row = QtWidgets.QHBoxLayout()\n\
+      \        row.setSpacing(8)\n        self.attach = QtWidgets.QToolButton()\n\
+      \        self.attach.setObjectName('attach')\n        self.attach.setText('+')\n\
+      \        self.attach.setToolTip('Send an image or audio file')\n        self.attach.setAccessibleName('Attach\
+      \ image or audio file')\n        self.attach.setFixedSize(38, 44)\n        menu\
+      \ = QtWidgets.QMenu(self.attach)\n        menu.addAction('Image\u2026', lambda:\
+      \ self.choose('image'))\n        menu.addAction('Audio file\u2026', lambda:\
+      \ self.choose('audio'))\n        self.attach.setMenu(menu)\n        self.attach.setPopupMode(QtWidgets.QToolButton.InstantPopup)\n\
+      \        self.text = QtWidgets.QPlainTextEdit()\n        self.text.setPlaceholderText('Type\
+      \ a message\u2026')\n        self.text.setFixedHeight(60)\n        self.text.installEventFilter(self)\n\
+      \        self.send_button = QtWidgets.QPushButton('Send')\n        self.send_button.setObjectName('send')\n\
+      \        self.send_button.setFixedSize(68, 44)\n        self.send_button.clicked.connect(self.send_text)\n\
+      \        row.addWidget(self.attach)\n        row.addWidget(self.text, 1)\n \
+      \       row.addWidget(self.send_button)\n        controls.addLayout(row)\n \
+      \       self.hint = QtWidgets.QLabel('Enter to send \xB7 Shift+Enter for a new\
+      \ line')\n        self.hint.setObjectName('secondary')\n        self.hint.setAlignment(QtCore.Qt.AlignCenter)\n\
+      \        self.hint.setWordWrap(True)\n        controls.addWidget(self.hint)\n\
+      \        root.addWidget(composer)\n        self.timer = QtCore.QTimer(self)\n\
+      \        self.timer.timeout.connect(self.poll)\n        self.timer.start(50)\n\
+      \n    def eventFilter(self, obj, event):\n        if obj is self.text and event.type()\
+      \ == QtCore.QEvent.KeyPress:\n            if event.key() in (QtCore.Qt.Key_Return,\
+      \ QtCore.Qt.Key_Enter):\n                if not event.modifiers() & QtCore.Qt.ShiftModifier:\n\
+      \                    self.send_text()\n                    return True\n   \
+      \     return super().eventFilter(obj, event)\n\n    def send_text(self):\n \
+      \       if self.send_button.isEnabled() and self.text.toPlainText().strip():\n\
+      \            if self.submit('text', self.text.toPlainText()):\n            \
+      \    self.text.clear()\n\n    def choose(self, kind):\n        filters = ('Images\
+      \ (*.png *.jpg *.jpeg *.bmp *.gif *.webp);;All files (*)'\n                \
+      \   if kind == 'image' else\n                   'Audio (*.wav *.mp3 *.ogg *.flac\
+      \ *.m4a *.aac);;All files (*)')\n        path, _ = QtWidgets.QFileDialog.getOpenFileName(self,\
+      \ 'Choose ' + kind + ' to send', '', filters)\n        if path:\n          \
+      \  self.submit(kind, path)\n\n    def submit(self, kind, value):\n        if\
+      \ self.tx_bubble is not None:\n            return False\n        try:\n    \
+      \        self.block.commands.put_nowait(('send', kind, value))\n        except\
+      \ queue.Full:\n            self.hint.setText('Please try again in a moment.')\n\
+      \            return False\n        caption = value if kind == 'text' else Path(value).name\n\
+      \        self.tx_bubble = self.add_bubble(True, kind, caption)\n        if kind\
+      \ != 'text':\n            self.show_file(self.tx_bubble, value)\n        self.set_busy(True)\n\
+      \        return True\n\n    def add_bubble(self, outgoing, kind, caption):\n\
+      \        row = QtWidgets.QWidget()\n        layout = QtWidgets.QHBoxLayout(row)\n\
+      \        layout.setContentsMargins(0, 0, 0, 0)\n        card = QtWidgets.QFrame()\n\
+      \        card.setObjectName('sent' if outgoing else 'received')\n        card.setMaximumWidth(max(260,\
+      \ int(self.width() * 0.73)))\n        card.setSizePolicy(QtWidgets.QSizePolicy.Preferred,\
+      \ QtWidgets.QSizePolicy.Maximum)\n        content = QtWidgets.QVBoxLayout(card)\n\
+      \        content.setContentsMargins(13, 11, 13, 9)\n        content.setSpacing(7)\n\
+      \        label = QtWidgets.QLabel()\n        label.setTextFormat(QtCore.Qt.PlainText)\n\
+      \        label.setText(caption[:4096] + ('\\n[Preview shortened]' if len(caption)\
+      \ > 4096 else ''))\n        label.setWordWrap(True)\n        label.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)\n\
+      \        label.setMinimumWidth(150)\n        content.addWidget(label)\n    \
+      \    preview = QtWidgets.QLabel()\n        preview.setAlignment(QtCore.Qt.AlignCenter)\n\
+      \        preview.hide()\n        content.addWidget(preview)\n        open_button\
+      \ = QtWidgets.QPushButton('Play audio' if kind == 'audio' else 'Open file')\n\
+      \        open_button.setObjectName('file')\n        open_button.hide()\n   \
+      \     content.addWidget(open_button)\n        progress = QtWidgets.QProgressBar()\n\
+      \        progress.setRange(0, 1000)\n        progress.setValue(0)\n        progress.setTextVisible(False)\n\
+      \        progress.setFixedHeight(5)\n        content.addWidget(progress)\n \
+      \       footer = QtWidgets.QHBoxLayout()\n        status = QtWidgets.QLabel('Preparing\u2026\
+      ' if outgoing else 'Receiving\u2026')\n        status.setObjectName('secondary')\n\
+      \        status.setTextFormat(QtCore.Qt.PlainText)\n        status.setWordWrap(True)\n\
+      \        footer.addWidget(status, 1)\n        cancel = QtWidgets.QPushButton('Cancel')\n\
+      \        cancel.setObjectName('cancel')\n        cancel.setVisible(outgoing)\n\
+      \        cancel.clicked.connect(self.cancel_send)\n        footer.addWidget(cancel)\n\
+      \        content.addLayout(footer)\n        if outgoing:\n            layout.addStretch(1)\n\
+      \        layout.addWidget(card)\n        if not outgoing:\n            layout.addStretch(1)\n\
+      \        self.history.insertWidget(self.history.count() - 1, row)\n        record\
+      \ = dict(row=row, card=card, label=label, preview=preview, open=open_button,\n\
+      \                      bar=progress, status=status, cancel=cancel, kind=kind,\n\
+      \                      outgoing=outgoing, time=QtCore.QTime.currentTime().toString('HH:mm'),\n\
+      \                      path=None, state='Preparing', done=0, total=0)\n    \
+      \    self.messages.append(record)\n        # Bound widget memory; received files\
+      \ remain saved on disk.\n        while len(self.messages) > 200:\n         \
+      \   old = next((m for m in self.messages if m is not self.tx_bubble and m is\
+      \ not self.rx_bubble), None)\n            if old is None:\n                break\n\
+      \            self.messages.remove(old)\n            self.history.removeWidget(old['row'])\n\
+      \            old['row'].deleteLater()\n        QtCore.QTimer.singleShot(0, self.scroll_bottom)\n\
+      \        return record\n\n    def show_file(self, bubble, path):\n        bubble['path']\
+      \ = path\n        bubble['open'].setProperty('file_path', path)\n        if\
+      \ not bubble.get('open_connected'):\n            bubble['open'].clicked.connect(self.open_file)\n\
+      \            bubble['open_connected'] = True\n        bubble['open'].show()\n\
+      \        if bubble['kind'] == 'image':\n            reader = QtGui.QImageReader(path)\n\
+      \            size = reader.size()\n            if size.isValid() and size.width()\
+      \ * size.height() <= 40_000_000:\n                reader.setScaledSize(size.scaled(270,\
+      \ 170, QtCore.Qt.KeepAspectRatio))\n                picture = reader.read()\n\
+      \                if not picture.isNull():\n                    bubble['preview'].setPixmap(QtGui.QPixmap.fromImage(picture))\n\
+      \                    bubble['preview'].show()\n\n    def open_file(self):\n\
+      \        path = self.sender().property('file_path')\n        if path:\n    \
+      \        QtGui.QDesktopServices.openUrl(QtCore.QUrl.fromLocalFile(path))\n\n\
+      \    def cancel_send(self):\n        try:\n            self.block.commands.put_nowait(('cancel',))\n\
+      \        except queue.Full:\n            self.hint.setText('Please try cancelling\
+      \ again in a moment.')\n\n    def set_busy(self, busy):\n        self.send_button.setEnabled(not\
+      \ busy)\n        self.attach.setEnabled(not busy)\n        self.hint.setText('Sending\u2026\
+      \ You can type your next message.' if busy else\n                          'Enter\
+      \ to send \xB7 Shift+Enter for a new line')\n\n    def poll(self):\n       \
+      \ bar = self.scroll.verticalScrollBar()\n        following = bar.maximum() -\
+      \ bar.value() < 40\n        changed = False\n        for _ in range(300):\n\
+      \            try:\n                event = self.block.events.get_nowait()\n\
+      \            except queue.Empty:\n                break\n            self.display_event(event)\n\
+      \            changed = True\n        if changed and following:\n           \
+      \ QtCore.QTimer.singleShot(0, self.scroll_bottom)\n\n    def display_event(self,\
+      \ e):\n        direction, state = e['direction'], e['state']\n        if direction\
+      \ == 'notice':\n            if self.tx_bubble:\n                b = self.tx_bubble\n\
+      \                b['status'].setText(state)\n                b['state'] = state\n\
+      \                b['bar'].hide()\n                b['cancel'].hide()\n     \
+      \           self.tx_bubble = None\n            self.set_busy(False)\n      \
+      \      self.hint.setText(state)\n            return\n        outgoing = direction\
+      \ == 'tx'\n        bubble = self.tx_bubble if outgoing else self.rx_bubble\n\
+      \        if bubble is None:\n            caption = 'Receiving message\u2026\
+      ' if e['kind'] == 'text' else e['name']\n            bubble = self.add_bubble(outgoing,\
+      \ e['kind'], caption)\n            if outgoing:\n                self.tx_bubble\
+      \ = bubble\n            else:\n                self.rx_bubble = bubble\n   \
+      \     complete = state.startswith('Complete')\n        active = state.startswith(('Sending',\
+      \ 'Receiving', 'Waiting', 'Retry'))\n        percent = 100.0 if complete else\
+      \ min(99.9, 100.0 * e['done'] / max(1, e['total']))\n        bubble.update(state=state,\
+      \ done=e['done'], total=e['total'])\n        bubble['bar'].setValue(round(percent\
+      \ * 10))\n        if complete:\n            if not outgoing:\n             \
+      \   path = e['path']\n                bubble['path'] = path\n              \
+      \  try:\n                    if e['kind'] == 'text':\n                     \
+      \   text = Path(path).read_text(encoding='utf-8')\n                        bubble['label'].setText(text[:4096]\
+      \ + ('\\n[Open file for the full message]' if len(text) > 4096 else ''))\n \
+      \                       if len(text) > 4096:\n                            self.show_file(bubble,\
+      \ path)\n                    else:\n                        self.show_file(bubble,\
+      \ path)\n                except (OSError, UnicodeError):\n                 \
+      \   bubble['label'].setText('Saved file; preview unavailable.')\n          \
+      \          self.show_file(bubble, path)\n            bubble['status'].setText(bubble['time']\
+      \ + ('  \xB7  \u2713 Delivered' if outgoing else '  \xB7  Received'))\n    \
+      \    elif active:\n            stage = ('Checking file\u2026' if 'verification'\
+      \ in state else\n                     state if state.startswith('Retry') else\n\
+      \                     'Sending' if outgoing else 'Receiving')\n            bubble['status'].setText('%s\
+      \ \xB7 %.1f%%' % (stage, percent))\n        else:\n            bubble['status'].setText(state)\n\
+      \        if not active:\n            bubble['bar'].hide()\n            bubble['cancel'].hide()\n\
+      \            if outgoing:\n                self.tx_bubble = None\n         \
+      \       self.set_busy(False)\n            else:\n                self.rx_bubble\
+      \ = None\n\n    def scroll_bottom(self):\n        bar = self.scroll.verticalScrollBar()\n\
+      \        bar.setValue(bar.maximum())\n\n    def resizeEvent(self, event):\n\
+      \        super().resizeEvent(event)\n        for message in self.messages:\n\
+      \            message['card'].setMaximumWidth(max(260, int(self.width() * 0.73)))\n\
+      \n    def open_folder(self):\n        try:\n            Path(self.block.receive_dir).mkdir(parents=True,\
+      \ exist_ok=True)\n            QtGui.QDesktopServices.openUrl(QtCore.QUrl.fromLocalFile(self.block.receive_dir))\n\
+      \        except OSError as exc:\n            self.hint.setText(str(exc))\n\n\
+      \    def closeEvent(self, event):\n        if self.allow_close:\n          \
+      \  event.accept()\n        else:\n            self.showMinimized()\n       \
+      \     event.ignore()  # Use GRC Stop to close the flowgraph and both chats.\n"
+    ack_timeout: '1.0'
+    affinity: ''
+    alias: ''
+    chunk_size: '512'
+    comment: GUI + TX/RX + file reassembly + stop-and-wait ARQ
+    max_file_mb: '16'
+    max_retries: '8'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    my_addr: my_addr
+    packet_interval: '0.01'
+    peer_addr: peer_addr
+    receive_dir: '''./received_A1'''
+    shared_key: shared_key
+    show_gui: 'True'
+    window_size: '5'
+  states:
+    _io_cache: ('Selective Repeat Chat GUI', 'blk', [('my_addr', "'A1'"), ('peer_addr',
+      "'B1'"), ('shared_key', "'u362K7J0T2sA_vB1C2D3E4F5G6H7I8J9K0L1M2N3O4P='"), ('receive_dir',
+      "'./received_A1'"), ('chunk_size', '512'), ('ack_timeout', '1.0'), ('max_retries',
+      '8'), ('max_file_mb', '16'), ('show_gui', 'True'), ('window_size', '4'), ('packet_interval',
+      '0.02')], [('rx_in', 'message', 1)], [('tx_out', 'message', 1)], 'Duplex text/image/audio
+      GUI + encrypted Selective Repeat file transfer.', ['max_file_mb', 'my_addr',
+      'peer_addr', 'receive_dir', 'show_gui'])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2848, 212.0]
+    rotation: 0
+    state: enabled
+- name: fec_async_decoder_0
+  id: fec_async_decoder
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decoder: variable_cc_decoder_def_0
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mtu: '1500'
+    packed: 'True'
+    rev_pack: 'True'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2192, 416.0]
+    rotation: 0
+    state: enabled
+- name: fec_extended_async_encoder_0
+  id: fec_extended_async_encoder
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    encoder_list: variable_cc_encoder_def_0
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    puncpat: '''11'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3336, 376.0]
+    rotation: 0
+    state: enabled
+- name: iio_pluto_sink_0
+  id: iio_pluto_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    attenuation1: '10.0'
+    bandwidth: '1500000'
+    buffer_size: '4096'
+    comment: ''
+    cyclic: 'False'
+    filter: ''
+    filter_source: '''Auto'''
+    fpass: '0'
+    frequency: '2460000000'
+    fstop: '0'
+    len_tag_key: ''
+    samplerate: samp_rate
+    type: fc32
+    uri: '"ip:192.168.1.10"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [5520, 492.0]
+    rotation: 0
+    state: enabled
+- name: iio_pluto_source_0
+  id: iio_pluto_source
+  parameters:
+    affinity: ''
+    alias: ''
+    bandwidth: '1500000'
+    bbdc: 'True'
+    buffer_size: '4096'
+    comment: ''
+    filter: ''
+    filter_source: '''Auto'''
+    fpass: '0'
+    frequency: '2420000000'
+    fstop: '0'
+    gain1: '''slow_attack'''
+    len_tag_key: packet_len
+    manual_gain1: '64'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    quadrature: 'True'
+    rfdc: 'True'
+    samplerate: samp_rate
+    type: fc32
+    uri: '"ip:192.168.1.10"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [72, 236.0]
+    rotation: 0
+    state: enabled
+- name: import_0
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: from gnuradio import filter
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [944, 32.0]
+    rotation: 0
+    state: enabled
+- name: pdu_pdu_to_tagged_stream_0
+  id: pdu_pdu_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3880, 232.0]
+    rotation: 0
+    state: enabled
+- name: pdu_pdu_to_tagged_stream_1
+  id: pdu_pdu_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3888, 456.0]
+    rotation: 0
+    state: enabled
+- name: pdu_pdu_to_tagged_stream_2
+  id: pdu_pdu_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [4776, 344.0]
+    rotation: 0
+    state: enabled
+- name: pdu_tagged_stream_to_pdu_0
+  id: pdu_tagged_stream_to_pdu
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [4304, 344.0]
+    rotation: 0
+    state: enabled
+- name: pdu_tagged_stream_to_pdu_0_0_0
+  id: pdu_tagged_stream_to_pdu
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2344, 224.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_0
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"Received Contellation"'
+    nconnections: '1'
+    size: '2048'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [5720, 472.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_0_0
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"After syncronization"'
+    nconnections: '1'
+    size: '2048'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1472, 72.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_1
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"After linear equilizer"'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1192, 72.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_2
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'True'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '""'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [928, 112.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: samp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: '2460000000'
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [5712, 376.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_1
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: samp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: 2.42e9
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '"Before AGC"'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [456, 448.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '""'
+    nconnections: '1'
+    size: '1024'
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1'
+    ymin: '-1'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [5720, 264.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_1
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'True'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"Before AGC"'
+    nconnections: '1'
+    size: '1024'
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1'
+    ymin: '-1'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [464, 616.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [analog_agc_xx_0, '0', digital_symbol_sync_xx_0_1_0, '0']
+- [blocks_multiply_const_vxx_0, '0', iio_pluto_sink_0, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_const_sink_x_0, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_freq_sink_x_0, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_time_sink_x_0, '0']
+- [blocks_repack_bits_bb_1_0_0_0, '0', pdu_tagged_stream_to_pdu_0_0_0, '0']
+- [blocks_tagged_stream_mux_0, '0', pdu_tagged_stream_to_pdu_0, '0']
+- [blocks_unpack_k_bits_bb_0_0, '0', digital_correlate_access_code_xx_ts_0_0, '0']
+- [digital_constellation_decoder_cb_0_0, '0', digital_diff_decoder_bb_0_0, '0']
+- [digital_constellation_modulator_0, '0', blocks_multiply_const_vxx_0, '0']
+- [digital_correlate_access_code_xx_ts_0_0, '0', blocks_repack_bits_bb_1_0_0_0, '0']
+- [digital_costas_loop_cc_0_0, '0', digital_constellation_decoder_cb_0_0, '0']
+- [digital_costas_loop_cc_0_0, '0', qtgui_const_sink_x_0_0, '0']
+- [digital_crc_append_0, out, fec_extended_async_encoder_0, in]
+- [digital_crc_check_0_0, fail, blocks_message_debug_0, print_pdu]
+- [digital_crc_check_0_0, ok, epy_transfer_gui, rx_in]
+- [digital_diff_decoder_bb_0_0, '0', digital_map_bb_0_0, '0']
+- [digital_linear_equalizer_0, '0', digital_costas_loop_cc_0_0, '0']
+- [digital_linear_equalizer_0, '0', qtgui_const_sink_x_1, '0']
+- [digital_map_bb_0_0, '0', blocks_unpack_k_bits_bb_0_0, '0']
+- [digital_protocol_formatter_async_0, header, pdu_pdu_to_tagged_stream_0, pdus]
+- [digital_protocol_formatter_async_0, payload, pdu_pdu_to_tagged_stream_1, pdus]
+- [digital_symbol_sync_xx_0_1_0, '0', digital_linear_equalizer_0, '0']
+- [digital_symbol_sync_xx_0_1_0, '0', qtgui_const_sink_x_2, '0']
+- [epy_block_3, pdu_out, pdu_pdu_to_tagged_stream_2, pdus]
+- [epy_transfer_gui, tx_out, digital_crc_append_0, in]
+- [fec_async_decoder_0, out, digital_crc_check_0_0, in]
+- [fec_extended_async_encoder_0, out, digital_protocol_formatter_async_0, in]
+- [iio_pluto_source_0, '0', analog_agc_xx_0, '0']
+- [iio_pluto_source_0, '0', qtgui_freq_sink_x_1, '0']
+- [iio_pluto_source_0, '0', qtgui_time_sink_x_1, '0']
+- [pdu_pdu_to_tagged_stream_0, '0', blocks_tagged_stream_mux_0, '0']
+- [pdu_pdu_to_tagged_stream_1, '0', blocks_tagged_stream_mux_0, '1']
+- [pdu_pdu_to_tagged_stream_2, '0', digital_constellation_modulator_0, '0']
+- [pdu_tagged_stream_to_pdu_0, pdus, epy_block_3, pdu_in]
+- [pdu_tagged_stream_to_pdu_0_0_0, pdus, fec_async_decoder_0, in]
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.9.2
