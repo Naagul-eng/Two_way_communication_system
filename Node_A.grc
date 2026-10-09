@@ -1,0 +1,2412 @@
+options:
+  parameters:
+    author: naagul
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: Initial host-timed CSMA experiment; calibrate CCA and verify TX idle
+      behavior.
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: node_a_csma_starter
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: "Node A \u2014 CSMA starter"
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: LMS_alg
+  id: variable_adaptive_algorithm
+  parameters:
+    comment: ''
+    cons: qpsk
+    delta: '10.0'
+    ffactor: '0.99'
+    modulus: '1'
+    step_size: '0.02'
+    type: lms
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 16.0]
+    rotation: 0
+    state: enabled
+- name: buffer_size
+  id: variable
+  parameters:
+    comment: ''
+    value: '1024'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [800, 24.0]
+    rotation: 0
+    state: enabled
+- name: cc_decoder
+  id: variable_cc_decoder_def
+  parameters:
+    comment: ''
+    dim1: '1'
+    dim2: '1'
+    framebits: '40000'
+    k: '7'
+    mode: fec.CC_TERMINATED
+    ndim: '0'
+    padding: 'False'
+    polys: '[79,109]'
+    rate: '2'
+    state_end: '-1'
+    state_start: '0'
+    value: '"ok"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1320, 28.0]
+    rotation: 0
+    state: enabled
+- name: cc_encoder
+  id: variable_cc_encoder_def
+  parameters:
+    comment: ''
+    dim1: '1'
+    dim2: '1'
+    framebits: '40000'
+    k: '7'
+    mode: fec.CC_TERMINATED
+    ndim: '0'
+    padding: 'False'
+    polys: '[79,109]'
+    rate: '2'
+    state_start: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1568, 36.0]
+    rotation: 0
+    state: enabled
+- name: commands_address
+  id: variable
+  parameters:
+    comment: ''
+    value: '''tcp://127.0.0.1:5556'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [696, 240.0]
+    rotation: 0
+    state: enabled
+- name: correlation_symbols
+  id: variable
+  parameters:
+    comment: ''
+    value: training_symbols[:64]
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [336, 240.0]
+    rotation: 0
+    state: enabled
+- name: cs_threshold_db
+  id: variable
+  parameters:
+    comment: EXAMPLE absolute 10*log10(mean |IQ|^2); calibrate on your radio, not
+      dBm.
+    value: '-40.0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1080, 120.0]
+    rotation: 0
+    state: enabled
+- name: cw_max
+  id: variable
+  parameters:
+    comment: ''
+    value: '128'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1104, 216.0]
+    rotation: 0
+    state: enabled
+- name: cw_min
+  id: variable
+  parameters:
+    comment: ''
+    value: '8'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [880, 256.0]
+    rotation: 0
+    state: enabled
+- name: damp_fac
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.707'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [340, 20]
+    rotation: 0
+    state: enabled
+- name: difs
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.010'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [776, 112.0]
+    rotation: 0
+    state: enabled
+- name: events_address
+  id: variable
+  parameters:
+    comment: ''
+    value: '''tcp://127.0.0.1:5555'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [520, 240.0]
+    rotation: 0
+    state: enabled
+- name: excess_bw
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.35'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [448, 24.0]
+    rotation: 0
+    state: enabled
+- name: freqency
+  id: variable
+  parameters:
+    comment: ''
+    value: '2400000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [976, 128.0]
+    rotation: 0
+    state: enabled
+- name: max_dev
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.05'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [544, 24.0]
+    rotation: 0
+    state: enabled
+- name: my_addr
+  id: variable
+  parameters:
+    comment: ''
+    value: '''A1'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [944, 24.0]
+    rotation: 0
+    state: enabled
+- name: nfilts
+  id: variable
+  parameters:
+    comment: ''
+    value: '32'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1056, 24.0]
+    rotation: 0
+    state: enabled
+- name: peer_addr
+  id: variable
+  parameters:
+    comment: ''
+    value: '''B1'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1152, 16.0]
+    rotation: 0
+    state: enabled
+- name: phase_bw
+  id: variable
+  parameters:
+    comment: ''
+    value: '62.8e-3'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [984, 240.0]
+    rotation: 0
+    state: enabled
+- name: qpsk
+  id: variable_constellation_rect
+  parameters:
+    comment: ''
+    const_points: '[0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j] '
+    imag_sect: '2'
+    precision: '8'
+    real_sect: '2'
+    rot_sym: '4'
+    soft_dec_lut: None
+    sym_map: '[0, 1, 3, 2]'
+    w_imag_sect: '1'
+    w_real_sect: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 140.0]
+    rotation: 0
+    state: enabled
+- name: receive_dir
+  id: variable
+  parameters:
+    comment: ''
+    value: '''./received_A1'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 144.0]
+    rotation: 0
+    state: enabled
+- name: rrc_taps
+  id: variable
+  parameters:
+    comment: RX matched filter uses the same roll-off as the QPSK transmitter.
+    value: filter.firdes.root_raised_cosine(nfilts, nfilts, 1.0/sps, excess_bw, 11*sps*nfilts)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [328, 144.0]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '2400000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [496, 136.0]
+    rotation: 0
+    state: enabled
+- name: shared_key
+  id: variable
+  parameters:
+    comment: ''
+    value: b'u362K7J0T2sA_vB1C2D3E4F5G6H7I8J9K0L1M2N3O4P='
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [592, 128.0]
+    rotation: 0
+    state: enabled
+- name: slot_time
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.005'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [712, 24.0]
+    rotation: 0
+    state: enabled
+- name: sps
+  id: variable
+  parameters:
+    comment: ''
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [896, 128.0]
+    rotation: 0
+    state: enabled
+- name: training_symbols
+  id: variable
+  parameters:
+    comment: Embedded copy of the 512 QPSK training symbols (no external module needed).
+    value: '[0.7071068286895752*complex(1-2*(int(c)&1), 1-2*(int(c)>>1)) for c in
+      "13112032313003230122132103232302310031210210303331101200130211012123020131100222102133031021330030311320232330111310323223123100123330121323201201331303233201113222213311010310213322303002020113322203321033203301232000023130213312222030312223031133230032123210232303332023213001222313033210303222303132030320013112023103122103020200003201233102301103320312002020202023303101222010133120313121200301102033031203031320121223232223031103130110231010111303020220303030130031203303233110330222030001011210033003213230"]'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [176, 232.0]
+    rotation: 0
+    state: enabled
+- name: ack_timeout
+  id: epy_block
+  parameters:
+    _source_code: "from gnuradio import gr\nimport pmt\nimport json\nimport math\n\
+      \ndef control(value):\n    return pmt.intern(json.dumps(value, separators=(',',\
+      \ ':'), allow_nan=False))\n\n\ndef decode(message):\n    value = json.loads(pmt.symbol_to_string(message))\n\
+      \    if not isinstance(value, dict):\n        raise ValueError('Expected command\
+      \ dictionary')\n    return value\n\n\ndef pdu(raw):\n    return pmt.cons(pmt.PMT_NIL,\
+      \ pmt.init_u8vector(len(raw), list(raw)))\n\n\ndef raw_pdu(message):\n    if\
+      \ not pmt.is_pair(message):\n        raise ValueError('Expected byte PDU')\n\
+      \    body = pmt.cdr(message)\n    if pmt.is_u8vector(body):\n        return\
+      \ bytes(pmt.u8vector_elements(body))\n    # HDLC deframer's binary blob is converted\
+      \ by PMT's numpy adapter.\n    return bytes(pmt.to_python(body))\n\n\nKINDS\
+      \ = ('text', 'image', 'audio')\n\n\ndef profile(text, image, audio, low, high,\
+      \ integer=False):\n    values = [int(v) if integer else float(v) for v in (text,\
+      \ image, audio)]\n    if any(not math.isfinite(v) or not low <= v <= high for\
+      \ v in values):\n        raise ValueError('Profile values must be in %s..%s'\
+      \ % (low, high))\n    return dict(zip(KINDS, values))\n\n\nclass TimeoutPolicy:\n\
+      \    \"\"\"RFC 6298-style estimator, with application-specific bounds (not TCP).\"\
+      \"\"\n    def __init__(self, initial, floors, maximum=30.0):\n        self.initial,\
+      \ self.floors, self.maximum = initial, floors, maximum\n        if any(floors[k]\
+      \ > initial[k] for k in KINDS):\n            raise ValueError('RTO floor must\
+      \ not exceed its initial value')\n        self.estimates = {}\n\n    def observe(self,\
+      \ kind, sample):\n        sample = float(sample)\n        if kind not in self.initial\
+      \ or not math.isfinite(sample) or sample <= 0:\n            raise ValueError('Invalid\
+      \ RTT observation')\n        if kind not in self.estimates:\n            srtt,\
+      \ variation = sample, sample / 2.0\n        else:\n            srtt, variation\
+      \ = self.estimates[kind]\n            variation = 0.75 * variation + 0.25 *\
+      \ abs(srtt - sample)\n            srtt = 0.875 * srtt + 0.125 * sample\n   \
+      \     self.estimates[kind] = srtt, variation\n        return self.timeout(kind)\n\
+      \n    def timeout(self, kind):\n        if kind not in self.estimates:\n   \
+      \         return self.initial[kind]\n        srtt, variation = self.estimates[kind]\n\
+      \        return min(self.maximum, max(self.floors[kind], srtt + max(0.01, 4\
+      \ * variation)))\n\n\nclass blk(gr.basic_block):\n    def __init__(self, text_initial=1.0,\
+      \ image_initial=2.0, audio_initial=3.0,\n                 text_min=0.5, image_min=1.0,\
+      \ audio_min=1.5):\n        gr.basic_block.__init__(self, name='Adaptive ACK\
+      \ Timeout Selection', in_sig=None, out_sig=None)\n        self.policy = TimeoutPolicy(profile(text_initial,\
+      \ image_initial, audio_initial, 0.05, 30),\n                               \
+      \     profile(text_min, image_min, audio_min, 0.05, 30))\n        for port in\
+      \ ('in', 'rtt'):\n            self.message_port_register_in(pmt.intern(port))\n\
+      \        self.message_port_register_out(pmt.intern('out'))\n        self.set_msg_handler(pmt.intern('in'),\
+      \ self.handle)\n        self.set_msg_handler(pmt.intern('rtt'), self.observe)\n\
+      \n    def handle(self, msg):\n        command = decode(msg)\n        if command.get('op')\
+      \ == 'send':\n            kind = command['kind']\n            command.update(ack_timeout=self.policy.timeout(kind),\
+      \ rto_floor=self.policy.floors[kind])\n        self.message_port_pub(pmt.intern('out'),\
+      \ control(command))\n\n    def observe(self, msg):\n        sample = decode(msg)\n\
+      \        timeout = self.policy.observe(sample['kind'], sample['seconds'])\n\
+      \        self.message_port_pub(pmt.intern('out'), control(dict(\n          \
+      \  op='rto_update', kind=sample['kind'], seconds=timeout)))\n"
+    affinity: ''
+    alias: ''
+    audio_initial: '2.0'
+    audio_min: '2.0'
+    comment: ''
+    image_initial: '2.0'
+    image_min: '2.0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    text_initial: '2.0'
+    text_min: '2.0'
+  states:
+    _io_cache: ('Adaptive ACK Timeout Selection', 'blk', [('text_initial', '1.0'),
+      ('image_initial', '2.0'), ('audio_initial', '3.0'), ('text_min', '0.5'), ('image_min',
+      '1.0'), ('audio_min', '1.5')], [('rtt', 'message', 1), ('in', 'message', 1)],
+      [('out', 'message', 1)], '', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [608, 632.0]
+    rotation: 0
+    state: enabled
+- name: analog_agc_xx_0
+  id: analog_agc_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    gain: '1.0'
+    max_gain: '100'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    rate: 1e-4
+    reference: '1.0'
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [352, 1424.0]
+    rotation: 0
+    state: enabled
+- name: blocks_complex_to_mag_squared_0
+  id: blocks_complex_to_mag_squared
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [120, 1768.0]
+    rotation: 0
+    state: enabled
+- name: blocks_keep_one_in_n_0
+  id: blocks_keep_one_in_n
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    n: '240'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [584, 1768.0]
+    rotation: 0
+    state: enabled
+- name: blocks_moving_average_xx_0
+  id: blocks_moving_average_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    length: '240'
+    max_iter: '4000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: 1.0/240.0
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [368, 1736.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '0.8'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1940, 900]
+    rotation: 0
+    state: enabled
+- name: blocks_unpack_k_bits_bb_0_0
+  id: blocks_unpack_k_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: '2'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2544, 1496.0]
+    rotation: 0
+    state: enabled
+- name: carrier_sense
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"Paste into a GRC Embedded Python Block; float input is averaged\
+      \ |IQ|**2.\"\"\"\nfrom gnuradio import gr\nimport numpy as np\nimport pmt\n\
+      import json\nimport time\nimport math\n\n\nclass blk(gr.sync_block):\n    def\
+      \ __init__(self, threshold_db=-40.0, hysteresis_db=3.0,\n                 report_period=0.005):\n\
+      \        gr.sync_block.__init__(self, name='Carrier Sense',\n              \
+      \                 in_sig=[np.float32], out_sig=None)\n        if not math.isfinite(threshold_db)\
+      \ or hysteresis_db < 0 or report_period <= 0:\n            raise ValueError('Invalid\
+      \ carrier-sense settings')\n        self.high = 10.0 ** (threshold_db / 10.0)\n\
+      \        self.low = 10.0 ** ((threshold_db - hysteresis_db) / 10.0)\n      \
+      \  self.period = float(report_period)\n        self.busy = True\n        self.last\
+      \ = 0.0\n        self.message_port_register_out(pmt.intern('cca'))\n\n    def\
+      \ work(self, input_items, output_items):\n        samples = input_items[0]\n\
+      \        if not len(samples):\n            return 0\n        # Conservatively\
+      \ retain even a short busy interval in this work batch.\n        peak = float(np.max(samples))\n\
+      \        before = self.busy\n        if not math.isfinite(peak) or peak < 0:\n\
+      \            self.busy = True\n        elif peak >= self.high:\n           \
+      \ self.busy = True\n        elif peak < self.low:\n            self.busy = False\n\
+      \        now = time.monotonic()\n        if before != self.busy or now - self.last\
+      \ >= self.period:\n            self.last = now\n            message = dict(busy=self.busy,\
+      \ observed=now,\n                           power_db=10.0 * math.log10(max(peak,\
+      \ 1e-30))\n                           if math.isfinite(peak) else None)\n  \
+      \          self.message_port_pub(pmt.intern('cca'),\n                      \
+      \            pmt.intern(json.dumps(message)))\n        return len(samples)\n"
+    affinity: ''
+    alias: ''
+    comment: Calibrate the absolute threshold before RF testing.
+    hysteresis_db: '3.0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    report_period: '0.005'
+    threshold_db: cs_threshold_db
+  states:
+    _io_cache: ('Carrier Sense', 'blk', [('threshold_db', '-40.0'), ('hysteresis_db',
+      '3.0'), ('report_period', '0.005')], [('0', 'float', 1)], [('cca', 'message',
+      1)], '', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [824, 1736.0]
+    rotation: 0
+    state: enabled
+- name: corr_est
+  id: digital_corr_est_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    mark_delay: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    sps: '1'
+    symbols: correlation_symbols
+    threshold: '0.65'
+    threshold_method: digital.THRESHOLD_ABSOLUTE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1280, 1512.0]
+    rotation: 0
+    state: enabled
+- name: decoded_bits_stream
+  id: pdu_pdu_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '131072'
+    tag: decoded_bits
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3472, 1496.0]
+    rotation: 0
+    state: enabled
+- name: digital_constellation_decoder_cb_0_0
+  id: digital_constellation_decoder_cb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: qpsk
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1832, 1496.0]
+    rotation: 0
+    state: enabled
+- name: digital_constellation_modulator_0
+  id: digital_constellation_modulator
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: qpsk
+    differential: 'True'
+    excess_bw: excess_bw
+    log: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_symbol: sps
+    truncate: 'False'
+    verbose: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1592, 880.0]
+    rotation: 0
+    state: enabled
+- name: digital_costas_loop_cc_0_0
+  id: digital_costas_loop_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    order: '4'
+    use_snr: 'False'
+    w: phase_bw
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [976, 1424.0]
+    rotation: 0
+    state: enabled
+- name: digital_diff_decoder_bb_0_0
+  id: digital_diff_decoder_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    coding: digital.DIFF_DIFFERENTIAL
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    modulus: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2128, 1488.0]
+    rotation: 0
+    state: enabled
+- name: digital_linear_equalizer_0
+  id: digital_linear_equalizer
+  parameters:
+    adapt_after_training: 'True'
+    affinity: ''
+    alg: LMS_alg
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_taps: '7'
+    sps: '1'
+    training_sequence: training_symbols
+    training_start_tag: '''corr_est'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1568, 1504.0]
+    rotation: 0
+    state: enabled
+- name: digital_map_bb_0_0
+  id: digital_map_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    map: '[0, 1, 3, 2]'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2360, 1496.0]
+    rotation: 0
+    state: enabled
+- name: digital_symbol_sync_xx_0_1_0
+  id: digital_symbol_sync_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: "The Symbol Sync block \naligns the sample clock \nat the receiver to\
+      \ the \nsymbol clock of the\n transmitter"
+    constellation: digital.constellation_qpsk().base()
+    damping: damp_fac
+    loop_bw: phase_bw
+    max_dev: max_dev
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nfilters: nfilts
+    osps: '1'
+    pfb_mf_taps: rrc_taps
+    resamp_type: digital.IR_PFB_MF
+    sps: sps
+    ted_gain: '1.0'
+    ted_type: digital.TED_SIGNAL_TIMES_SLOPE_ML
+    type: cc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 1372.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_3
+  id: epy_block
+  parameters:
+    _source_code: "from gnuradio import gr\nimport pmt\nimport json\nimport hashlib\n\
+      import struct\nimport numpy as np\n\ndef control(value):\n    return pmt.intern(json.dumps(value,\
+      \ separators=(',', ':'), allow_nan=False))\n\n\ndef decode(message):\n    value\
+      \ = json.loads(pmt.symbol_to_string(message))\n    if not isinstance(value,\
+      \ dict):\n        raise ValueError('Expected command dictionary')\n    return\
+      \ value\n\n\ndef pdu(raw):\n    return pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(raw),\
+      \ list(raw)))\n\n\ndef raw_pdu(message):\n    if not pmt.is_pair(message):\n\
+      \        raise ValueError('Expected byte PDU')\n    body = pmt.cdr(message)\n\
+      \    if pmt.is_u8vector(body):\n        return bytes(pmt.u8vector_elements(body))\n\
+      \    # HDLC deframer's binary blob is converted by PMT's numpy adapter.\n  \
+      \  return bytes(pmt.to_python(body))\n\n\nACQUISITION = hashlib.shake_256(b'Duplex-QPSK-acquisition-v2').digest(768)\n\
+      TRAINING = hashlib.shake_256(b'Duplex-QPSK-START-v1').digest(128)\nSYNC = bytes.fromhex('d391c5a76e2b408f')\n\
+      SYNC_BITS = np.unpackbits(np.frombuffer(SYNC, dtype=np.uint8))\nTAIL = hashlib.shake_256(b'Duplex-QPSK-tail-v2').digest(512)\n\
+      MAX_HDLC_BITS = 40000\nMAX_CODE_BITS = 2 * (MAX_HDLC_BITS + 6)\n\n\n\n\ndef\
+      \ waveform_bytes(encoded_bits):\n    bits = (np.frombuffer(encoded_bits, dtype=np.uint8)\n\
+      \            if isinstance(encoded_bits, bytes) else np.asarray(encoded_bits,\
+      \ dtype=np.uint8))\n    if not 12 < len(bits) <= MAX_CODE_BITS or len(bits)\
+      \ % 2 or np.any(bits > 1):\n        raise ValueError('Invalid terminated FEC\
+      \ bit count')\n    header = struct.pack('!II', len(bits), len(bits) ^ 0xffffffff)\n\
+      \    return ACQUISITION + TRAINING + SYNC + header * 3 + np.packbits(bits).tobytes()\
+      \ + TAIL\n\n\n\n\nclass BurstTX(gr.basic_block):\n    def __init__(self):\n\
+      \        gr.basic_block.__init__(self, name='Known Preamble + FEC Burst', in_sig=None,\
+      \ out_sig=None)\n        self.message_port_register_in(pmt.intern('pdu_in'))\n\
+      \        self.message_port_register_out(pmt.intern('pdu_out'))\n        self.set_msg_handler(pmt.intern('pdu_in'),\
+      \ self.handle)\n\n    def handle(self, msg):\n        self.message_port_pub(pmt.intern('pdu_out'),\
+      \ pdu(waveform_bytes(raw_pdu(msg))))\n\n\n\n\nclass blk(BurstTX):\n    def __init__(self):\n\
+      \        super().__init__()\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: ('Known Preamble + FEC Burst', 'BurstTX', [], [('pdu_in', 'message',
+      1)], [('pdu_out', 'message', 1)], '', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [984, 912.0]
+    rotation: 0
+    state: enabled
+- name: fec_burst_rx
+  id: epy_block
+  parameters:
+    _source_code: "from gnuradio import gr\nimport pmt\nimport hashlib\nimport struct\n\
+      import numpy as np\n\nACQUISITION = hashlib.shake_256(b'Duplex-QPSK-acquisition-v2').digest(768)\n\
+      TRAINING = hashlib.shake_256(b'Duplex-QPSK-START-v1').digest(128)\nSYNC = bytes.fromhex('d391c5a76e2b408f')\n\
+      SYNC_BITS = np.unpackbits(np.frombuffer(SYNC, dtype=np.uint8))\nTAIL = hashlib.shake_256(b'Duplex-QPSK-tail-v2').digest(512)\n\
+      MAX_HDLC_BITS = 40000\nMAX_CODE_BITS = 2 * (MAX_HDLC_BITS + 6)\n\n\n\n\nclass\
+      \ BurstRX(gr.sync_block):\n    \"\"\"Recover codeword boundaries from hard bits,\
+      \ then emit native FEC metrics.\n\n    Search is vectorized rather than a per-bit\
+      \ Python callback. Corrupt length\n    headers are rejected; storage is bounded\
+      \ by one maximum codeword. Header\n    redundancy is separate from the convolutionally\
+      \ protected HDLC frame.\n    \"\"\"\n    def __init__(self, sync_errors=3):\n\
+      \        gr.sync_block.__init__(self, name='FEC Burst Acquisition', in_sig=[np.uint8],\
+      \ out_sig=None)\n        self.sync_errors = int(sync_errors)\n        self.buf\
+      \ = np.empty(0, dtype=np.uint8)\n        self.message_port_register_out(pmt.intern('out'))\n\
+      \        self.accepted = self.bad_headers = 0\n\n    def work(self, input_items,\
+      \ output_items):\n        incoming = input_items[0]\n        self.buf = np.concatenate((self.buf,\
+      \ incoming & 1))\n        while len(self.buf) >= 64:\n            # Candidate\
+      \ sync, with <=3 errors. Retain candidate until complete.\n            windows\
+      \ = np.lib.stride_tricks.sliding_window_view(self.buf, 64)\n            # XOR\
+      \ avoids signed integer overflow in dot-product correlation.\n            candidates\
+      \ = np.flatnonzero(np.count_nonzero(windows != SYNC_BITS, axis=1) <= self.sync_errors)\n\
+      \            if not len(candidates):\n                self.buf = self.buf[-63:].copy()\n\
+      \                break\n            pos = int(candidates[0])\n            if\
+      \ pos:\n                self.buf = self.buf[pos:].copy()\n            if len(self.buf)\
+      \ < 64 + 192:\n                break\n            copies = self.buf[64:256].reshape(3,\
+      \ 64)\n            header = np.packbits(np.sum(copies, axis=0) >= 2).tobytes()\n\
+      \            length, inverse = struct.unpack('!II', header)\n            if\
+      \ length ^ inverse != 0xffffffff or not 12 < length <= MAX_CODE_BITS or length\
+      \ % 2:\n                self.bad_headers += 1\n                self.buf = self.buf[1:]\n\
+      \                continue\n            if len(self.buf) < 256 + length:\n  \
+      \              break\n            metrics = self.buf[256:256 + length].astype(np.float32)\
+      \ * 2 - 1\n            self.message_port_pub(pmt.intern('out'), pmt.cons(pmt.PMT_NIL,\n\
+      \                pmt.init_f32vector(len(metrics), metrics)))\n            self.accepted\
+      \ += 1\n            self.buf = self.buf[256 + length:].copy()\n        return\
+      \ len(incoming)\n\n\n\n\nclass blk(BurstRX):\n    def __init__(self, sync_errors=3):\n\
+      \        super().__init__(sync_errors)\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    sync_errors: '3'
+  states:
+    _io_cache: ('FEC Burst Acquisition', 'BurstRX', [('sync_errors', '3')], [('0',
+      'byte', 1)], [('out', 'message', 1)], 'Recover codeword boundaries from hard
+      bits, then emit native FEC metrics.\n\n    Search is vectorized rather than
+      a per-bit Python callback. Corrupt length\n    headers are rejected; storage
+      is bounded by one maximum codeword. Header\n    redundancy is separate from
+      the convolutionally protected HDLC frame.\n    ', ['sync_errors'])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2744, 1496.0]
+    rotation: 0
+    state: enabled
+- name: fec_decoder
+  id: fec_async_decoder
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decoder: cc_decoder
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mtu: '5000'
+    packed: 'False'
+    rev_pack: 'True'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2960, 1488.0]
+    rotation: 0
+    state: enabled
+- name: fec_encoder
+  id: fec_async_encoder
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    encoder: cc_encoder
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mtu: '5000'
+    packed: 'False'
+    rev_pack: 'True'
+    rev_unpack: 'True'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [680, 896.0]
+    rotation: 0
+    state: enabled
+- name: gui_commands
+  id: zeromq_pull_msg_source
+  parameters:
+    address: commands_address
+    affinity: ''
+    alias: ''
+    bind: 'True'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    timeout: '10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [48, 504.0]
+    rotation: 0
+    state: enabled
+- name: gui_events
+  id: zeromq_push_msg_sink
+  parameters:
+    address: events_address
+    affinity: ''
+    alias: ''
+    bind: 'True'
+    comment: ''
+    timeout: '10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1368, 488.0]
+    rotation: 0
+    state: enabled
+- name: hdlc_flush
+  id: epy_block
+  parameters:
+    _source_code: "from gnuradio import gr\nimport pmt\nimport json\nimport hashlib\n\
+      import struct\nimport numpy as np\n\ndef control(value):\n    return pmt.intern(json.dumps(value,\
+      \ separators=(',', ':'), allow_nan=False))\n\n\ndef decode(message):\n    value\
+      \ = json.loads(pmt.symbol_to_string(message))\n    if not isinstance(value,\
+      \ dict):\n        raise ValueError('Expected command dictionary')\n    return\
+      \ value\n\n\ndef pdu(raw):\n    return pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(raw),\
+      \ list(raw)))\n\n\ndef raw_pdu(message):\n    if not pmt.is_pair(message):\n\
+      \        raise ValueError('Expected byte PDU')\n    body = pmt.cdr(message)\n\
+      \    if pmt.is_u8vector(body):\n        return bytes(pmt.u8vector_elements(body))\n\
+      \    # HDLC deframer's binary blob is converted by PMT's numpy adapter.\n  \
+      \  return bytes(pmt.to_python(body))\n\n\nACQUISITION = hashlib.shake_256(b'Duplex-QPSK-acquisition-v2').digest(768)\n\
+      TRAINING = hashlib.shake_256(b'Duplex-QPSK-START-v1').digest(128)\nSYNC = bytes.fromhex('d391c5a76e2b408f')\n\
+      SYNC_BITS = np.unpackbits(np.frombuffer(SYNC, dtype=np.uint8))\nTAIL = hashlib.shake_256(b'Duplex-QPSK-tail-v2').digest(512)\n\
+      MAX_HDLC_BITS = 40000\nMAX_CODE_BITS = 2 * (MAX_HDLC_BITS + 6)\n\n\n\n\nclass\
+      \ HDLCFlush(gr.basic_block):\n    \"\"\"Flush native deframer scheduler locally;\
+      \ these zeros never go on air.\"\"\"\n    def __init__(self):\n        gr.basic_block.__init__(self,\
+      \ name='Decoded Bits + Local Flush', in_sig=None, out_sig=None)\n        self.message_port_register_in(pmt.intern('in'))\n\
+      \        self.message_port_register_out(pmt.intern('out'))\n        self.set_msg_handler(pmt.intern('in'),\
+      \ self.handle)\n\n    def handle(self, msg):\n        bits = raw_pdu(msg)\n\
+      \        if len(bits) <= MAX_HDLC_BITS:\n            self.message_port_pub(pmt.intern('out'),\
+      \ pdu(bits + bytes(8192)))\n\n\nclass blk(HDLCFlush):\n    def __init__(self):\n\
+      \        super().__init__()\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: ('Decoded Bits + Local Flush', 'HDLCFlush', [], [('in', 'message',
+      1)], [('out', 'message', 1)], 'Flush native deframer scheduler locally; these
+      zeros never go on air.', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3208, 1504.0]
+    rotation: 0
+    state: enabled
+- name: hdlc_rx
+  id: digital_hdlc_deframer_bp
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    max: '4096'
+    maxoutbuf: '0'
+    min: '2'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [3736, 1488.0]
+    rotation: 0
+    state: enabled
+- name: hdlc_tx
+  id: digital_hdlc_framer_pb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: Reserve a whole worst-case stuffed 4092-byte PDU (over 39k unpacked bits).
+      Framing and FCS unchanged.
+    frame_tag_name: packet_len
+    maxoutbuf: '0'
+    minoutbuf: '131072'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [80, 900]
+    rotation: 0
+    state: enabled
+- name: iio_pluto_sink_0
+  id: iio_pluto_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    attenuation1: '10.0'
+    bandwidth: '2400000'
+    buffer_size: buffer_size
+    comment: ''
+    cyclic: 'False'
+    filter: ''
+    filter_source: '''Auto'''
+    fpass: '0'
+    frequency: freqency
+    fstop: '0'
+    len_tag_key: ''
+    samplerate: samp_rate
+    type: fc32
+    uri: '"ip:192.168.1.10"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2288, 876.0]
+    rotation: 0
+    state: enabled
+- name: iio_pluto_source_0
+  id: iio_pluto_source
+  parameters:
+    affinity: ''
+    alias: ''
+    bandwidth: '2400000'
+    bbdc: 'True'
+    buffer_size: buffer_size
+    comment: ''
+    filter: ''
+    filter_source: '''Auto'''
+    fpass: '0'
+    frequency: freqency
+    fstop: '0'
+    gain1: '''manual'''
+    len_tag_key: packet_len
+    manual_gain1: '50'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    quadrature: 'True'
+    rfdc: 'True'
+    samplerate: samp_rate
+    type: fc32
+    uri: '"ip:192.168.1.10"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [0, 1388.0]
+    rotation: 0
+    state: enabled
+- name: payload_size
+  id: epy_block
+  parameters:
+    _source_code: "from gnuradio import gr\nimport pmt\nimport json\nimport math\n\
+      \ndef control(value):\n    return pmt.intern(json.dumps(value, separators=(',',\
+      \ ':'), allow_nan=False))\n\n\ndef decode(message):\n    value = json.loads(pmt.symbol_to_string(message))\n\
+      \    if not isinstance(value, dict):\n        raise ValueError('Expected command\
+      \ dictionary')\n    return value\n\n\ndef pdu(raw):\n    return pmt.cons(pmt.PMT_NIL,\
+      \ pmt.init_u8vector(len(raw), list(raw)))\n\n\ndef raw_pdu(message):\n    if\
+      \ not pmt.is_pair(message):\n        raise ValueError('Expected byte PDU')\n\
+      \    body = pmt.cdr(message)\n    if pmt.is_u8vector(body):\n        return\
+      \ bytes(pmt.u8vector_elements(body))\n    # HDLC deframer's binary blob is converted\
+      \ by PMT's numpy adapter.\n    return bytes(pmt.to_python(body))\n\n\nKINDS\
+      \ = ('text', 'image', 'audio')\n\n\ndef profile(text, image, audio, low, high,\
+      \ integer=False):\n    values = [int(v) if integer else float(v) for v in (text,\
+      \ image, audio)]\n    if any(not math.isfinite(v) or not low <= v <= high for\
+      \ v in values):\n        raise ValueError('Profile values must be in %s..%s'\
+      \ % (low, high))\n    return dict(zip(KINDS, values))\n\n\nclass TimeoutPolicy:\n\
+      \    \"\"\"RFC 6298-style estimator, with application-specific bounds (not TCP).\"\
+      \"\"\n    def __init__(self, initial, floors, maximum=30.0):\n        self.initial,\
+      \ self.floors, self.maximum = initial, floors, maximum\n        if any(floors[k]\
+      \ > initial[k] for k in KINDS):\n            raise ValueError('RTO floor must\
+      \ not exceed its initial value')\n        self.estimates = {}\n\n    def observe(self,\
+      \ kind, sample):\n        sample = float(sample)\n        if kind not in self.initial\
+      \ or not math.isfinite(sample) or sample <= 0:\n            raise ValueError('Invalid\
+      \ RTT observation')\n        if kind not in self.estimates:\n            srtt,\
+      \ variation = sample, sample / 2.0\n        else:\n            srtt, variation\
+      \ = self.estimates[kind]\n            variation = 0.75 * variation + 0.25 *\
+      \ abs(srtt - sample)\n            srtt = 0.875 * srtt + 0.125 * sample\n   \
+      \     self.estimates[kind] = srtt, variation\n        return self.timeout(kind)\n\
+      \n    def timeout(self, kind):\n        if kind not in self.estimates:\n   \
+      \         return self.initial[kind]\n        srtt, variation = self.estimates[kind]\n\
+      \        return min(self.maximum, max(self.floors[kind], srtt + max(0.01, 4\
+      \ * variation)))\n\n\nclass blk(gr.basic_block):\n    def __init__(self, text_bytes=256,\
+      \ image_bytes=512, audio_bytes=512):\n        gr.basic_block.__init__(self,\
+      \ name='Payload Size Selection', in_sig=None, out_sig=None)\n        self.sizes\
+      \ = profile(text_bytes, image_bytes, audio_bytes, 128, 1024, True)\n       \
+      \ self.message_port_register_in(pmt.intern('in'))\n        self.message_port_register_out(pmt.intern('out'))\n\
+      \        self.set_msg_handler(pmt.intern('in'), self.handle)\n\n    def handle(self,\
+      \ msg):\n        command = decode(msg)\n        if command.get('op') == 'send':\n\
+      \            command['chunk_size'] = self.sizes[command['kind']]\n        self.message_port_pub(pmt.intern('out'),\
+      \ control(command))\n"
+    affinity: ''
+    alias: ''
+    audio_bytes: '512'
+    comment: ''
+    image_bytes: '512'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    text_bytes: '256'
+  states:
+    _io_cache: ('Payload Size Selection', 'blk', [('text_bytes', '256'), ('image_bytes',
+      '512'), ('audio_bytes', '512')], [('in', 'message', 1)], [('out', 'message',
+      1)], '', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [392, 496.0]
+    rotation: 0
+    state: enabled
+- name: pdu_pdu_to_tagged_stream_2
+  id: pdu_pdu_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1296, 904.0]
+    rotation: 0
+    state: enabled
+- name: pdu_tagged_stream_to_pdu_0
+  id: pdu_tagged_stream_to_pdu
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [390, 900]
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_0
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"Received Contellation"'
+    nconnections: '1'
+    size: '2048'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2072, 744.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_0_0
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"After syncronization"'
+    nconnections: '1'
+    size: '2048'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1280, 1264.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_1
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"After linear equilizer"'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1832, 1352.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_2
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'True'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '""'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1000, 1280.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: samp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: freqency
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2304, 784.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_1
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: samp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: freqency
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '"Before AGC"'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [360, 1584.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '""'
+    nconnections: '1'
+    size: '1024'
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1'
+    ymin: '-1'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2080, 1008.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_1
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'True'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"Before AGC"'
+    nconnections: '1'
+    size: '1024'
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1'
+    ymin: '-1'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 1296.0]
+    rotation: 0
+    state: enabled
+- name: sr_arq
+  id: epy_block
+  parameters:
+    _source_code: "import json\nimport os\nimport queue\nimport re\nimport secrets\n\
+      import threading\nimport time\nfrom collections import OrderedDict\nfrom pathlib\
+      \ import Path\nfrom gnuradio import gr\nimport pmt\nimport hashlib\nimport struct\n\
+      import numpy as np\nimport tempfile\nfrom cryptography.fernet import Fernet,\
+      \ InvalidToken\n\ndef control(value):\n    return pmt.intern(json.dumps(value,\
+      \ separators=(',', ':'), allow_nan=False))\n\n\ndef decode(message):\n    value\
+      \ = json.loads(pmt.symbol_to_string(message))\n    if not isinstance(value,\
+      \ dict):\n        raise ValueError('Expected command dictionary')\n    return\
+      \ value\n\n\ndef pdu(raw):\n    return pmt.cons(pmt.PMT_NIL, pmt.init_u8vector(len(raw),\
+      \ list(raw)))\n\n\ndef raw_pdu(message):\n    if not pmt.is_pair(message):\n\
+      \        raise ValueError('Expected byte PDU')\n    body = pmt.cdr(message)\n\
+      \    if pmt.is_u8vector(body):\n        return bytes(pmt.u8vector_elements(body))\n\
+      \    # HDLC deframer's binary blob is converted by PMT's numpy adapter.\n  \
+      \  return bytes(pmt.to_python(body))\n\n\nACQUISITION = hashlib.shake_256(b'Duplex-QPSK-acquisition-v2').digest(768)\n\
+      TRAINING = hashlib.shake_256(b'Duplex-QPSK-START-v1').digest(128)\nSYNC = bytes.fromhex('d391c5a76e2b408f')\n\
+      SYNC_BITS = np.unpackbits(np.frombuffer(SYNC, dtype=np.uint8))\nTAIL = hashlib.shake_256(b'Duplex-QPSK-tail-v2').digest(512)\n\
+      MAX_HDLC_BITS = 40000\nMAX_CODE_BITS = 2 * (MAX_HDLC_BITS + 6)\n\n\n\n\ndef\
+      \ airtime_bound(pdu_bytes, sample_rate=2400000, sps=4):\n    # Worst-case stuffing,\
+      \ two flags, FCS, six CC termination bits and byte pad.\n    hdlc_bits = 16\
+      \ + ((pdu_bytes + 2) * 8 * 6 + 4) // 5\n    coded_bytes = (2 * (hdlc_bits +\
+      \ 6) + 7) // 8\n    burst_bytes = len(ACQUISITION) + len(TRAINING) + 32 + coded_bytes\
+      \ + len(TAIL)\n    return burst_bytes * 8 / (2 * sample_rate / sps)\n\n\n\n\n\
+      _META, _DATA, _END, _ACK, _ERROR, _CANCEL = range(1, 7)\n_HEADER = struct.Struct('!4sB2s2s16sI')\n\
+      _MAGIC = b'NGH3'\n\n\nclass ChannelAccess:\n    \"\"\"Soft-timed CSMA: all frames\
+      \ contend, replies have queue priority.\n\n    cw is a count of slots; random\
+      \ choice is 0..cw-1. Busy freezes the\n    remaining count; each return to idle\
+      \ requires another complete DIFS.\n    \"\"\"\n    def __init__(self, difs=0.010,\
+      \ slot_time=0.005, cw_min=8, cw_max=128,\n                 cca_timeout=0.100,\
+      \ tx_guard=0.020, clock=time.monotonic):\n        if not (0 < slot_time <= difs\
+      \ and 1 <= cw_min <= cw_max\n                and cca_timeout > difs and tx_guard\
+      \ >= 0):\n            raise ValueError('Invalid CSMA timing/window parameters')\n\
+      \        self.difs, self.slot = float(difs), float(slot_time)\n        self.cw_min,\
+      \ self.cw_max = int(cw_min), int(cw_max)\n        self.timeout, self.guard,\
+      \ self.clock = cca_timeout, tx_guard, clock\n        self.lock = threading.Lock()\n\
+      \        self.last = None\n        self.busy = True\n        self.idle_since\
+      \ = None\n        self.token = None\n        self.remaining = None\n       \
+      \ self.slot_at = None\n        self.until = 0.0\n\n    def observe(self, busy,\
+      \ observed):\n        now = self.clock()\n        with self.lock:\n        \
+      \    if (not isinstance(busy, bool) or not np.isfinite(observed)\n         \
+      \           or observed > now or now - observed > self.timeout):\n         \
+      \       self.busy, self.idle_since, self.slot_at = True, None, None\n      \
+      \          return\n            if self.last is not None and observed < self.last:\n\
+      \                return\n            gap = self.last is None or observed - self.last\
+      \ > self.timeout\n            if busy:\n                self.idle_since = self.slot_at\
+      \ = None\n            elif self.busy or gap or self.idle_since is None:\n  \
+      \              self.idle_since = now\n                self.slot_at = None\n\
+      \            self.busy, self.last = busy, observed\n\n    def grant(self, token,\
+      \ retry=0):\n        now = self.clock()\n        with self.lock:\n         \
+      \   if token != self.token:\n                self.token = token\n          \
+      \      cw = min(self.cw_max, self.cw_min * (2 ** min(retry, 20)))\n        \
+      \        self.remaining = secrets.randbelow(cw)\n                self.slot_at\
+      \ = None\n            if (self.last is None or now - self.last > self.timeout\
+      \ or self.busy):\n                self.idle_since = self.slot_at = None\n  \
+      \              return False\n            if now < self.until:\n            \
+      \    self.slot_at = None\n                return False\n            if self.idle_since\
+      \ is None:\n                self.idle_since = now\n            ready = max(self.idle_since,\
+      \ self.until) + self.difs\n            if now < ready:\n                return\
+      \ False\n            if self.slot_at is None:\n                self.slot_at\
+      \ = now\n            # No catch-up after host scheduling stalls: this is conservative.\n\
+      \            if self.remaining and now - self.slot_at >= self.slot:\n      \
+      \          self.remaining -= 1\n                self.slot_at = now\n       \
+      \     return self.remaining == 0\n\n    def reserve(self, seconds):\n      \
+      \  with self.lock:\n            self.until = self.clock() + seconds + self.guard\n\
+      \            self.token = self.remaining = self.slot_at = None\n           \
+      \ self.idle_since = None\n\n\nclass TransferCore:\n    \"\"\"Selective Repeat,\
+      \ independently in each direction (one file per direction).\n\n    META (0)\
+      \ is acknowledged before DATA (1..N). DATA uses a bounded sliding\n    window\
+      \ and individual ACKs/timers. END (N+1) is sent after all DATA ACKs,\n    and\
+      \ acknowledged only after SHA-256 verification and saving the file.\n    32-bit\
+      \ sequence numbers never wrap within a transfer. A random 128-bit\n    transfer\
+      \ ID separates transfers. All methods run on one worker thread.\n    \"\"\"\n\
+      \    def __init__(self, my_addr, peer_addr, shared_key, receive_dir, emit, event,\n\
+      \                 chunk_size=512, ack_timeout=1.0, max_retries=8,\n        \
+      \         max_file_mb=16, window_size=4, packet_interval=0.02,\n           \
+      \      clock=time.monotonic):\n        for addr in (my_addr, peer_addr):\n \
+      \           if not isinstance(addr, str) or len(addr.encode('ascii')) != 2:\n\
+      \                raise ValueError('Addresses must be exactly two ASCII characters')\n\
+      \        if my_addr == peer_addr:\n            raise ValueError('Local and peer\
+      \ addresses must differ')\n        if not 128 <= int(chunk_size) <= 1024:\n\
+      \            raise ValueError('chunk_size must be 128..1024 bytes')\n      \
+      \  if not 0.05 <= float(ack_timeout) <= 30 or not 0 <= int(max_retries) <= 20:\n\
+      \            raise ValueError('ack_timeout: 0.05..30 seconds; max_retries: 0..20')\n\
+      \        if not 1 <= int(max_file_mb) <= 256:\n            raise ValueError('max_file_mb\
+      \ must be 1..256')\n        if not 1 <= int(window_size) <= 64:\n          \
+      \  raise ValueError('window_size must be 1..64 packets')\n        if not 0 <=\
+      \ float(packet_interval) <= 5:\n            raise ValueError('packet_interval\
+      \ must be 0..5 seconds')\n        key = shared_key.encode('ascii') if isinstance(shared_key,\
+      \ str) else shared_key\n        self.cipher = Fernet(key)\n        self.me,\
+      \ self.peer = my_addr.encode('ascii'), peer_addr.encode('ascii')\n        self.directory\
+      \ = Path(receive_dir).expanduser().resolve()\n        self.emit, self.event,\
+      \ self.clock = emit, event, clock\n        self.chunk, self.window = int(chunk_size),\
+      \ int(window_size)\n        self.rtt_event = lambda kind, sample: None\n   \
+      \     self.rtos = {}\n        self.rto_floor = 0.5\n        self.timeout, self.retries\
+      \ = float(ack_timeout), int(max_retries)\n        self.interval = float(packet_interval)\n\
+      \        self.limit = int(max_file_mb) * 1024 * 1024\n        # Allow a complete\
+      \ retry round even when 64 packets are heavily paced.\n        self.idle_timeout\
+      \ = max(120, 4 * (self.retries + 1) *\n                                (30.0\
+      \ + 64 * self.interval))\n        self.receipt_ttl = max(1800, self.idle_timeout\
+      \ * 2)\n        self.tx = self.rx = None\n        self.next_emit = 0.0\n   \
+      \     self.receipts = OrderedDict()\n        self.access = ChannelAccess(clock=clock)\n\
+      \        self.replies = OrderedDict()\n\n    def _event(self, direction, state,\
+      \ transfer=None, **extra):\n        t = transfer or {}\n        self.event(dict(direction=direction,\
+      \ state=state, name=t.get('name', ''),\n                        kind=t.get('kind',\
+      \ ''), total=t.get('size', 0),\n                        done=t.get('done', 0),\
+      \ started=t.get('started', self.clock()),\n                        **extra))\n\
+      \n    def _wire(self, typ, tid, seq, body=b''):\n        plaintext = _HEADER.pack(_MAGIC,\
+      \ typ, self.me, self.peer, tid, seq) + body\n        frame = self.me + self.peer\
+      \ + self.cipher.encrypt(plaintext)\n        if len(frame) > 4092:\n        \
+      \    raise ValueError('Encrypted frame exceeds 4092-byte PDU budget')\n    \
+      \    return frame\n\n    def _reply(self, typ, tid, seq, body=b''):\n      \
+      \  # Coalesce duplicate replies. All frames obey carrier sense.\n        key\
+      \ = (typ, tid, seq, body)\n        if key not in self.replies:\n           \
+      \ if len(self.replies) >= 256:\n                self.replies.popitem(last=False)\n\
+      \            self.replies[key] = self._wire(typ, tid, seq, body)\n\n    @staticmethod\n\
+      \    def _safe_name(name):\n        name = str(name).replace('\\\\', '/').split('/')[-1]\n\
+      \        name = re.sub(r'[^\\w. -]', '_', name, flags=re.UNICODE).strip('. ')[:100]\n\
+      \        return name or 'received.bin'\n\n    def send(self, kind, value, chunk_size=None,\
+      \ window_size=None, ack_timeout=None, rto_floor=None):\n        if self.tx is\
+      \ not None:\n            raise ValueError('A transfer is already active')\n\
+      \        # Freeze payload and receive-window agreement for this transfer.\n\
+      \        chunk = self.chunk if chunk_size is None else int(chunk_size)\n   \
+      \     window = self.window if window_size is None else int(window_size)\n  \
+      \      timeout = self.timeout if ack_timeout is None else float(ack_timeout)\n\
+      \        floor = self.rto_floor if rto_floor is None else float(rto_floor)\n\
+      \        if not 128 <= chunk <= 1024 or not 1 <= window <= 64:\n           \
+      \ raise ValueError('Invalid payload size or window')\n        if not 0.05 <=\
+      \ floor <= timeout <= 30:\n            raise ValueError('Invalid ACK timeout\
+      \ policy')\n        self.chunk, self.window, self.timeout, self.rto_floor =\
+      \ chunk, window, timeout, floor\n        self.rtos[kind] = timeout\n       \
+      \ if kind == 'text':\n            data, name = value.encode('utf-8'), 'message.txt'\n\
+      \            if not data or len(data) > 65536:\n                raise ValueError('Type\
+      \ a message of 1..65536 UTF-8 bytes')\n        elif kind in ('image', 'audio'):\n\
+      \            path = Path(value)\n            if not path.is_file() or path.stat().st_size\
+      \ > self.limit:\n                raise ValueError('Choose a file within the\
+      \ configured size limit')\n            with path.open('rb') as f:\n        \
+      \        data = f.read(self.limit + 1)\n            name = path.name\n     \
+      \   else:\n            raise ValueError('Unsupported transfer type')\n     \
+      \   if len(data) > self.limit:\n            raise ValueError('File exceeds the\
+      \ configured size limit')\n        self.tx = dict(tid=secrets.token_bytes(16),\
+      \ data=data, kind=kind,\n                       name=self._safe_name(name),\
+      \ size=len(data), done=0,\n                       started=self.clock(), n=(len(data)\
+      \ + self.chunk - 1) // self.chunk,\n                       digest=hashlib.sha256(data).hexdigest(),\
+      \ phase='meta',\n                       base=1, next=1, acked=set(), pending={})\n\
+      \        t = self.tx\n        meta = dict(kind=t['kind'], name=t['name'], size=t['size'],\
+      \ chunk=self.chunk,\n                    window=self.window, sha256=t['digest'])\n\
+      \        self._queue_packet(_META, 0, json.dumps(meta, ensure_ascii=True,\n\
+      \                           separators=(',', ':')).encode())\n        self._event('tx',\
+      \ 'Sending metadata', t)\n        self._pump()\n\n    def _queue_packet(self,\
+      \ typ, seq, body):\n        t = self.tx\n        t['pending'][seq] = dict(wire=self._wire(typ,\
+      \ t['tid'], seq, body),\n                                 sent=None, retry=0,\
+      \ rto=self.timeout)\n\n    def _fill_window(self):\n        t = self.tx\n  \
+      \      if t['phase'] != 'data':\n            return\n        # The window is\
+      \ anchored at the oldest unacknowledged sequence number,\n        # not merely\
+      \ at the number of pending packets. This bounds RX buffering.\n        while\
+      \ t['next'] <= t['n'] and t['next'] < t['base'] + self.window:\n           \
+      \ seq = t['next']\n            self._queue_packet(_DATA, seq,\n            \
+      \                   t['data'][(seq - 1) * self.chunk:seq * self.chunk])\n  \
+      \          t['next'] += 1\n        if t['base'] > t['n']:\n            t['phase']\
+      \ = 'end'\n            self._queue_packet(_END, t['n'] + 1, bytes.fromhex(t['digest']))\n\
+      \            self._event('tx', 'Waiting for file verification', t)\n\n    def\
+      \ _acknowledge(self, tid, seq, body):\n        t = self.tx\n        if body\
+      \ or t is None or t['tid'] != tid:\n            return\n        packet = t['pending'].get(seq)\n\
+      \        if packet is None or packet['sent'] is None:\n            return  #\
+      \ Duplicate/stale ACK, or a sequence not yet transmitted.\n        # Karn: retransmitted\
+      \ packets cannot provide unambiguous RTT samples.\n        if packet['retry']\
+      \ == 0:\n            self.rtt_event(t['kind'], max(0.001, self.clock() - packet['sent']))\n\
+      \        del t['pending'][seq]\n        if t['phase'] == 'meta':\n         \
+      \   t['phase'] = 'data'\n        elif t['phase'] == 'end':\n            self._event('tx',\
+      \ 'Complete \u2014 receiver verified', t)\n            self.tx = None\n    \
+      \        return\n        else:\n            t['done'] += min(self.chunk, t['size']\
+      \ - (seq - 1) * self.chunk)\n            t['acked'].add(seq)\n            while\
+      \ t['base'] in t['acked']:\n                t['acked'].remove(t['base'])\n \
+      \               t['base'] += 1\n            self._event('tx', 'Sending', t)\n\
+      \        self._fill_window()\n        self._pump()\n\n    def _pump(self):\n\
+      \        \"\"\"Emit at most one DATA/META/END PDU per call, with retry priority.\"\
+      \"\"\n        t, now = self.tx, self.clock()\n        if now < self.next_emit:\n\
+      \            return\n        if self.replies:\n            key, wire = next(iter(self.replies.items()))\n\
+      \            if self.access.grant(('reply', key)):\n                del self.replies[key]\n\
+      \                duration = max(self.interval, 1.15 * airtime_bound(len(wire)))\n\
+      \                self.access.reserve(duration)\n                self.next_emit\
+      \ = now + duration\n                self.emit(wire)\n            return\n  \
+      \      if t is None:\n            return\n        expired = [(p['sent'], seq)\
+      \ for seq, p in t['pending'].items()\n                   if p['sent'] is not\
+      \ None and now - p['sent'] >= p['rto']]\n        if expired:\n            _,\
+      \ seq = min(expired)\n            p = t['pending'][seq]\n            if p['retry']\
+      \ >= self.retries:\n                self._abort_tx('Unconfirmed \u2014 ACK timeout\
+      \ for packet %d' % seq)\n                return\n            if not self.access.grant((t['tid'],\
+      \ seq, p['retry'] + 1), p['retry'] + 1):\n                return\n         \
+      \   p['retry'] += 1\n            self._event('tx', 'Retry packet %d (%d/%d)'\
+      \ %\n                        (seq, p['retry'], self.retries), t)\n        else:\n\
+      \            seq = next((s for s, p in t['pending'].items() if p['sent'] is\
+      \ None), None)\n            if seq is None:\n                return\n      \
+      \      p = t['pending'][seq]\n            if not self.access.grant((t['tid'],\
+      \ seq, 0)):\n                return\n        if p['retry']:\n            p['rto']\
+      \ = min(30.0, 2.0 * p['rto'])\n        else:\n            p['rto'] = max(self.rto_floor,\
+      \ self.rtos.get(t['kind'], self.timeout))\n            if t['phase'] == 'end':\n\
+      \                p['rto'] = max(2.0, p['rto'])  # File hash and fsync allowance.\n\
+      \        p['sent'] = now  # Timestamp PDU submission, not an RF hardware timestamp.\n\
+      \        self.next_emit = now + max(self.interval, 1.15 * airtime_bound(len(p['wire'])))\n\
+      \        self.access.reserve(self.next_emit - now)\n        self.emit(p['wire'])\n\
+      \n    def receive(self, frame):\n        # The upstream HDLC deframer drops\
+      \ bad FCS and removes framing/FCS.\n        if len(frame) < 5 or len(frame)\
+      \ > 4092 or frame[:4] != self.peer + self.me:\n            return\n        try:\n\
+      \            raw = self.cipher.decrypt(frame[4:])\n            if len(raw) <\
+      \ _HEADER.size:\n                return\n            magic, typ, src, dst, tid,\
+      \ seq = _HEADER.unpack(raw[:_HEADER.size])\n            if magic != _MAGIC or\
+      \ src != self.peer or dst != self.me:\n                return\n            body\
+      \ = raw[_HEADER.size:]\n        except (InvalidToken, ValueError, struct.error):\n\
+      \            return\n        if typ == _ACK:\n            self._acknowledge(tid,\
+      \ seq, body)\n        elif typ == _ERROR:\n            if self.tx and tid ==\
+      \ self.tx['tid'] and seq in self.tx['pending']:\n                self._abort_tx('Failed:\
+      \ ' + body.decode('utf-8', 'replace')[:180])\n        elif typ == _CANCEL:\n\
+      \            if body:\n                return\n            if self.rx and self.rx['tid']\
+      \ == tid:\n                self._drop_rx('Cancelled by sender')\n          \
+      \  elif tid not in self.receipts:\n                # A reordered CANCEL can\
+      \ arrive before its META.\n                self._remember(tid, error='Cancelled\
+      \ by sender')\n        elif typ in (_META, _DATA, _END):\n            try:\n\
+      \                self._receive_data(typ, tid, seq, body)\n            except\
+      \ (ValueError, OSError, UnicodeError, KeyError, TypeError) as exc:\n       \
+      \         reason = str(exc)[:180]\n                if self.rx and self.rx['tid']\
+      \ == tid:\n                    self._drop_rx('Failed: ' + reason)\n        \
+      \        elif tid not in self.receipts:\n                    self._remember(tid,\
+      \ error=reason)\n                self._reply(_ERROR, tid, seq, reason.encode('utf-8')[:180])\n\
+      \n    def _remember(self, tid, **fields):\n        self.receipts[tid] = dict(at=self.clock(),\
+      \ **fields)\n        self.receipts.move_to_end(tid)\n        while len(self.receipts)\
+      \ > 256:\n            self.receipts.popitem(last=False)\n\n    def _receive_data(self,\
+      \ typ, tid, seq, body):\n        if tid in self.receipts:\n            c = self.receipts[tid]\n\
+      \            if 'error' in c:\n                self._reply(_ERROR, tid, seq,\
+      \ c['error'].encode('utf-8')[:180])\n            elif typ == _END and seq ==\
+      \ c['seq'] and body == c['digest']:\n                self._reply(_ACK, tid,\
+      \ seq)  # Lost final ACK: never save twice.\n            return\n        if\
+      \ typ == _META:\n            if seq != 0:\n                raise ValueError('Invalid\
+      \ metadata sequence')\n            if self.rx:\n                if self.rx['tid']\
+      \ == tid and self.rx['meta'] == body:\n                    self.rx['last'] =\
+      \ self.clock()\n                    self._reply(_ACK, tid, seq)\n          \
+      \          return\n                raise ValueError('Receiver busy; retry after\
+      \ its current transfer')\n            meta = json.loads(body.decode('utf-8'))\n\
+      \            if not isinstance(meta, dict):\n                raise ValueError('Invalid\
+      \ metadata')\n            size, chunk, window = meta.get('size'), meta.get('chunk'),\
+      \ meta.get('window')\n            digest, kind = meta.get('sha256'), meta.get('kind')\n\
+      \            if type(size) is not int or not 0 <= size <= self.limit:\n    \
+      \            raise ValueError('Unsupported file size')\n            if type(chunk)\
+      \ is not int or not 128 <= chunk <= 1024:\n                raise ValueError('Invalid\
+      \ chunk size')\n            if type(window) is not int or not 1 <= window <=\
+      \ 64:\n                raise ValueError('Invalid window size')\n           \
+      \ if kind not in ('text', 'image', 'audio') or (kind == 'text' and size > 65536):\n\
+      \                raise ValueError('Unsupported content type or text size')\n\
+      \            if not isinstance(digest, str) or not re.fullmatch('[0-9a-f]{64}',\
+      \ digest):\n                raise ValueError('Invalid SHA-256')\n          \
+      \  if not isinstance(meta.get('name'), str) or len(meta['name']) > 200:\n  \
+      \              raise ValueError('Invalid filename')\n            self.directory.mkdir(parents=True,\
+      \ exist_ok=True)\n            f = tempfile.NamedTemporaryFile(mode='w+b', prefix='.incoming_',\n\
+      \                                            suffix='.part', dir=self.directory,\
+      \ delete=False)\n            self.rx = dict(tid=tid, meta=body, kind=kind, name=self._safe_name(meta['name']),\n\
+      \                           size=size, chunk=chunk, window=window, digest=digest,\n\
+      \                           n=(size + chunk - 1) // chunk, next=1, done=0, buffer={},\n\
+      \                           hash=hashlib.sha256(), file=f, temp=Path(f.name),\n\
+      \                           started=self.clock(), last=self.clock())\n     \
+      \       self._event('rx', 'Receiving', self.rx)\n            self._reply(_ACK,\
+      \ tid, seq)\n            return\n        r = self.rx\n        if r is None or\
+      \ r['tid'] != tid:\n            raise ValueError('No matching transfer; send\
+      \ again from the beginning')\n        r['last'] = self.clock()\n        if typ\
+      \ == _DATA:\n            if not 1 <= seq <= r['n']:\n                raise ValueError('Invalid\
+      \ data sequence')\n            expected = min(r['chunk'], r['size'] - (seq -\
+      \ 1) * r['chunk'])\n            if len(body) != expected:\n                raise\
+      \ ValueError('Invalid chunk length')\n            if seq < r['next']:\n    \
+      \            self._reply(_ACK, tid, seq)  # Re-ACK without writing twice.\n\
+      \                return\n            if seq >= r['next'] + r['window']:\n  \
+      \              return  # Out of receive window: do not ACK unretained data.\n\
+      \            if seq not in r['buffer']:\n                r['buffer'][seq] =\
+      \ body\n                r['done'] += len(body)  # Unique accepted bytes, including\
+      \ buffered ones.\n            elif r['buffer'][seq] != body:\n             \
+      \   raise ValueError('Conflicting duplicate packet')\n            while r['next']\
+      \ in r['buffer']:\n                contiguous = r['buffer'].pop(r['next'])\n\
+      \                r['file'].write(contiguous)\n                r['hash'].update(contiguous)\n\
+      \                r['next'] += 1\n            self._event('rx', 'Receiving',\
+      \ r)\n            self._reply(_ACK, tid, seq)\n        elif typ == _END:\n \
+      \           if seq != r['n'] + 1 or r['next'] != seq or r['done'] != r['size']\
+      \ or r['buffer']:\n                raise ValueError('Incomplete file')\n   \
+      \         if body != bytes.fromhex(r['digest']) or r['hash'].hexdigest() !=\
+      \ r['digest']:\n                raise ValueError('Whole-file SHA-256 mismatch')\n\
+      \            r['file'].flush()\n            os.fsync(r['file'].fileno())\n \
+      \           r['file'].close()\n            final = self.directory / (tid.hex()\
+      \ + '_' + r['name'])\n            os.replace(r['temp'], final)\n           \
+      \ self._remember(tid, seq=seq, digest=body)\n            self.rx = None\n  \
+      \          self._reply(_ACK, tid, seq)\n            self._event('rx', 'Complete\
+      \ \u2014 saved and verified', r, path=str(final))\n\n    def tick(self):\n \
+      \       self._pump()\n        now = self.clock()\n        if self.rx and now\
+      \ - self.rx['last'] >= self.idle_timeout:\n            self._drop_rx('Timed\
+      \ out \u2014 partial file removed')\n        for tid, entry in list(self.receipts.items()):\n\
+      \            if now - entry['at'] > self.receipt_ttl:\n                del self.receipts[tid]\n\
+      \n    def _abort_tx(self, reason):\n        if self.tx:\n            t, self.tx\
+      \ = self.tx, None\n            self._reply(_CANCEL, t['tid'], 0)\n         \
+      \   self._event('tx', reason, t)\n\n    def cancel(self):\n        self._abort_tx('Cancelled\
+      \ \u2014 peer may have received some data')\n\n    def _drop_rx(self, reason):\n\
+      \        r, self.rx = self.rx, None\n        if r:\n            self._remember(r['tid'],\
+      \ error=reason)\n            try:\n                r['file'].close()\n     \
+      \       except OSError:\n                pass\n            try:\n          \
+      \      r['temp'].unlink(missing_ok=True)\n            except OSError as exc:\n\
+      \                reason += '; partial-file cleanup failed: ' + str(exc)\n  \
+      \          self._event('rx', reason, r)\n\n    def close(self):\n        self.tx\
+      \ = None\n        self._drop_rx('Stopped \u2014 partial file removed')\n\n\n\
+      class blk(gr.basic_block):\n    def __init__(self, my_addr='A1', peer_addr='B1',\n\
+      \                 shared_key='u362K7J0T2sA_vB1C2D3E4F5G6H7I8J9K0L1M2N3O4P=',\n\
+      \                 receive_dir='./received_A1', max_retries=20, max_file_mb=16,\
+      \ packet_interval=0.005,\n                 difs=0.010, slot_time=0.005, cw_min=8,\
+      \ cw_max=128,\n                 cca_timeout=0.100, tx_guard=0.020):\n      \
+      \  gr.basic_block.__init__(self, name='CSMA + Selective Repeat ARQ', in_sig=None,\
+      \ out_sig=None)\n        self.commands, self.halt = queue.Queue(maxsize=2048),\
+      \ threading.Event()\n        self.worker = None\n        for port in ('commands',\
+      \ 'rx_in', 'cca'):\n            self.message_port_register_in(pmt.intern(port))\n\
+      \        for port in ('tx_out', 'events', 'rtt'):\n            self.message_port_register_out(pmt.intern(port))\n\
+      \        self.set_msg_handler(pmt.intern('commands'), self.command)\n      \
+      \  self.set_msg_handler(pmt.intern('rx_in'), self.receive)\n        self.set_msg_handler(pmt.intern('cca'),\
+      \ self.sense)\n        self.access_config = dict(difs=difs, slot_time=slot_time,\
+      \ cw_min=cw_min,\n                                  cw_max=cw_max, cca_timeout=cca_timeout,\
+      \ tx_guard=tx_guard)\n        self.config = dict(my_addr=my_addr, peer_addr=peer_addr,\
+      \ shared_key=shared_key,\n                           receive_dir=receive_dir,\
+      \ emit=self.publish, event=self.event,\n                           max_retries=max_retries,\
+      \ max_file_mb=max_file_mb, packet_interval=packet_interval)\n        self.core\
+      \ = TransferCore(**self.config)\n        self.core.access = ChannelAccess(**self.access_config)\n\
+      \n    def sense(self, msg):\n        try:\n            report = decode(msg)\n\
+      \            self.core.access.observe(report['busy'], float(report['observed']))\n\
+      \        except (ValueError, TypeError, KeyError):\n            self.core.access.observe(True,\
+      \ time.monotonic())\n\n    def publish(self, raw):\n        self.message_port_pub(pmt.intern('tx_out'),\
+      \ pdu(raw))\n\n    def event(self, event):\n        self.message_port_pub(pmt.intern('events'),\
+      \ control(event))\n\n    def command(self, msg):\n        try:\n           \
+      \ self.commands.put_nowait(('command', decode(msg)))\n        except (ValueError,\
+      \ queue.Full) as exc:\n            self.event(dict(direction='notice', state='Command\
+      \ rejected: ' + str(exc)))\n\n    def receive(self, msg):\n        try:\n  \
+      \          raw = raw_pdu(msg)\n            if len(raw) <= 4092:\n          \
+      \      self.commands.put_nowait(('rx', raw))\n        except (ValueError, TypeError,\
+      \ queue.Full):\n            pass\n\n    def start(self):\n        self.halt.clear()\n\
+      \        self.core = TransferCore(**self.config)\n        self.core.access =\
+      \ ChannelAccess(**self.access_config)\n        self.core.rtt_event = lambda\
+      \ kind, sample: self.message_port_pub(\n            pmt.intern('rtt'), control(dict(kind=kind,\
+      \ seconds=sample)))\n        self.worker = threading.Thread(target=self.run,\
+      \ name='selective-repeat', daemon=True)\n        self.worker.start()\n     \
+      \   return True\n\n    def run(self):\n        try:\n            while not self.halt.is_set():\n\
+      \                try:\n                    op, value = self.commands.get(timeout=0.001)\n\
+      \                    if op == 'rx':\n                        self.core.receive(value)\n\
+      \                    elif value['op'] == 'send':\n                        try:\n\
+      \                            self.core.send(**{k: v for k, v in value.items()\
+      \ if k != 'op'})\n                        except (ValueError, OSError) as exc:\n\
+      \                            self.event(dict(direction='notice', state=str(exc)))\n\
+      \                    elif value['op'] == 'cancel':\n                       \
+      \ self.core.cancel()\n                    elif value['op'] == 'rto_update':\n\
+      \                        self.core.rtos[value['kind']] = float(value['seconds'])\n\
+      \                except queue.Empty:\n                    pass\n           \
+      \     self.core.tick()\n        except Exception as exc:\n            self.event(dict(direction='notice',\
+      \ state='ARQ worker stopped: ' + str(exc)))\n        finally:\n            self.core.close()\n\
+      \n    def stop(self):\n        self.halt.set()\n        if self.worker:\n  \
+      \          self.worker.join(timeout=3)\n        return True\n"
+    affinity: ''
+    alias: ''
+    cca_timeout: '0.1'
+    comment: 'Initial CSMA: all frames contend; software timing needs RF validation.'
+    cw_max: cw_max
+    cw_min: cw_min
+    difs: difs
+    max_file_mb: '16'
+    max_retries: '20'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    my_addr: my_addr
+    packet_interval: '0.005'
+    peer_addr: peer_addr
+    receive_dir: receive_dir
+    shared_key: shared_key
+    slot_time: slot_time
+    tx_guard: '0.020'
+  states:
+    _io_cache: ('CSMA + Selective Repeat ARQ', 'blk', [('my_addr', "'A1'"), ('peer_addr',
+      "'B1'"), ('shared_key', "'u362K7J0T2sA_vB1C2D3E4F5G6H7I8J9K0L1M2N3O4P='"), ('receive_dir',
+      "'./received_A1'"), ('max_retries', '20'), ('max_file_mb', '16'), ('packet_interval',
+      '0.005'), ('difs', '0.01'), ('slot_time', '0.005'), ('cw_min', '8'), ('cw_max',
+      '128'), ('cca_timeout', '0.1'), ('tx_guard', '0.02')], [('commands', 'message',
+      1), ('rx_in', 'message', 1), ('cca', 'message', 1)], [('rtt', 'message', 1),
+      ('events', 'message', 1), ('tx_out', 'message', 1)], '', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1008, 444.0]
+    rotation: 0
+    state: enabled
+- name: window_size
+  id: epy_block
+  parameters:
+    _source_code: "from gnuradio import gr\nimport pmt\nimport json\nimport math\n\
+      \ndef control(value):\n    return pmt.intern(json.dumps(value, separators=(',',\
+      \ ':'), allow_nan=False))\n\n\ndef decode(message):\n    value = json.loads(pmt.symbol_to_string(message))\n\
+      \    if not isinstance(value, dict):\n        raise ValueError('Expected command\
+      \ dictionary')\n    return value\n\n\ndef pdu(raw):\n    return pmt.cons(pmt.PMT_NIL,\
+      \ pmt.init_u8vector(len(raw), list(raw)))\n\n\ndef raw_pdu(message):\n    if\
+      \ not pmt.is_pair(message):\n        raise ValueError('Expected byte PDU')\n\
+      \    body = pmt.cdr(message)\n    if pmt.is_u8vector(body):\n        return\
+      \ bytes(pmt.u8vector_elements(body))\n    # HDLC deframer's binary blob is converted\
+      \ by PMT's numpy adapter.\n    return bytes(pmt.to_python(body))\n\n\nKINDS\
+      \ = ('text', 'image', 'audio')\n\n\ndef profile(text, image, audio, low, high,\
+      \ integer=False):\n    values = [int(v) if integer else float(v) for v in (text,\
+      \ image, audio)]\n    if any(not math.isfinite(v) or not low <= v <= high for\
+      \ v in values):\n        raise ValueError('Profile values must be in %s..%s'\
+      \ % (low, high))\n    return dict(zip(KINDS, values))\n\n\nclass TimeoutPolicy:\n\
+      \    \"\"\"RFC 6298-style estimator, with application-specific bounds (not TCP).\"\
+      \"\"\n    def __init__(self, initial, floors, maximum=30.0):\n        self.initial,\
+      \ self.floors, self.maximum = initial, floors, maximum\n        if any(floors[k]\
+      \ > initial[k] for k in KINDS):\n            raise ValueError('RTO floor must\
+      \ not exceed its initial value')\n        self.estimates = {}\n\n    def observe(self,\
+      \ kind, sample):\n        sample = float(sample)\n        if kind not in self.initial\
+      \ or not math.isfinite(sample) or sample <= 0:\n            raise ValueError('Invalid\
+      \ RTT observation')\n        if kind not in self.estimates:\n            srtt,\
+      \ variation = sample, sample / 2.0\n        else:\n            srtt, variation\
+      \ = self.estimates[kind]\n            variation = 0.75 * variation + 0.25 *\
+      \ abs(srtt - sample)\n            srtt = 0.875 * srtt + 0.125 * sample\n   \
+      \     self.estimates[kind] = srtt, variation\n        return self.timeout(kind)\n\
+      \n    def timeout(self, kind):\n        if kind not in self.estimates:\n   \
+      \         return self.initial[kind]\n        srtt, variation = self.estimates[kind]\n\
+      \        return min(self.maximum, max(self.floors[kind], srtt + max(0.01, 4\
+      \ * variation)))\n\n\nclass blk(gr.basic_block):\n    def __init__(self, text_window=16,\
+      \ image_window=32, audio_window=64):\n        gr.basic_block.__init__(self,\
+      \ name='Window Size Selection', in_sig=None, out_sig=None)\n        self.windows\
+      \ = profile(text_window, image_window, audio_window, 1, 64, True)\n        self.message_port_register_in(pmt.intern('in'))\n\
+      \        self.message_port_register_out(pmt.intern('out'))\n        self.set_msg_handler(pmt.intern('in'),\
+      \ self.handle)\n\n    def handle(self, msg):\n        command = decode(msg)\n\
+      \        if command.get('op') == 'send':\n            command['window_size']\
+      \ = self.windows[command['kind']]\n        self.message_port_pub(pmt.intern('out'),\
+      \ control(command))\n"
+    affinity: ''
+    alias: ''
+    audio_window: '1'
+    comment: ''
+    image_window: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    text_window: '1'
+  states:
+    _io_cache: ('Window Size Selection', 'blk', [('text_window', '16'), ('image_window',
+      '32'), ('audio_window', '64')], [('in', 'message', 1)], [('out', 'message',
+      1)], '', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [656, 488.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [ack_timeout, out, window_size, in]
+- [analog_agc_xx_0, '0', digital_symbol_sync_xx_0_1_0, '0']
+- [blocks_complex_to_mag_squared_0, '0', blocks_moving_average_xx_0, '0']
+- [blocks_keep_one_in_n_0, '0', carrier_sense, '0']
+- [blocks_moving_average_xx_0, '0', blocks_keep_one_in_n_0, '0']
+- [blocks_multiply_const_vxx_0, '0', iio_pluto_sink_0, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_const_sink_x_0, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_freq_sink_x_0, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_time_sink_x_0, '0']
+- [blocks_unpack_k_bits_bb_0_0, '0', fec_burst_rx, '0']
+- [carrier_sense, cca, sr_arq, cca]
+- [corr_est, '0', digital_linear_equalizer_0, '0']
+- [decoded_bits_stream, '0', hdlc_rx, '0']
+- [digital_constellation_decoder_cb_0_0, '0', digital_diff_decoder_bb_0_0, '0']
+- [digital_constellation_modulator_0, '0', blocks_multiply_const_vxx_0, '0']
+- [digital_costas_loop_cc_0_0, '0', corr_est, '0']
+- [digital_costas_loop_cc_0_0, '0', qtgui_const_sink_x_0_0, '0']
+- [digital_diff_decoder_bb_0_0, '0', digital_map_bb_0_0, '0']
+- [digital_linear_equalizer_0, '0', digital_constellation_decoder_cb_0_0, '0']
+- [digital_linear_equalizer_0, '0', qtgui_const_sink_x_1, '0']
+- [digital_map_bb_0_0, '0', blocks_unpack_k_bits_bb_0_0, '0']
+- [digital_symbol_sync_xx_0_1_0, '0', digital_costas_loop_cc_0_0, '0']
+- [digital_symbol_sync_xx_0_1_0, '0', qtgui_const_sink_x_2, '0']
+- [epy_block_3, pdu_out, pdu_pdu_to_tagged_stream_2, pdus]
+- [fec_burst_rx, out, fec_decoder, in]
+- [fec_decoder, out, hdlc_flush, in]
+- [fec_encoder, out, epy_block_3, pdu_in]
+- [gui_commands, out, payload_size, in]
+- [hdlc_flush, out, decoded_bits_stream, pdus]
+- [hdlc_rx, out, sr_arq, rx_in]
+- [hdlc_tx, '0', pdu_tagged_stream_to_pdu_0, '0']
+- [iio_pluto_source_0, '0', analog_agc_xx_0, '0']
+- [iio_pluto_source_0, '0', blocks_complex_to_mag_squared_0, '0']
+- [iio_pluto_source_0, '0', qtgui_freq_sink_x_1, '0']
+- [iio_pluto_source_0, '0', qtgui_time_sink_x_1, '0']
+- [payload_size, out, ack_timeout, in]
+- [pdu_pdu_to_tagged_stream_2, '0', digital_constellation_modulator_0, '0']
+- [pdu_tagged_stream_to_pdu_0, pdus, fec_encoder, in]
+- [sr_arq, events, gui_events, in]
+- [sr_arq, rtt, ack_timeout, rtt]
+- [sr_arq, tx_out, hdlc_tx, in]
+- [window_size, out, sr_arq, commands]
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.9.2
