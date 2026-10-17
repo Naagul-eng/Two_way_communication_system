@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")"
-exec bash start.sh "$@"
+exec python3 -m sdrchat.app "$@"

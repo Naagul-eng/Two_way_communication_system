@@ -24,7 +24,7 @@ class CoordinatorTests(unittest.TestCase):
         self.assertEqual(config['uri'], 'ip:192.168.2.1')
         self.assertFalse(config['local_radio_configured'])
         self.assertEqual(target.stat().st_mode & 0o777, 0o600)
-        self.assertTrue((self.root / '.coordinator').is_file())
+        self.assertFalse((self.root / '.coordinator').exists())
         example = json.loads((self.root / 'configs/node_a.example.json').read_text())
         self.assertNotEqual(config['shared_key'], example['shared_key'])
         cipher = Fernet(config['shared_key'].encode())
@@ -35,7 +35,7 @@ class CoordinatorTests(unittest.TestCase):
         self.assertEqual(target.read_bytes(), original)
 
     def test_existing_friend_or_history_is_preserved(self):
-        for relative in ('configs/my_node.json', 'data/node_a/chat.sqlite', '.coordinator'):
+        for relative in ('configs/my_node.json', 'data/node_a/chat.sqlite'):
             with self.subTest(relative=relative):
                 existing = self.root / relative
                 existing.parent.mkdir(parents=True, exist_ok=True)

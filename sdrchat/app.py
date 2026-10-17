@@ -1,4 +1,4 @@
-"""PyQt5 desktop client with an automatically managed hardware subprocess."""
+"""PyQt5 chat client; run the radio separately with the Bash node scripts."""
 import argparse
 import json
 from pathlib import Path
@@ -707,22 +707,18 @@ class Window(W.QMainWindow):
 def main():
     p=argparse.ArgumentParser();p.add_argument('--config');a=p.parse_args()
     app=W.QApplication(sys.argv);app.setApplicationName('Pixel Pulse');app.setApplicationDisplayName('Pixel Pulse')
-    app.setDesktopFileName('pixel-pulse')
     app.setWindowIcon(QtGui.QIcon(str(Path(__file__).resolve().parents[1]/'assets/pixel-pulse.svg')))
     path=Path(a.config) if a.config else Path(__file__).resolve().parents[1]/'configs/my_node.json'
     if not a.config and not path.exists():
         if WelcomeDialog(path).exec_()!=W.QDialog.Accepted:return
-    from .launcher import configure_radio, attach_radio
+    from .radio_setup import configure_radio
     if not configure_radio(path):return
     config=load(path)
     window=Window(config);window.show()
-    radio=attach_radio(app,window,config)
     for signum in (signal.SIGINT,signal.SIGTERM):
         signal.signal(signum,lambda *_:app.quit())
     signal_timer=QtCore.QTimer(app);signal_timer.timeout.connect(lambda:None);signal_timer.start(200)
-    try:result=app.exec_()
-    finally:radio.stop()
-    sys.exit(result)
+    sys.exit(app.exec_())
 
 
 if __name__=='__main__':main()

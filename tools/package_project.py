@@ -6,8 +6,8 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def build():
-    files=[ROOT/name for name in ('.gitignore','README.md','START_HERE_NEW_PERSON.md','setup.sh','install_app.sh','assets/pixel-pulse.svg','start.sh','run_app.sh','run_radio.sh',
-        'run_node_a_radio.sh','run_node_a_chat.sh',
+    files=[ROOT/name for name in ('.gitignore','README.md','START_HERE_NEW_PERSON.md','setup.sh','assets/pixel-pulse.svg','run_app.sh','run_radio.sh',
+        'run_node_a_radio.sh','run_node_a_chat.sh','run_node_b_radio.sh','run_node_b_chat.sh',
         'flowgraphs/Working1.0_csma.grc','sdrchat/REEDSOLO_LICENSE.txt','sdrchat/native/nlms.cpp')]
     for folder in ('sdrchat','tools','tests'):
         files.extend((ROOT/folder).glob('*.py'))

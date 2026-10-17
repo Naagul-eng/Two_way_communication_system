@@ -1,10 +1,10 @@
 # Pixel Pulse — Two-Way SDR Chat
 
-Pixel Pulse is a Linux desktop chat application for text and attachments over software-defined radios. It starts its GNU Radio transceiver automatically and stops it when the window closes. The radio uses QPSK, CSMA/CA, acknowledgements, retries, Reed–Solomon error correction, and an NLMS equalizer.
+Pixel Pulse exchanges text and attachments between SDR nodes using GNU Radio and a PyQt5 chat window. Run everything from a terminal with the Bash scripts below. The chat window and radio run separately, in two terminals on each computer.
 
-The application is maintained on the **`Chatapp`** branch of **`Two_way_communication_system`**. Run all commands below from the repository root, where `start.sh` is located.
+Use the **`Chatapp`** branch of `Two_way_communication_system`. All commands below run from the repository root, where `setup.sh` is located.
 
-## 1. Get the application
+## 1. Get the code and install dependencies
 
 For a new copy:
 
@@ -13,170 +13,154 @@ git clone --branch Chatapp https://github.com/Naagul-eng/Two_way_communication_s
 cd Two_way_communication_system
 ```
 
-For an existing checkout, check your work before switching branches:
-
-```bash
-git status
-git switch Chatapp
-```
-
-The application files now live directly in this directory. Older instructions that refer to a `modified app` subdirectory no longer apply. If you installed a desktop shortcut before this reorganization, rerun `bash install_app.sh` from this directory.
-
-## 2. Install dependencies
-
-Use a Debian/Ubuntu Linux desktop with Python 3, GNU Radio with IIO/PlutoSDR blocks, and a compatible SDR on each participant's computer. GNU Radio **3.10.9.2** is the version previously tested for this project. A compiler builds the native equalizer locally.
+Use Debian/Ubuntu Linux, the system Python (`/usr/bin/python3`), and a compatible SDR with GNU Radio IIO/PlutoSDR support on each computer. GNU Radio 3.10.9.2 is the tested version. Deactivate any virtual environment before continuing.
 
 ```bash
 sudo apt update
 sudo apt install git gnuradio python3-pyqt5 python3-zmq python3-cryptography python3-numpy python3-yaml python3-pil ffmpeg g++ libiio-utils
 ```
 
-Use the system Python (`/usr/bin/python3`) so the GNU Radio and PyQt packages installed by `apt` are available. If a virtual environment is active, deactivate it before continuing.
-
-Check the Python dependencies:
-
-```bash
-python3 -c 'import PyQt5, zmq, cryptography, numpy, yaml, PIL; from gnuradio import gr, iio; print("Dependencies OK")'
-```
-
-## 3. Set up the first user (coordinator)
-
-Do this **once for a new radio network**, on one computer only:
-
-```bash
-python3 tools/create_coordinator.py --name "User 1" --uri "ip:192.168.1.10"
-bash start.sh
-```
-
-Replace the URI with the address of **your own SDR**. The setup command creates `configs/node_a.json` with a new random network key and a local `.coordinator` marker. On first launch, confirm your SDR URI when prompted. The radio and desktop app then start together.
-
-If this checkout already has your coordinator profile, skip the creation command and run `bash run_node_a_chat.sh`. The creation command refuses to overwrite an existing profile or coordinator history. Keep `data/node_a/` to retain messages and issued-address reservations.
-
-After the initial setup, launch with:
-
-```bash
-bash start.sh
-```
-
-Keep the terminal open while chatting. Close older app/radio instances before launching another copy. Closing the application stops its radio.
-
-## 4. Invite a second user
-
-On the coordinator's computer:
-
-1. Open the app and select **☰ → Invite someone…**.
-2. Enter the person's name and save the personal invitation JSON, preferably under `Invitations/`.
-3. Build a clean sharing ZIP:
-
-   ```bash
-   python3 tools/package_project.py
-   ```
-
-4. Send `dist/Pixel_Pulse_Share.zip` and that person's invitation privately to them. Each invitation is for one person and contains the network key.
-
-On the second user's computer:
-
-1. Extract the ZIP and open a terminal inside the extracted `Pixel_Pulse` directory. Alternatively, clone the `Chatapp` branch as described above.
-2. Install the dependencies in step 2.
-3. Run `bash start.sh`. **Do not create another coordinator profile.**
-4. Enter your name, import the invitation issued to you, and enter your own SDR URI.
-5. Select User 1 and send a short text. User 1 should reply to verify both directions before sending attachments.
-
-The friend's profile is saved locally as `configs/my_node.json`. Future launches need only `bash start.sh`. To add another existing member, exchange **Details → Copy my contact code** and paste it into **New contact → Contact code**.
-
-## 5. Install the desktop shortcut (optional)
-
-After configuring your profile:
-
-```bash
-bash install_app.sh
-```
-
-Open **Pixel Pulse** from your applications menu or desktop. If your desktop asks, right-click the shortcut and choose **Allow Launching**. Keep this directory in its installed location; rerun the installer after moving it. The installer creates shortcuts for your current Linux user.
-
-## Radio settings and troubleshooting
-
-Local settings are in `configs/node_a.json` for the coordinator and `configs/my_node.json` for an invited user. Close the app before editing them.
-
-| Setting / symptom | What to check |
-| --- | --- |
-| SDR URI | `uri` must point to the SDR connected to this computer, for example `ip:192.168.1.10`. |
-| Frequency and sample rate | Defaults are `2426500000` Hz and `2400000` samples/s. Both peers need matching frequency, sample rate, network key, and modem settings, with different node addresses. |
-| Radio fails to connect | Check SDR power, connectivity, IIO support, and that no other app owns the device. Use **Retry** after fixing the issue. |
-| Continue offline | Opens the interface for contacts and queued messages. It does not transmit until the radio reconnects. |
-| Messages stay queued | Check the radio connection in **Details**, the peer's running app, matching settings, and radio range. |
-| Channel stays busy at idle | Review the sensing threshold in **Details** and check interference. |
-| Delivered | The receiving radio stored the message. Confirm a reply to test the return link. |
-| Build/import error | Check the dependency command above and use the system Python. Run `bash setup.sh` to rebuild. |
-
-Radio output is written to `data/<node>/radio.log`. To check IIO connectivity directly, use your actual URI:
-
-```bash
-iio_info -u ip:192.168.1.10
-```
-
-`configs/node_a.example.json` is a public reference. Its all-zero example key is for software tests and the standalone demo flowgraph; `create_coordinator.py` generates a different key for your network. The application selects your local runtime profile when starting the radio.
-
-## Development and verification
-
-Rebuild the native equalizer, refresh the embedded flowgraph sources, compile the radio, and run the regression suite:
+## 2. Build and test once on each computer
 
 ```bash
 bash setup.sh
 ```
 
-After the initial build, run just the tests with:
+This builds the native equalizer, updates the embedded radio sources, compiles the GNU Radio flowgraph, and runs the regression tests. Run it again after changing radio source code. It does not start the chat window or transmit.
+
+The application files live directly in this repository. Commands in older instructions that refer to a `modified app` subdirectory should now be run here.
+
+## 3. Run Node A (first user / coordinator)
+
+If `configs/node_a.json` already exists, keep it and skip profile creation. For a new network only, create the coordinator once:
+
+```bash
+python3 tools/create_coordinator.py --name "User 1" --uri "ip:192.168.1.10"
+```
+
+Replace the URI with the address of **Node A's own SDR**. This creates a local profile with a new random network key and refuses to overwrite an existing identity or coordinator history.
+
+In **terminal 1**, open the chat window:
+
+```bash
+bash run_node_a_chat.sh
+```
+
+Confirm the SDR URI if prompted. Then, in **terminal 2**, opened in the same repository directory, start the radio:
+
+```bash
+bash run_node_a_radio.sh
+```
+
+Leave both terminals open. The chat window shows Connected when the radio service is available. Closing the chat window leaves the radio running; press **Ctrl+C in terminal 2** to stop it.
+
+## 4. Invite Node B (second user)
+
+In Node A's chat window:
+
+1. Select **☰ → Invite someone…**.
+2. Enter the person's name and save their personal invitation JSON under `Invitations/`.
+3. Send that invitation privately to the person. Each invitation assigns one person's address and includes the network key.
+
+Node B can clone the same branch, or you can create a clean source ZIP:
+
+```bash
+python3 tools/package_project.py
+```
+
+Send `dist/Pixel_Pulse_Share.zip` and the invitation. The ZIP excludes local profiles, keys, invitations, histories, and compiled binaries.
+
+## 5. Run Node B (invited user)
+
+On the second computer, clone the repository or extract the ZIP and enter its `Pixel_Pulse` directory. Install dependencies and run `bash setup.sh` as described above. Do not create another coordinator for the same network.
+
+In **terminal 1**:
+
+```bash
+bash run_node_b_chat.sh
+```
+
+On first launch, enter your name, import your personal invitation, and confirm **Node B's own SDR URI**. This saves `configs/my_node.json`.
+
+After importing the invitation, in **terminal 2**, in the same project directory:
+
+```bash
+bash run_node_b_radio.sh
+```
+
+Select User 1 and send a short text. Ask Node A to reply to confirm both directions before sending attachments. Stop the radio with **Ctrl+C in terminal 2** when finished.
+
+For later sessions, run the same two Node A or Node B scripts; setup and invitation import are only needed initially or after relevant changes.
+
+## Command reference
+
+| Command | Purpose |
+| --- | --- |
+| `bash setup.sh` | Build the radio and run software tests. |
+| `bash run_node_a_chat.sh` | Open chat with `configs/node_a.json`. |
+| `bash run_node_a_radio.sh` | Run Node A's radio separately. |
+| `bash run_node_b_chat.sh` | Open chat and import an invitation on first launch. |
+| `bash run_node_b_radio.sh` | Run the radio with `configs/my_node.json`. |
+| `bash run_app.sh --config configs/custom.json` | Open chat with another local profile. |
+| `bash run_radio.sh configs/custom.json` | Run the radio with that same profile. |
+| `python3 tools/package_project.py` | Build the clean sharing ZIP. |
+
+Each physical node needs a different invitation/address. Run one radio process per node. Do not start another radio against a device already in use.
+
+## Settings and troubleshooting
+
+Close the chat window and stop the radio before editing local profiles. Node A uses `configs/node_a.json`; Node B uses `configs/my_node.json`.
+
+| Symptom / setting | Action |
+| --- | --- |
+| `Run bash setup.sh first` | Build the generated radio files with `bash setup.sh`. |
+| Missing Python module | Install the dependencies above and use the system Python. |
+| Radio cannot connect | Check SDR power, the local `uri`, IIO support, and whether another process owns the device. Errors appear in the radio terminal. |
+| Chat stays Offline | Start the matching radio script and check its terminal for errors. The chat window alone does not transmit. |
+| Queued messages | Check both radios are running, the devices are in range, and both profiles have matching radio settings and network key. |
+| Channel busy at idle | Review the sensing threshold in Details and check interference. |
+| Delivered | The receiving radio stored the message. Confirm a reply to test the return link. |
+
+Default frequency: **2426500000 Hz**. Default sample rate: **2400000 samples/s**. Peers need matching frequency, sample rate, modem settings, and network key, with different node addresses. `uri` is the address of the SDR attached to this computer.
+
+Check your SDR connection using its actual URI:
+
+```bash
+iio_info -u ip:192.168.1.10
+```
+
+To add another existing member, exchange **Details → Copy my contact code** and paste it into **New contact → Contact code**. Contact codes exclude the network key; invitations include it.
+
+## Software checks
+
+After building, run the regression suite or the isolated flowgraph check:
 
 ```bash
 QT_QPA_PLATFORM=offscreen python3 -m unittest discover -s tests -v
-```
-
-Validate that the maintained GRC compiles and passes radio tests outside this checkout:
-
-```bash
 python3 tools/portable_smoke_test.py
 ```
 
-These checks cover software behavior and simulated PHY/MAC paths. A two-radio hardware test is still needed to verify over-the-air communication.
+These checks exercise software behavior and simulated PHY/MAC paths. Verify over-the-air delivery separately with your two SDRs.
 
-The normal launcher owns the radio process. For manual diagnostics, close the normal app first, then use `bash run_radio.sh configs/my_node.json` or `bash run_node_a_radio.sh`.
+The maintained flowgraph is `flowgraphs/Working1.0_csma.grc`. Original transmitter/receiver references are under `flowgraphs/legacy/`. The optional conversion tool takes an explicit original file: `python3 tools/build_flowgraph.py --source /path/to/Working1.0.grc`.
 
-`tools/build_flowgraph.py` optionally converts the original `Working1.0.grc`, which is not required to build this branch. To regenerate from a separately supplied original, run `python3 tools/build_flowgraph.py --source /path/to/Working1.0.grc`, then `bash setup.sh`.
+## Source and local data
 
-## Repository layout
+- `sdrchat/`: chat interface, protocol, MAC, and radio code.
+- `configs/node_a.example.json`: public example defaults used by tests and the standalone demo flowgraph. Its all-zero key is a test value; create a real coordinator profile with the command above.
+- `tests/` and `tools/`: regression tests, profile creation, packaging, and flowgraph tools.
+- `data/node_a/` and `data/my_node/`: local chat/radio history. Keep the coordinator history to retain issued-address reservations.
+- `data/previous-root/`: older local databases preserved during repository cleanup.
 
-```text
-Two_way_communication_system/
-├── README.md                     # Installation, operation, and development
-├── START_HERE_NEW_PERSON.md       # Short guide for invited users
-├── start.sh                      # Build missing assets and launch app + radio
-├── setup.sh                      # Rebuild radio assets and run tests
-├── install_app.sh                # Install per-user desktop shortcuts
-├── configs/
-│   └── node_a.example.json       # Public defaults; local profiles are ignored
-├── sdrchat/                       # Desktop UI, protocol, MAC, and radio modules
-│   └── native/nlms.cpp           # Native equalizer source
-├── flowgraphs/
-│   ├── Working1.0_csma.grc       # Maintained transceiver
-│   └── legacy/                   # Original transmitter/receiver references
-├── assets/                       # App icon
-├── tests/                        # Software regression tests
-└── tools/                        # Setup, packaging, and flowgraph utilities
-```
+Local profiles, history, invitation exports, generated radio files, native binaries, and release ZIPs are ignored by Git. Personal files from earlier commits remain in the existing Git history; the current branch stops tracking them without rewriting history.
 
-Git excludes local profiles, `.coordinator`, `data/`, `Invitations/`, invitation exports, logs, generated radio Python, native binaries, desktop shortcuts, and `dist/`. The sharing ZIP also excludes personal profiles, keys, invitations, and history. During this cleanup, the older databases from the former repository root were preserved locally under `data/previous-root/`; the application's active history stays in `data/node_a/` and `data/my_node/`.
-
-Personal files tracked by earlier commits remain in the repository's existing history; this cleanup stops tracking them in the current branch without rewriting that history.
-
-## Save and publish changes to Chatapp
-
-Review the diff before committing. Keep personal files out of staged changes:
+## Commit and publish changes
 
 ```bash
 git status
 git diff
 git add -A
 git diff --cached --stat
-git commit -m "Organize chat application and document setup"
+git commit -m "Describe your changes"
 git push origin Chatapp
 ```

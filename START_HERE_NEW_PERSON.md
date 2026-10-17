@@ -1,23 +1,30 @@
-# Join Pixel Pulse
+# Join Pixel Pulse as Node B
 
-Use the personal invitation JSON sent by your network coordinator. Do not reuse another person's invitation or profile.
+Use the personal invitation JSON sent by Node A. Do not reuse another person's invitation or profile.
 
-1. Extract `Pixel_Pulse_Share.zip` and open a terminal inside `Pixel_Pulse`, or clone the `Chatapp` branch.
-2. Follow **step 2 in [README.md](README.md#2-install-dependencies)** to install the Linux dependencies.
-3. Run `bash start.sh`. Do not run the coordinator creation command when joining an existing network.
-4. Enter your name, select your invitation JSON, and enter your own SDR URI.
-5. Select User 1 and send a short text. Ask them to reply before trying attachments.
+1. Clone the `Chatapp` branch, or extract `Pixel_Pulse_Share.zip` and open a terminal inside `Pixel_Pulse`.
+2. Install the dependencies in [README.md](README.md#1-get-the-code-and-install-dependencies).
+3. Build and test once:
 
-The app saves your local profile as `configs/my_node.json`. On every later launch, run:
+   ```bash
+   bash setup.sh
+   ```
 
-```bash
-bash start.sh
-```
+4. In terminal 1, open the chat window:
 
-To add Pixel Pulse to your applications menu and desktop, run `bash install_app.sh` once. Rerun it if you move the project directory.
+   ```bash
+   bash run_node_b_chat.sh
+   ```
 
-Closing the app stops its radio. If the SDR cannot connect, fix the connection and use **Retry**, or choose **Continue offline** to manage contacts and queued messages. Logs are under `data/my_node/radio.log`.
+5. Enter your name, select your invitation, and enter the URI of your own SDR. Your profile is saved as `configs/my_node.json`.
+6. In terminal 2, opened in the same project directory, start the radio:
 
-To add an existing member, exchange **Details → Copy my contact code** and paste it into **New contact → Contact code**. Contact codes exclude the network key; invitation files include it.
+   ```bash
+   bash run_node_b_radio.sh
+   ```
 
-See [README.md](README.md) for troubleshooting, radio settings, and development checks.
+7. Send a short text to User 1 and ask for a reply.
+
+For later sessions, run the same two Node B commands. Closing the chat window leaves the radio running; press Ctrl+C in the radio terminal to stop it. Keep both terminals open while chatting.
+
+Do not create another coordinator when joining an existing network. See [README.md](README.md) for Node A commands, settings, and troubleshooting.

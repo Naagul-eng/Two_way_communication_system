@@ -11,7 +11,7 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--config',required=True);a=p.parse_args()
     os.environ['SDRCHAT_CONFIG']=str(Path(a.config).resolve())
     path=Path(__file__).resolve().parents[1]/'flowgraphs'/'generated'/'csma_transceiver.py'
-    if not path.exists():raise SystemExit('Run ./setup.sh first')
+    if not path.exists():raise SystemExit('Run bash setup.sh first')
     sys.path.insert(0,str(path.parent))
     spec=importlib.util.spec_from_file_location('csma_transceiver',path)
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)

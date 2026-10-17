@@ -17,9 +17,8 @@ def create_coordinator(root=ROOT, name='User 1', uri='ip:192.168.1.10'):
     if not uri:
         raise ValueError('Enter the URI of your own SDR.')
     target = root / 'configs/node_a.json'
-    marker = root / '.coordinator'
     state = root / 'data/node_a'
-    if (target.exists() or marker.exists() or
+    if (target.exists() or
             (root / 'configs/my_node.json').exists() or
             (state.exists() and any(state.iterdir()))):
         raise FileExistsError('A local profile or coordinator history already exists. '
@@ -30,7 +29,6 @@ def create_coordinator(root=ROOT, name='User 1', uri='ip:192.168.1.10'):
                   local_radio_configured=False)
     with os.fdopen(os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), 'w') as output:
         output.write(json.dumps(config, indent=2) + '\n')
-    marker.write_text('Use configs/node_a.json for this coordinator.\n')
     return target
 
 
@@ -43,7 +41,7 @@ def main():
         target = create_coordinator(name=args.name, uri=args.uri)
     except (ValueError, OSError) as exc:
         parser.exit(1, f'{exc}\n')
-    print(f'Created {target} with a new network key. Run bash start.sh.')
+    print(f'Created {target} with a new network key. Run bash run_node_a_chat.sh, then bash run_node_a_radio.sh in another terminal.')
 
 
 if __name__ == '__main__':
