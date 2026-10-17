@@ -14,7 +14,9 @@ Invitations/
 *.sqlite*
 *.log
 .coordinator
-**/configs/my_node.json
+/configs/*.json
+!/configs/*.example.json
+*_invitation.json
 
 # Desktop entries contain absolute paths; install_app.sh regenerates them
 *.desktop

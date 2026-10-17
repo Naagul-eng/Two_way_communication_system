@@ -78,7 +78,7 @@ class LauncherTests(unittest.TestCase):
 
     def test_invitation_does_not_skip_recipient_radio_setup(self):
         root=Path(__file__).resolve().parents[1]
-        config=json.loads((root/'configs/node_a.json').read_text())
+        config=json.loads((root/'configs/node_a.example.json').read_text())
         config['local_radio_configured']=True
         source=Path(self.temp.name)/'invite.json'
         source.write_text(json.dumps(make_invitation(config,1234,'Friend')))

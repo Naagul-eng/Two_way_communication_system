@@ -7,7 +7,7 @@ options:
     comment: ''
     copyright: ''
     description: Self-contained radio sources. Requires GNU Radio/IIO, NumPy, pyzmq, cryptography and g++. Set SDRCHAT_CONFIG
-      to use your node JSON; otherwise the embedded coordinator configuration is used.
+      to use your node JSON; otherwise public demo settings are used.
     gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: no_gui
@@ -698,12 +698,12 @@ blocks:
       n\"\n           '    return c\\n'\n           '\\n'\n           '\\n'\n           'def addr(value):\\n'\n\
       \           \"    return f'0x{int(value):04X}'\\n\"\n           '\\n'\n           '\\n'\n           \"_DEFAULT_CONFIG\
       \ = {'address': 16170, 'name': 'User 1', 'frequency': 2426500000, 'uri': \"\n           \"'ip:192.168.1.10',\
-      \ 'commands_port': 5555, 'events_port': 5556, 'shared_key': \"\n           \"'u362K7J0T2sA_vB1C2D3E4F5G6H7I8J9K0L1M2N3O4P=',\
+      \ 'commands_port': 5555, 'events_port': 5556, 'shared_key': \"\n           \"'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=',\
       \ 'state_dir': './data/node_a', 'sample_rate': \"\n           \"2400000, 'cs_threshold_db': -35.0, 'cs_hysteresis_db':\
       \ 3.0, 'difs_s': 0.02, 'slot_s': 0.015, \"\n           \"'ack_timeout_s': 1.0, 'retry_limit': 20, 'cw_min':\
       \ [8, 16, 32], 'cw_max': 1024, 'aging_s': 30.0, \"\n           \"'tx_delay_s': 0.02, 'tx_guard_s': 0.01, 'tx_attenuation_db':\
       \ 0.0, 'rx_gain_db': 45, 'nlms_taps': \"\n           \"7, 'nlms_mu': 0.2, 'nlms_dd_mu': 0.02, 'nlms_eps':\
-      \ 1e-06, 'correlation_threshold': 0.6, \"\n           \"'contacts': [], 'local_radio_configured': True}\\\
+      \ 1e-06, 'correlation_threshold': 0.6, \"\n           \"'contacts': [], 'local_radio_configured': False}\\\
       n\"\n           '_original_load = load\\n'\n           '\\n'\n           'def load(path):\\n'\n          \
       \ '    import os\\n'\n           '    path = Path(path)\\n'\n           '    if path.exists():\\n'\n     \
       \      '        return _original_load(path)\\n'\n           \"    if os.environ.get('SDRCHAT_CONFIG') or str(path)\
@@ -2165,12 +2165,12 @@ blocks:
       n\"\n           '    return c\\n'\n           '\\n'\n           '\\n'\n           'def addr(value):\\n'\n\
       \           \"    return f'0x{int(value):04X}'\\n\"\n           '\\n'\n           '\\n'\n           \"_DEFAULT_CONFIG\
       \ = {'address': 16170, 'name': 'User 1', 'frequency': 2426500000, 'uri': \"\n           \"'ip:192.168.1.10',\
-      \ 'commands_port': 5555, 'events_port': 5556, 'shared_key': \"\n           \"'u362K7J0T2sA_vB1C2D3E4F5G6H7I8J9K0L1M2N3O4P=',\
+      \ 'commands_port': 5555, 'events_port': 5556, 'shared_key': \"\n           \"'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=',\
       \ 'state_dir': './data/node_a', 'sample_rate': \"\n           \"2400000, 'cs_threshold_db': -35.0, 'cs_hysteresis_db':\
       \ 3.0, 'difs_s': 0.02, 'slot_s': 0.015, \"\n           \"'ack_timeout_s': 1.0, 'retry_limit': 20, 'cw_min':\
       \ [8, 16, 32], 'cw_max': 1024, 'aging_s': 30.0, \"\n           \"'tx_delay_s': 0.02, 'tx_guard_s': 0.01, 'tx_attenuation_db':\
       \ 0.0, 'rx_gain_db': 45, 'nlms_taps': \"\n           \"7, 'nlms_mu': 0.2, 'nlms_dd_mu': 0.02, 'nlms_eps':\
-      \ 1e-06, 'correlation_threshold': 0.6, \"\n           \"'contacts': [], 'local_radio_configured': True}\\\
+      \ 1e-06, 'correlation_threshold': 0.6, \"\n           \"'contacts': [], 'local_radio_configured': False}\\\
       n\"\n           '_original_load = load\\n'\n           '\\n'\n           'def load(path):\\n'\n          \
       \ '    import os\\n'\n           '    path = Path(path)\\n'\n           '    if path.exists():\\n'\n     \
       \      '        return _original_load(path)\\n'\n           \"    if os.environ.get('SDRCHAT_CONFIG') or str(path)\
@@ -5174,12 +5174,12 @@ blocks:
       n\"\n           '    return c\\n'\n           '\\n'\n           '\\n'\n           'def addr(value):\\n'\n\
       \           \"    return f'0x{int(value):04X}'\\n\"\n           '\\n'\n           '\\n'\n           \"_DEFAULT_CONFIG\
       \ = {'address': 16170, 'name': 'User 1', 'frequency': 2426500000, 'uri': \"\n           \"'ip:192.168.1.10',\
-      \ 'commands_port': 5555, 'events_port': 5556, 'shared_key': \"\n           \"'u362K7J0T2sA_vB1C2D3E4F5G6H7I8J9K0L1M2N3O4P=',\
+      \ 'commands_port': 5555, 'events_port': 5556, 'shared_key': \"\n           \"'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=',\
       \ 'state_dir': './data/node_a', 'sample_rate': \"\n           \"2400000, 'cs_threshold_db': -35.0, 'cs_hysteresis_db':\
       \ 3.0, 'difs_s': 0.02, 'slot_s': 0.015, \"\n           \"'ack_timeout_s': 1.0, 'retry_limit': 20, 'cw_min':\
       \ [8, 16, 32], 'cw_max': 1024, 'aging_s': 30.0, \"\n           \"'tx_delay_s': 0.02, 'tx_guard_s': 0.01, 'tx_attenuation_db':\
       \ 0.0, 'rx_gain_db': 45, 'nlms_taps': \"\n           \"7, 'nlms_mu': 0.2, 'nlms_dd_mu': 0.02, 'nlms_eps':\
-      \ 1e-06, 'correlation_threshold': 0.6, \"\n           \"'contacts': [], 'local_radio_configured': True}\\\
+      \ 1e-06, 'correlation_threshold': 0.6, \"\n           \"'contacts': [], 'local_radio_configured': False}\\\
       n\"\n           '_original_load = load\\n'\n           '\\n'\n           'def load(path):\\n'\n          \
       \ '    import os\\n'\n           '    path = Path(path)\\n'\n           '    if path.exists():\\n'\n     \
       \      '        return _original_load(path)\\n'\n           \"    if os.environ.get('SDRCHAT_CONFIG') or str(path)\
@@ -6728,12 +6728,12 @@ blocks:
       \ exist_ok=True)\\n\"\n           '    return c\\n'\n           '\\n'\n           '\\n'\n           'def addr(value):\\\
       n'\n           \"    return f'0x{int(value):04X}'\\n\"\n           '\\n'\n           '\\n'\n           \"\
       _DEFAULT_CONFIG = {'address': 16170, 'name': 'User 1', 'frequency': 2426500000, 'uri': \"\n           \"'ip:192.168.1.10',\
-      \ 'commands_port': 5555, 'events_port': 5556, 'shared_key': \"\n           \"'u362K7J0T2sA_vB1C2D3E4F5G6H7I8J9K0L1M2N3O4P=',\
+      \ 'commands_port': 5555, 'events_port': 5556, 'shared_key': \"\n           \"'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=',\
       \ 'state_dir': './data/node_a', 'sample_rate': \"\n           \"2400000, 'cs_threshold_db': -35.0, 'cs_hysteresis_db':\
       \ 3.0, 'difs_s': 0.02, 'slot_s': 0.015, \"\n           \"'ack_timeout_s': 1.0, 'retry_limit': 20, 'cw_min':\
       \ [8, 16, 32], 'cw_max': 1024, 'aging_s': 30.0, \"\n           \"'tx_delay_s': 0.02, 'tx_guard_s': 0.01, 'tx_attenuation_db':\
       \ 0.0, 'rx_gain_db': 45, 'nlms_taps': \"\n           \"7, 'nlms_mu': 0.2, 'nlms_dd_mu': 0.02, 'nlms_eps':\
-      \ 1e-06, 'correlation_threshold': 0.6, \"\n           \"'contacts': [], 'local_radio_configured': True}\\\
+      \ 1e-06, 'correlation_threshold': 0.6, \"\n           \"'contacts': [], 'local_radio_configured': False}\\\
       n\"\n           '_original_load = load\\n'\n           '\\n'\n           'def load(path):\\n'\n          \
       \ '    import os\\n'\n           '    path = Path(path)\\n'\n           '    if path.exists():\\n'\n     \
       \      '        return _original_load(path)\\n'\n           \"    if os.environ.get('SDRCHAT_CONFIG') or str(path)\

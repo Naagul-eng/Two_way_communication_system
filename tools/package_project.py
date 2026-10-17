@@ -6,12 +6,12 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def build():
-    files=[ROOT/name for name in ('README.md','START_HERE_NEW_PERSON.md','setup.sh','install_app.sh','assets/pixel-pulse.svg','start.sh','run_app.sh','run_radio.sh',
+    files=[ROOT/name for name in ('.gitignore','README.md','START_HERE_NEW_PERSON.md','setup.sh','install_app.sh','assets/pixel-pulse.svg','start.sh','run_app.sh','run_radio.sh',
         'run_node_a_radio.sh','run_node_a_chat.sh',
         'flowgraphs/Working1.0_csma.grc','sdrchat/REEDSOLO_LICENSE.txt','sdrchat/native/nlms.cpp')]
     for folder in ('sdrchat','tools','tests'):
         files.extend((ROOT/folder).glob('*.py'))
-    files.extend(ROOT/'configs'/name for name in ('node_a.json',))
+    files.append(ROOT/'configs/node_a.example.json')
     output=ROOT/'dist/Pixel_Pulse_Share.zip'
     output.parent.mkdir(exist_ok=True)
     with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as archive:

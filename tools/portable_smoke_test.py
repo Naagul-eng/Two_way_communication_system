@@ -19,11 +19,11 @@ def main():
         env.pop('SDRCHAT_CONFIG', None)
         subprocess.run(['grcc', '-o', str(directory), str(graph)], cwd=directory, env=env, check=True, timeout=60)
         protocol_tests = (ROOT / 'tests/test_protocol_mac.py').read_text().replace('from sdrchat.', 'from _pixel_pulse_radio.')
-        protocol_tests = protocol_tests.replace("BASE=json.loads((Path(__file__).parents[1]/'configs/node_a.json').read_text())", 'BASE=dict(radio.radio_config)')
+        protocol_tests = protocol_tests.replace("BASE=json.loads((Path(__file__).parents[1]/'configs/node_a.example.json').read_text())", 'BASE=dict(radio.radio_config)')
         phy_tests = (ROOT / 'tests/test_phy.py').read_text().replace('from sdrchat.equalizer', 'from _pixel_pulse_radio.equalizer')
         phy_tests = phy_tests.replace('from sdrchat.fec_decoder import blk as RSDecoder', 'from csma_transceiver_epy_rs_decoder import blk as RSDecoder')
         phy_tests = phy_tests.replace('from sdrchat.protocol', 'from _pixel_pulse_radio.protocol')
-        phy_tests = phy_tests.replace("c=json.loads((Path(__file__).parents[1]/'configs/node_a.json').read_text());codec=Codec(c['shared_key'])", "c=radio.radio_config;codec=Codec(c['shared_key'])")
+        phy_tests = phy_tests.replace("c=json.loads((Path(__file__).parents[1]/'configs/node_a.example.json').read_text());codec=Codec(c['shared_key'])", "c=radio.radio_config;codec=Codec(c['shared_key'])")
         driver = '''import importlib.abc
 import sys
 import types

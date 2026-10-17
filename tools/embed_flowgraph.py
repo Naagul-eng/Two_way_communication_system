@@ -22,9 +22,9 @@ def function_source(path, name):
 def embedded_sources():
     sources = {name: (ROOT / 'sdrchat' / (name + '.py')).read_text()
                for name in ('config', 'reedsolo_bundled', 'protocol', 'engine', 'service', 'equalizer', 'radio_blocks')}
-    # A shared GRC has the coordinator configuration and can still use the exact
-    # external node JSON used by Pixel Pulse through SDRCHAT_CONFIG.
-    default = __import__('json').loads((ROOT / 'configs/node_a.json').read_text())
+    # Embed public example settings only. Runtime profiles remain local and are
+    # selected through SDRCHAT_CONFIG by the application.
+    default = __import__('json').loads((ROOT / 'configs/node_a.example.json').read_text())
     default['state_dir'] = './data/node_a'
     sources['config'] += '\n\n_DEFAULT_CONFIG = ' + repr(default) + '''
 _original_load = load
@@ -144,7 +144,7 @@ def embed(source, output):
             code='self.epy_mac_bridge.attach_radio(self.iio_pluto_sink_0, self.iio_pluto_source_0)'),
         states=dict(bus_sink=False, bus_source=False, bus_structure=None, coordinate=[128,800], rotation=0, state='enabled')))
     graph['options']['parameters'].update(title='Pixel Pulse · CSMA/CA QPSK NLMS',
-        description='Self-contained radio sources. Requires GNU Radio/IIO, NumPy, pyzmq, cryptography and g++. Set SDRCHAT_CONFIG to use your node JSON; otherwise the embedded coordinator configuration is used.')
+        description='Self-contained radio sources. Requires GNU Radio/IIO, NumPy, pyzmq, cryptography and g++. Set SDRCHAT_CONFIG to use your node JSON; otherwise public demo settings are used.')
     output.write_text(yaml.dump(graph, Dumper=LiteralDumper, sort_keys=False, width=110))
     print(f'Embedded radio Python modules, native source, license, and startup hook in {output}')
 

@@ -43,7 +43,7 @@ def decode(samples):
 
 class PHYTests(unittest.TestCase):
     def test_qpsk_nlms_crc_roundtrip(self):
-        c=json.loads((Path(__file__).parents[1]/'configs/node_a.json').read_text());codec=Codec(c['shared_key'])
+        c=json.loads((Path(__file__).parents[1]/'configs/node_a.example.json').read_text());codec=Codec(c['shared_key'])
         wire=codec.pack(2,1,123,1,TEXT,b'QPSK NLMS integration')
         samples=waveform(wire,codec)
         rng=np.random.default_rng(1)

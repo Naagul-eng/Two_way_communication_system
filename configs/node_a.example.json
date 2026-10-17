@@ -1,12 +1,12 @@
 {
-  "address": 9278,
-  "name": "User_2",
+  "address": 16170,
+  "name": "User 1",
   "frequency": 2426500000,
   "uri": "ip:192.168.1.10",
   "commands_port": 5555,
   "events_port": 5556,
-  "shared_key": "u362K7J0T2sA_vB1C2D3E4F5G6H7I8J9K0L1M2N3O4P=",
-  "state_dir": "./data/243e",
+  "shared_key": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+  "state_dir": "../data/node_a",
   "sample_rate": 2400000,
   "cs_threshold_db": -35.0,
   "cs_hysteresis_db": 3.0,
@@ -14,11 +14,7 @@
   "slot_s": 0.015,
   "ack_timeout_s": 1.0,
   "retry_limit": 20,
-  "cw_min": [
-    8,
-    16,
-    32
-  ],
+  "cw_min": [8, 16, 32],
   "cw_max": 1024,
   "aging_s": 30.0,
   "tx_delay_s": 0.02,
@@ -28,15 +24,8 @@
   "nlms_taps": 7,
   "nlms_mu": 0.2,
   "nlms_dd_mu": 0.02,
-  "nlms_eps": 1e-06,
+  "nlms_eps": 0.000001,
   "correlation_threshold": 0.6,
-  "contacts": [
-    {
-      "address": 16170,
-      "name": "User 1",
-      "priority": 1
-    }
-  ],
-  "invitation_format": "pixel-pulse-invitation",
-  "invitation_version": 1
+  "contacts": [],
+  "local_radio_configured": false
 }

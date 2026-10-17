@@ -1,10 +1,13 @@
 """Create a separate headless GRC; leave the supplied original untouched."""
-import copy
+import argparse
 from pathlib import Path
 import yaml
 
 root=Path(__file__).resolve().parents[1]
-d=yaml.safe_load((root.parent/'Working1.0.grc').read_text())
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--source',type=Path,required=True,help='Path to the original Working1.0.grc')
+args=parser.parse_args()
+d=yaml.safe_load(args.source.read_text())
 remove={'cma_alg','my_addr','peer_addr','shared_key','epy_transfer_chat_gui','epy_transfer_protocol',
         'epy_size_profiles','epy_timeout_profiles','epy_interval_profiles','epy_window_profiles',
         'digital_linear_equalizer_0','epy_block_0','blocks_message_debug_0'}

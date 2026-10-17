@@ -8,7 +8,7 @@ from cryptography.fernet import InvalidToken
 from sdrchat.protocol import Codec,HEADER,ACK,TEXT,BROADCAST
 from sdrchat.engine import Engine
 
-BASE=json.loads((Path(__file__).parents[1]/'configs/node_a.json').read_text())
+BASE=json.loads((Path(__file__).parents[1]/'configs/node_a.example.json').read_text())
 
 
 class Network:

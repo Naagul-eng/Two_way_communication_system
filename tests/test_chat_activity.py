@@ -19,7 +19,7 @@ class ChatActivityTests(unittest.TestCase):
 
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.config = json.loads((Path(__file__).resolve().parents[1] / 'configs/node_a.json').read_text())
+        self.config = json.loads((Path(__file__).resolve().parents[1] / 'configs/node_a.example.json').read_text())
         self.config.update(state_dir=self.temp.name, contacts=[
             dict(address=2, name='Bob'), dict(address=3, name='Charlie')])
         self.book = Database(self.config)
