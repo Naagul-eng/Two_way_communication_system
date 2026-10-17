@@ -10,21 +10,17 @@ Use the personal invitation JSON sent by Node A. Do not reuse another person's i
    bash setup.sh
    ```
 
-4. In terminal 1, open the chat window:
+4. Start chat and radio with one command:
 
    ```bash
-   bash run_node_b_chat.sh
+   bash run_node_b.sh
    ```
 
-5. Enter your name, select your invitation, and enter the URI of your own SDR. Your profile is saved as `configs/my_node.json`.
-6. In terminal 2, opened in the same project directory, start the radio:
+5. On first launch, enter your name, select your invitation, and enter the URI of your own SDR. Your profile is saved as `configs/my_node.json`, and the radio starts automatically.
+6. Send a short text to User 1 and ask for a reply.
 
-   ```bash
-   bash run_node_b_radio.sh
-   ```
+For later sessions, run `bash run_node_b.sh` again. Keep the terminal open while chatting. Close the chat window or press Ctrl+C in the terminal to stop the session and its radio.
 
-7. Send a short text to User 1 and ask for a reply.
-
-For later sessions, run the same two Node B commands. Closing the chat window leaves the radio running; press Ctrl+C in the radio terminal to stop it. Keep both terminals open while chatting.
+If the radio cannot connect, check the terminal or `data/my_node/radio.log`. Use Retry after fixing the device connection, or Continue offline to manage contacts and queued messages.
 
 Do not create another coordinator when joining an existing network. See [README.md](README.md) for Node A commands, settings, and troubleshooting.

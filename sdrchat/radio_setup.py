@@ -1,4 +1,4 @@
-"""Save this computer's SDR URI before starting the separate radio process."""
+"""Save this computer's SDR URI before starting the radio process."""
 import json
 from pathlib import Path
 from PyQt5 import QtWidgets as W

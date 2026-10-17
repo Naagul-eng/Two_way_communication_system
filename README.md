@@ -1,6 +1,6 @@
 # Pixel Pulse — Two-Way SDR Chat
 
-Pixel Pulse exchanges text and attachments between SDR nodes using GNU Radio and a PyQt5 chat window. Run everything from a terminal with the Bash scripts below. The chat window and radio run separately, in two terminals on each computer.
+Pixel Pulse exchanges text and attachments between SDR nodes using GNU Radio and a PyQt5 chat window. Run everything from a terminal with the Bash scripts below. Use one terminal on each computer: a single node command starts both the chat window and its radio.
 
 Use the **`Chatapp`** branch of `Two_way_communication_system`. All commands below run from the repository root, where `setup.sh` is located.
 
@@ -40,19 +40,13 @@ python3 tools/create_coordinator.py --name "User 1" --uri "ip:192.168.1.10"
 
 Replace the URI with the address of **Node A's own SDR**. This creates a local profile with a new random network key and refuses to overwrite an existing identity or coordinator history.
 
-In **terminal 1**, open the chat window:
+Start chat and radio together with one command:
 
 ```bash
-bash run_node_a_chat.sh
+bash run_node_a.sh
 ```
 
-Confirm the SDR URI if prompted. Then, in **terminal 2**, opened in the same repository directory, start the radio:
-
-```bash
-bash run_node_a_radio.sh
-```
-
-Leave both terminals open. The chat window shows Connected when the radio service is available. Closing the chat window leaves the radio running; press **Ctrl+C in terminal 2** to stop it.
+Confirm the SDR URI if prompted. The radio starts after profile setup, and the chat window shows Connected when the radio service is available. Keep this terminal open while chatting. Close the chat window or press **Ctrl+C in this terminal** to stop both the chat session and its radio.
 
 ## 4. Invite Node B (second user)
 
@@ -74,49 +68,42 @@ Send `dist/Pixel_Pulse_Share.zip` and the invitation. The ZIP excludes local pro
 
 On the second computer, clone the repository or extract the ZIP and enter its `Pixel_Pulse` directory. Install dependencies and run `bash setup.sh` as described above. Do not create another coordinator for the same network.
 
-In **terminal 1**:
+Start chat and radio together:
 
 ```bash
-bash run_node_b_chat.sh
+bash run_node_b.sh
 ```
 
-On first launch, enter your name, import your personal invitation, and confirm **Node B's own SDR URI**. This saves `configs/my_node.json`.
+On first launch, enter your name, import your personal invitation, and confirm **Node B's own SDR URI**. This saves `configs/my_node.json`, then starts the radio automatically.
 
-After importing the invitation, in **terminal 2**, in the same project directory:
+Select User 1 and send a short text. Ask Node A to reply to confirm both directions before sending attachments. Close the chat window or press **Ctrl+C in this terminal** to stop the session and radio.
 
-```bash
-bash run_node_b_radio.sh
-```
-
-Select User 1 and send a short text. Ask Node A to reply to confirm both directions before sending attachments. Stop the radio with **Ctrl+C in terminal 2** when finished.
-
-For later sessions, run the same two Node A or Node B scripts; setup and invitation import are only needed initially or after relevant changes.
+For later sessions, run the same single Node A or Node B command; setup and invitation import are only needed initially or after relevant changes.
 
 ## Command reference
 
 | Command | Purpose |
 | --- | --- |
 | `bash setup.sh` | Build the radio and run software tests. |
-| `bash run_node_a_chat.sh` | Open chat with `configs/node_a.json`. |
-| `bash run_node_a_radio.sh` | Run Node A's radio separately. |
-| `bash run_node_b_chat.sh` | Open chat and import an invitation on first launch. |
-| `bash run_node_b_radio.sh` | Run the radio with `configs/my_node.json`. |
-| `bash run_app.sh --config configs/custom.json` | Open chat with another local profile. |
-| `bash run_radio.sh configs/custom.json` | Run the radio with that same profile. |
+| `bash run_node_a.sh` | Start Node A's chat and radio with `configs/node_a.json`. |
+| `bash run_node_b.sh` | Start Node B's chat and radio; import an invitation on first launch. |
+| `bash run_app.sh --config configs/custom.json` | Start chat and radio with another local profile. |
 | `python3 tools/package_project.py` | Build the clean sharing ZIP. |
 
-Each physical node needs a different invitation/address. Run one radio process per node. Do not start another radio against a device already in use.
+The older `run_node_a_chat.sh` and `run_node_b_chat.sh` commands also launch both chat and radio. Each physical node needs a different invitation/address. Run one session per node.
+
+The `run_node_a_radio.sh`, `run_node_b_radio.sh`, and `run_radio.sh` scripts remain available for radio-only diagnostics. Close the combined session before using them so two processes do not compete for the same SDR.
 
 ## Settings and troubleshooting
 
-Close the chat window and stop the radio before editing local profiles. Node A uses `configs/node_a.json`; Node B uses `configs/my_node.json`.
+Close the chat window to stop its radio before editing local profiles. Node A uses `configs/node_a.json`; Node B uses `configs/my_node.json`.
 
 | Symptom / setting | Action |
 | --- | --- |
 | `Run bash setup.sh first` | Build the generated radio files with `bash setup.sh`. |
 | Missing Python module | Install the dependencies above and use the system Python. |
-| Radio cannot connect | Check SDR power, the local `uri`, IIO support, and whether another process owns the device. Errors appear in the radio terminal. |
-| Chat stays Offline | Start the matching radio script and check its terminal for errors. The chat window alone does not transmit. |
+| Radio cannot connect | Check SDR power, the local `uri`, IIO support, and whether another process owns the device. Errors appear in the launch terminal and `data/<node>/radio.log`. Use **Retry** after fixing the connection, or **Continue offline** to manage contacts and queued messages. |
+| Chat stays Offline | Check the launch terminal or `data/<node>/radio.log`, then resolve the SDR connection and use Retry. |
 | Queued messages | Check both radios are running, the devices are in range, and both profiles have matching radio settings and network key. |
 | Channel busy at idle | Review the sensing threshold in Details and check interference. |
 | Delivered | The receiving radio stored the message. Confirm a reply to test the return link. |

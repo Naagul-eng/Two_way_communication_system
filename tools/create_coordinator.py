@@ -41,7 +41,7 @@ def main():
         target = create_coordinator(name=args.name, uri=args.uri)
     except (ValueError, OSError) as exc:
         parser.exit(1, f'{exc}\n')
-    print(f'Created {target} with a new network key. Run bash run_node_a_chat.sh, then bash run_node_a_radio.sh in another terminal.')
+    print(f'Created {target} with a new network key. Run bash run_node_a.sh to start chat and radio together.')
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-"""PyQt5 chat client; run the radio separately with the Bash node scripts."""
+"""PyQt5 chat client with a radio process owned by the same Bash session."""
 import argparse
 import json
 from pathlib import Path
@@ -715,10 +715,14 @@ def main():
     if not configure_radio(path):return
     config=load(path)
     window=Window(config);window.show()
+    from .radio_process import attach_radio
+    radio=attach_radio(app,window,config)
     for signum in (signal.SIGINT,signal.SIGTERM):
         signal.signal(signum,lambda *_:app.quit())
     signal_timer=QtCore.QTimer(app);signal_timer.timeout.connect(lambda:None);signal_timer.start(200)
-    sys.exit(app.exec_())
+    try:result=app.exec_()
+    finally:radio.stop()
+    sys.exit(result)
 
 
 if __name__=='__main__':main()
