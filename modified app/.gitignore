@@ -1,0 +1,30 @@
+# Local Python and native build output
+__pycache__/
+*.py[cod]
+*.so
+*.o
+
+# Regenerated radio Python and packaged releases
+**/flowgraphs/generated/
+dist/
+
+# Private chat state, attachments, invitations and machine settings
+data/
+Invitations/
+*.sqlite*
+*.log
+.coordinator
+**/configs/my_node.json
+
+# Desktop entries contain absolute paths; install_app.sh regenerates them
+*.desktop
+
+# Local editor/environment files
+.venv/
+venv/
+.vscode/
+.idea/
+.env
+.env.*
+*.swp
+core
